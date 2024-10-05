@@ -1,0 +1,114 @@
+/* Users table */
+Table users {
+  id integer [pk, increment]
+  first_name varchar
+  last_name varchar
+  username varchar [not null, unique]
+  email varchar [not null, unique]
+  password varchar [not null]
+  date_of_birth date
+  address varchar
+  phone_number varchar
+  created_at timestamp [default: `now()`]
+  deleted_at timestamp
+
+  indexes {
+    email [name: 'idx_users_email']
+  }
+}
+
+/* Product categories table */
+Table categories {
+  id integer [pk, increment]
+  name varchar [not null]
+  description varchar
+}
+
+/* Products table */
+Table products {
+  id integer [pk, increment]
+  name varchar [not null]
+  description text
+  category_id integer [ref: > categories.id]
+  price decimal(10, 2) [not null]
+  stock_quantity integer [not null]
+  created_at timestamp [default: `now()`]
+  updated_at timestamp
+
+  indexes {
+    category_id [name: 'idx_products_category']
+  }
+}
+
+/* Product SKUs table */
+Table product_skus {
+  id integer [pk, increment]
+  product_id integer [ref: > products.id]
+  size varchar [not null]
+  color varchar [not null]
+  sku varchar [not null, unique]
+  price decimal(10, 2) [not null]
+  stock_quantity integer [not null]
+
+  indexes {
+    product_id [name: 'idx_product_skus_product']
+  }
+}
+
+/* Cart table */
+Table carts {
+  id integer [pk, increment]
+  user_id integer [ref: > users.id]
+  created_at timestamp [default: `now()`]
+  updated_at timestamp
+}
+
+/* Cart items table */
+Table cart_items {
+  id integer [pk, increment]
+  cart_id integer [ref: > carts.id]
+  product_sku_id integer [ref: > product_skus.id]
+  quantity integer [not null]
+  created_at timestamp [default: `now()`]
+  updated_at timestamp
+
+  indexes {
+    cart_id [name: 'idx_cart_items_cart']
+  }
+}
+
+/* Orders table */
+Table orders {
+  id integer [pk, increment]
+  user_id integer [ref: > users.id]
+  status varchar [not null]
+  total_amount decimal(10, 2) [not null]
+  created_at timestamp [default: `now()`]
+  updated_at timestamp
+}
+
+/* Order items table */
+Table order_items {
+  id integer [pk, increment]
+  order_id integer [ref: > orders.id]
+  product_sku_id integer [ref: > product_skus.id]
+  quantity integer [not null]
+  price decimal(10, 2) [not null]
+  created_at timestamp [default: `now()`]
+
+  indexes {
+    order_id [name: 'idx_order_items_order']
+  }
+}
+
+/* Payment details table */
+Table payment_details {
+  id integer [pk, increment]
+  order_id integer [ref: > orders.id]
+  amount decimal(10, 2) [not null]
+  provider varchar [not null]
+  status varchar [not null]
+  transaction_id varchar [unique]
+  created_at timestamp [default: `now()`]
+  updated_at timestamp
+}
