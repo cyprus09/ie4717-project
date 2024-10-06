@@ -1,0 +1,82 @@
+/* Footer Main */
+
+.footer {
+  background-color: var(--dark-blue);
+  padding: 1em 5em;
+}
+
+/* Footer Header */
+
+.footer-logo {
+  height: 5em;
+}
+
+/* Footer Content */
+
+.footer-content {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  color: var(--gray);
+  line-height: 1.2em;
+  width: 100%;
+}
+
+.footer-content-section {}
+
+.footer-header-content {
+  font-size: 1.6em;
+  color: var(--white);
+}
+
+.footer-section-wrapper {
+  float: right;
+  display: flex;
+  flex-direction: row;
+}
+
+/* 1st Column */
+
+.address, .contact, .social-media {
+  margin-bottom: 1em;
+}
+
+.social-media {
+  display: flex;
+  flex-direction: row;
+}
+
+.social-media-icon {
+  height: 2.3em;
+  width: 2.3em;
+  margin-right: 0.8em;
+}
+
+/* 2nd Column */
+
+.about-us-section a {
+  margin-top: 1em;
+}
+
+/* 3rd Column */
+
+.feedback-section {
+  margin-left: 6em;
+  width: 12em;
+}
+
+.feedback-section .footer-header-content, .feedback-section p {
+  margin-bottom: 1.1em;
+}
+
+.feedback-button {
+  font-weight: bold;
+  background-color: var(--white);
+  color: var(--dark-blue);
+  border-radius: var(--br-small);
+  width: 8em;
+  height: 2em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
