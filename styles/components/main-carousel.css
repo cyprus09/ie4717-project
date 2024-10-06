@@ -1,0 +1,135 @@
+/* Carousel Main Styling */
+
+.carousel {
+    position: relative;
+    width: 100%;
+    height: 65%;
+    /* overflow: hidden; */
+    margin: 0 auto;
+    border-radius: var(--br-big);
+    z-index: 3;
+}
+
+.carousel-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.carousel-item {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+}
+
+.carousel-item.active {
+    display: block;
+}
+
+/* Control Button*/
+
+.carousel-controls {
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+    position: absolute;
+    bottom: 40%;
+    left: 0px;
+    width: 100%;
+    text-align: center;
+}
+
+.carousel-controls button {
+    width: 2em;
+    height: 3em;
+    font-size: 24px;
+    cursor: pointer;
+    background-color: var(--dark-blue);
+    color: var(--white)
+}
+
+.carousel-controls .prev {
+    border-top-right-radius: 1.5em;
+    border-bottom-right-radius: 1.5em;
+}
+
+.carousel-controls .next {
+    border-top-left-radius: 1.5em;
+    border-bottom-left-radius: 1.5em;
+}
+
+/* Indicator Bar */
+
+.carousel-indicators {
+    position: absolute;
+    bottom: 15px;
+    left: 0px;
+    width: 100%;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.carousel-indicators button {
+    width: 22%;
+    height: 2px;
+    border-radius: 50px;
+    background-color: rgba(255, 255, 255, .4);
+    cursor: pointer;
+    position: relative;
+    border: none;
+    padding: 0;
+    margin: 5px;
+}
+.carousel-indicators button.active::after{
+      content:"";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      border-radius: 0;
+      background-color: #fff;
+      animation: loading 3s ;
+}
+
+@keyframes loading{
+      0%{
+          width: 0%;
+      }
+
+      100%{
+          width: 100%;
+      }
+}
+
+/* Advertisement Item*/
+
+.bg-color-01{
+      background: navy;
+      width: 100%;
+      height: 100%;
+      border-radius: var(--br-big);
+}
+.bg-color-02{
+      background: teal;
+      width: 100%;
+      height: 100%;
+      border-radius: var(--br-big);
+}
+.bg-color-03{
+      background: cornflowerblue;
+      width: 100%;
+      height: 100%;
+      border-radius: var(--br-big);
+}
+.bg-color-04{
+      background: indigo;
+      width: 100%;
+      height: 100%;
+      border-radius: var(--br-big);
+}

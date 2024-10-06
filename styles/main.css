@@ -54,6 +54,11 @@
   --shadow-1: 0 8px 16px var(--black-15);
   --shadow-2: 0 4px 10px var(--black-5);
 
+  /* border radius */
+  --br-big: 1.2em;
+  --br-medium: 0.6em;
+  --br-small: 0.2em;
+
   /* radius */
   --radius-3: 3px;
 

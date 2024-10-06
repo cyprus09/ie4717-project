@@ -16,10 +16,10 @@
                 <p>Mobile  : +65 90860327</p>
             </div>
             <div class="social-media">
-                <a href="#" target="_blank"><img src="../assets/icons/instagram-icon.svg" alt="Instagram" class="social-media-icon"></a>
-                <a href="#" target="_blank"><img src="../assets/icons/telegram-icon.svg" alt="Telegram" class="social-media-icon"></a>
-                <a href="#" target="_blank"><img src="../assets/icons/facebook-icon.svg" alt="Facebook" class="social-media-icon"></a>
-                <a href="#" target="_blank"><img src="../assets/icons/tiktok-icon.svg" alt="TikTok" class="social-media-icon"></a>
+                <a href="#" target="_blank"><img src="../assets/icons/social-media/instagram-icon.svg" alt="Instagram" class="social-media-icon"></a>
+                <a href="#" target="_blank"><img src="../assets/icons/social-media/telegram-icon.svg" alt="Telegram" class="social-media-icon"></a>
+                <a href="#" target="_blank"><img src="../assets/icons/social-media/facebook-icon.svg" alt="Facebook" class="social-media-icon"></a>
+                <a href="#" target="_blank"><img src="../assets/icons/social-media/tiktok-icon.svg" alt="TikTok" class="social-media-icon"></a>
             </div>
             <div class="copyright">
                 <p>©<?php echo date("Y"); ?> FootScape, All Rights Reserved</p>

@@ -2,7 +2,7 @@
 
 .footer {
   background-color: var(--dark-blue);
-  padding: 1em 3em;
+  padding: 1em 5em;
 }
 
 /* Footer Header */
@@ -73,7 +73,7 @@
   font-weight: bold;
   background-color: var(--white);
   color: var(--dark-blue);
-  border-radius: 0.2em;
+  border-radius: var(--br-small);
   width: 8em;
   height: 2em;
   display: flex;

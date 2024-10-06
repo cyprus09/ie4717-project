@@ -11,9 +11,7 @@
     <!-- Search Bar -->
         <form class="search-bar">
             <input type="text" class="search-input" placeholder="Search">
-            <a href="#"><img class="search-submit" src="../assets/icons/search-icon.svg" alt="Submit"></a>
+            <a href="#"><img class="search-submit" src="../assets/icons/utilities/search-icon.svg" alt="Submit"></a>
         </form>
     </div>
-    
-
 </header>
