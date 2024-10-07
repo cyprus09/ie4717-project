@@ -58,9 +58,9 @@
             <label><input type="radio" name="payment" value="alipay" /> <img src="../assets/icons/brand/alipay.svg"></label>
             <label><input type="radio" name="payment" value="paypal" /> <img src="../assets/icons/brand/paypal.svg"></label>
           </div>
-          <input type="text" placeholder="Full Name" required />
-          <input type="text" placeholder="Card Number" required />
           <div class="card-details">
+            <input type="text" placeholder="Full Name" required />
+            <input type="text" placeholder="Card Number" required />
             <input type="text" placeholder="Expiry Date" required />
             <input type="text" placeholder="CVV" required />
           </div>

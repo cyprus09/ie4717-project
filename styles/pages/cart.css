@@ -11,7 +11,7 @@ h1 {
 
 .cart-items {
   background-color: var(--gray);
-  border-radius: 10px;
+  border-radius: var(--br-big);
   padding: 20px;
   margin-bottom: 30px;
 }
@@ -19,9 +19,9 @@ h1 {
 .cart-item {
   display: flex;
   align-items: center;
-  margin-bottom: 20px;
+  margin: 7px;
   background-color: var(--white);
-  border-radius: 10px;
+  border-radius: var(--br-medium);
   padding: 15px;
 }
 
@@ -29,18 +29,18 @@ h1 {
   width: 100px;
   height: 100px;
   object-fit: cover;
-  border-radius: 10px;
+  border-radius: var(--br-medium);
   margin-right: 20px;
 }
 
 .item-details h2 {
   margin: 0;
-  font-size: 18px;
+  font-size: var(--fs-7);
 }
 
 .price {
   font-weight: bold;
-  color: #333;
+  color: var(--dark-blue);
 }
 
 .quantity {
@@ -54,7 +54,7 @@ h1 {
   border: none;
   width: 30px;
   height: 30px;
-  font-size: 18px;
+  font-size: var(--fs-7);
   cursor: pointer;
 }
 
@@ -73,9 +73,15 @@ h1 {
 .delivery-address,
 .payment-details,
 .order-summary {
+  display: flex;
+  flex-direction: column;
   background-color: var(--gray);
-  border-radius: 10px;
+  border-radius: var(--br-medium);
   padding: 20px;
+}
+
+.delivery-address input{
+  margin-top: 10px;
 }
 
 input[type="text"],
@@ -83,8 +89,9 @@ input[type="tel"] {
   width: 100%;
   padding: 10px;
   margin-bottom: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  background-color: var(--white);
+  border: 1px solid var(--white);
+  border-radius: var(--br-small);
 }
 
 .payment-options {
@@ -97,16 +104,17 @@ input[type="tel"] {
 .payment-options label {
   display: flex;
   align-items: center;
-  background-color: #fff;
-  border: 1px solid #ddd;
-  border-radius: 8px;
+  background-color: var(--white);
+  border: 1px solid var(--gray);
+  border-radius: var(--br-small);
   padding: 10px 15px;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all var(--transition-1);
 }
 
 .payment-options label:hover {
-  box-shadow: 0 2px 5px rgba(65, 65, 65, 0.1);
+  transform: scale(1.05);
+  box-shadow: var(--shadow-2);
 }
 
 .payment-options input[type="radio"] {
@@ -140,16 +148,22 @@ input[type="tel"] {
 
 .checkout-btn {
   grid-column: 1 / -1;
-  background-color: var(--light-blue);
-  color: white;
+  background-color: var(--medium-blue);
+  color: var(--white);
   border: none;
   padding: 15px;
-  font-size: 18px;
-  border-radius: 5px;
+  font-size: var(--fs-7);
+  border-radius: var(--br-medium);
   cursor: pointer;
+}
+
+.checkout-btn:hover {
+  transform: scale(1.02);
+  transition: var(--transition-1);
+  box-shadow: 0 2px 5px var(--dark-blue);
 }
 
 .total {
   font-weight: bold;
-  font-size: 18px;
+  font-size: var(--fs-9);
 }
