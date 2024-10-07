@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="../styles/components/footer.css" />
     <link rel="stylesheet" href="../styles/components/main-carousel.css" />
     <link rel="stylesheet" href="../styles/components/product-card.css" />
+    <link rel="stylesheet" href="../styles/components/card-carousel.css" />
     <!-- Page CSS -->
     <link rel="stylesheet" href="../styles/pages/home.css" />
   </head>
@@ -46,19 +47,20 @@
       <!-- Sale Highlight -->
       <div class="highlight-section sale-highlight">
         <h1 class="highlight-header">Flash Sale</h1>
-        <?php include "../components/product-card.php" ?>
+        <?php include "../components/card-carousel.php" ?>
       </div>
       <!-- Trending Highlight -->
       <div class="highlight-section trending-highlight">
         <h1 class="highlight-header">Trending</h1>
+        <?php include "../components/card-carousel.php" ?>
       </div>
       <!-- Categories Highlight -->
       <div class="highlight-section category-highlight">
         <h1 class="highlight-header">Categories</h1>
+        <?php include "../components/card-carousel.php" ?>
       </div>
     <!-- Footer -->
     <?php include "../components/footer.php" ?>
     </main>
-    
   </body>
 </html>

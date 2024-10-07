@@ -3,7 +3,7 @@
 .product-card {
     background-color: var(--white);
     width: 24%;
-    height: 24em;
+    height: 24vw;
     border-radius: var(--br-big);
     box-shadow: 0.5em 0.5em 0.5em rgba(54, 46, 91, 0.5);
 }

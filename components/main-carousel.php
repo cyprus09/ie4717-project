@@ -1,4 +1,4 @@
-<div id="carousel" class="carousel">
+<div id="main-carousel" class="main-carousel">
     <!-- carousel wrapper -->
     <div class="carousel-inner">
         <div class="carousel-item slider-bg-01 active">
