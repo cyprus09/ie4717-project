@@ -6,20 +6,21 @@
     <title>FootScape</title>
     <!-- Favicon -->
     <link rel="shortcut icon" href="../assets/logos/favicon-logo.png" type="image/png" />
-    <!-- Page CSS -->
+    <!-- Main CSS -->
     <link rel="stylesheet" href="../styles/main.css" />
-    <link rel="stylesheet" href="../styles/pages/home.css" />
     <!-- Components CSS -->
     <link rel="stylesheet" href="../styles/components/navbar.css" />
     <link rel="stylesheet" href="../styles/components/footer.css" />
     <link rel="stylesheet" href="../styles/components/main-carousel.css" />
     <link rel="stylesheet" href="../styles/components/product-card.css" />
+    <!-- Page CSS -->
+    <link rel="stylesheet" href="../styles/pages/home.css" />
   </head>
   <body>
     <!-- Navbar -->
     <?php include "../components/navbar.php" ?>
     <!-- Main Content -->
-    <main>
+    <main class="main-content">
       <!-- Main Highlight -->
       <div class="highlight-section main-highlight">
         <?php include "../components/main-carousel.php" ?>
@@ -55,8 +56,9 @@
       <div class="highlight-section category-highlight">
         <h1 class="highlight-header">Categories</h1>
       </div>
-    </main>
     <!-- Footer -->
     <?php include "../components/footer.php" ?>
+    </main>
+    
   </body>
 </html>
