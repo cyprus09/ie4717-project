@@ -122,4 +122,61 @@ document.addEventListener("DOMContentLoaded", () => {
     });
     return selected;
   }
+
+  // Get references to key elements
+  const cartItems = document.querySelectorAll(".cart-item");
+  const subtotalElement = document.getElementById("subtotal");
+  const gstElement = document.getElementById("gst");
+  const totalElement = document.getElementById("total");
+  const deliveryFee = 15.00;
+
+  // Function to update the cart's subtotal, GST, and total
+  function updateCart() {
+    let subtotal = 0;
+
+    cartItems.forEach(item => {
+      const price = parseFloat(item.getAttribute("data-price"));
+      const quantityInput = item.querySelector(".quantity-input");
+      const quantity = parseInt(quantityInput.value);
+      const itemTotal = price * quantity;
+      subtotal += itemTotal;
+    });
+
+    const gst = subtotal * 0.10; // 10% GST
+    const total = subtotal + gst + deliveryFee;
+
+    // Update the displayed values
+    subtotalElement.textContent = subtotal.toFixed(2);
+    gstElement.textContent = gst.toFixed(2);
+    totalElement.textContent = total.toFixed(2);
+  }
+
+  // Event listeners for quantity buttons and manual input changes
+  document.querySelectorAll(".quantity-btn").forEach(button => {
+    button.addEventListener("click", function () {
+      const input = this.parentElement.querySelector(".quantity-input");
+      let quantity = parseInt(input.value);
+      if (this.classList.contains("plus") && quantity < 10) {
+        quantity += 1;
+      } else if (this.classList.contains("minus") && quantity > 1) {
+        quantity -= 1;
+      }
+      input.value = quantity;
+      updateCart();
+    });
+  });
+
+  document.querySelectorAll(".quantity-input").forEach(input => {
+    input.addEventListener("change", function () {
+      if (this.value < 1) {
+        this.value = 1;
+      } else if (this.value > 10) {
+        this.value = 10;
+      }
+      updateCart();
+    });
+  });
+
+  updateCart();
+
 });

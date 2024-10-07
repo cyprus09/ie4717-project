@@ -24,16 +24,30 @@
     <div class="container">
       <h1>My Cart</h1>
       <div class="cart-items">
-        <div class="cart-item">
+        <div class="cart-item" data-price="499">
           <img src="../assets/products/nike-shoe.jpg" alt="Jordan 1 Black & White" />
           <div class="item-details">
             <h2>Jordan 1 Black & White</h2>
             <p>Size (US): <span class="size">10</span></p>
-            <p class="price">$499.00</p>
+            <p class="price">$<span class="item-price">499.00</span></p>
           </div>
           <div class="quantity">
             <button class="quantity-btn minus">-</button>
-            <input type="number" value="1" min="1" max="10" />
+            <input type="number" value="1" min="1" max="10" class="quantity-input" />
+            <button class="quantity-btn plus">+</button>
+          </div>
+        </div>
+
+        <div class="cart-item" data-price="399">
+          <img src="../assets/products/adidas-shoe.jpg" alt="Adidas UltraBoost" />
+          <div class="item-details">
+            <h2>Adidas UltraBoost</h2>
+            <p>Size (US): <span class="size">9</span></p>
+            <p class="price">$<span class="item-price">399.00</span></p>
+          </div>
+          <div class="quantity">
+            <button class="quantity-btn minus">-</button>
+            <input type="number" value="1" min="1" max="10" class="quantity-input" />
             <button class="quantity-btn plus">+</button>
           </div>
         </div>
@@ -68,11 +82,11 @@
 
         <!-- Order Summary -->
         <div class="order-summary">
-          <h2>Subtotal</h2>
-          <p>Subtotal: $XX.XX</p>
-          <p>Delivery Fee: $XX.XX</p>
-          <p>GST (10%): $XX.XX</p>
-          <p class="total">Total: $XX.XX</p>
+          <h2>Order Summary</h2>
+          <p>Subtotal: $<div id="subtotal">0.00</div></p>
+          <p>Delivery Fee: $<span id="delivery-fee">15.00</span></p>
+          <p>GST (10%): $<span id="gst">0.00</span></p>
+          <p class="total">Total: $<span id="total">0.00</span></p>
         </div>
 
         <button type="submit" class="checkout-btn">Checkout</button>
@@ -82,7 +96,7 @@
 
   <!-- Footer -->
   <?php include "../components/footer.php" ?>
-
+  <script src="../scripts/pages/cart.js"></script>
 </body>
 
 </html>
