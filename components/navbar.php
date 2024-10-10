@@ -6,7 +6,7 @@
     <div class="link-wrapper">
     <!-- Navigation Links -->
         <a href="#" class="nav-link">Explore</a>
-        <a href="#" class="nav-link">Cart</a>
+        <a href="../pages/shopping-cart.php" class="nav-link">Cart</a>
         <a href="#" class="nav-link">Log In</a>
     <!-- Search Bar -->
         <form class="search-bar">
