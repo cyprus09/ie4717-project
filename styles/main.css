@@ -23,6 +23,8 @@
   --light-blue: #646BFF;
   --gray: #EAEAF5;
   --white: #F9F9FF;
+  --black: #000000;
+  --gradient-background: linear-gradient(to right, #EAEAF5, #646BFF);
 
   /* typography */
   --dela-gothic-one: dela-gothic-one, Helvetica, sans-serif;
@@ -55,6 +57,7 @@
   --shadow-2: 0 4px 10px var(--black-5);
 
   /* border radius */
+  --br-xl: 1.8em;
   --br-big: 1.2em;
   --br-medium: 0.6em;
   --br-small: 0.2em;
