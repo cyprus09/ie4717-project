@@ -1,6 +1,6 @@
 <header class="navbar">
     <!-- Logo -->
-    <a href="#">
+    <a href="../pages/home.php">
         <img src="../assets/logos/white-logo.svg" alt="FootScape" class="navbar-logo">
     </a>
     <div class="link-wrapper">

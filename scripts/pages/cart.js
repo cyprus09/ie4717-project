@@ -2,15 +2,17 @@ document.addEventListener("DOMContentLoaded", () => {
   // Quantity buttons
   const quantityButtons = document.querySelectorAll(".quantity-btn");
   quantityButtons.forEach(button => {
-    button.addEventListener("click", function () {
-      const input = this.parentElement.querySelector("input[type='number']");
+    button.addEventListener("click", event => {
+      event.preventDefault();
+
+      const input = event.target.parentElement.querySelector("input[type='number']");
       let currentValue = parseInt(input.value);
 
-      if (this.classList.contains("plus")) {
+      if (event.target.classList.contains("plus")) {
         if (currentValue < 10) {
           input.value = currentValue + 1;
         }
-      } else if (this.classList.contains("minus")) {
+      } else if (event.target.classList.contains("minus")) {
         if (currentValue > 1) {
           input.value = currentValue - 1;
         }
@@ -22,7 +24,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const checkoutForm = document.querySelector(".checkout-form");
 
   checkoutForm.addEventListener("submit", event => {
-    // Prevent form submission for validation
     event.preventDefault();
 
     const address = document.querySelector("input[placeholder='Address']");
@@ -128,7 +129,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const subtotalElement = document.getElementById("subtotal");
   const gstElement = document.getElementById("gst");
   const totalElement = document.getElementById("total");
-  const deliveryFee = 15.00;
+  const deliveryFee = 15.0;
 
   // Function to update the cart's subtotal, GST, and total
   function updateCart() {
@@ -142,7 +143,7 @@ document.addEventListener("DOMContentLoaded", () => {
       subtotal += itemTotal;
     });
 
-    const gst = subtotal * 0.10; // 10% GST
+    const gst = subtotal * 0.1; // 10% GST
     const total = subtotal + gst + deliveryFee;
 
     // Update the displayed values
@@ -178,5 +179,4 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   updateCart();
-
 });
