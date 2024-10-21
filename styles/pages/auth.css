@@ -15,7 +15,9 @@ body {
   overflow: hidden;
   width: 900px;
   max-width: 100%;
-  min-height: 900px;
+  min-height: 600px;
+  margin-top: auto;
+  bottom: 10%;
 }
 
 .container p {
