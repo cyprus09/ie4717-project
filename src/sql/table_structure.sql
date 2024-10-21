@@ -18,6 +18,7 @@ create table
     name varchar(100) not null,
     description varchar(255) not null,
     category varchar(20) not null,
+    gender varchar(10) default unisex,
     price decimal(10, 2) not null,
     size int (2) not null check (size between 1 and 20),
     quantity int (10) default 0,
