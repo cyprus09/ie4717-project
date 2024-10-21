@@ -15,11 +15,13 @@ loginBtn.addEventListener("click", () => {
 signUpForm.addEventListener("submit", function (event) {
   event.preventDefault();
 
-  const name = signUpForm.querySelector('input[type="text"]').value.trim();
+  const firstName = document.getElementById("firstName").value.trim();
+  const lastName = document.getElementById("lastName").value.trim();
+  const username = document.getElementById("username").value.trim();
   const email = signUpForm.querySelector('input[type="email"]').value.trim();
   const password = signUpForm.querySelector('input[type="password"]').value.trim();
 
-  if (!validateName(name) || !validateEmail(email) || !validatePassword(password)) {
+  if (!validateName(firstName) || !validateEmail(email) || !validatePassword(password)) {
     alert("Please fill out all fields correctly.");
     return;
   }
@@ -40,8 +42,16 @@ signInForm.addEventListener("submit", function (e) {
   alert("Login successful!");
 });
 
-function validateName(name) {
-  return name.length >= 3;
+function validateFirstName(firstName) {
+  return firstName.length >= 3;
+}
+
+function validateLastName(lastName) {
+  return lastName.length >= 3;
+}
+
+function validateUsername(username) {
+  return username.length >= 3;
 }
 
 function validateEmail(email) {
@@ -50,5 +60,7 @@ function validateEmail(email) {
 }
 
 function validatePassword(password) {
-  return password.length >= 6;
+  // minimum eight characters, at least one uppercase letter, one lowercase letter and one number
+  const re = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
+  return re.test(password);
 }
