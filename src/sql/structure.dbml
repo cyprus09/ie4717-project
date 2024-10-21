@@ -6,12 +6,7 @@ Table users {
   username varchar [not null, unique]
   email varchar [not null, unique]
   password varchar [not null]
-  date_of_birth date
-  address varchar
-  phone_number varchar
-  created_at timestamp [default: `now()`]
-  deleted_at timestamp
-
+  user_mobile varchar
   indexes {
     email [name: 'idx_users_email']
   }
