@@ -1,8 +1,8 @@
 const container = document.getElementById("container");
-const registerBtn = document.getElementById("register");
-const loginBtn = document.getElementById("login");
-const signUpForm = document.querySelector(".sign-up form");
-const signInForm = document.querySelector(".sign-in form");
+const registerBtn = document.getElementById("registerToggle");
+const loginBtn = document.getElementById("loginToggle");
+const signUpForm = document.querySelector(".register-form form");
+const signInForm = document.querySelector(".login-form form");
 
 registerBtn.addEventListener("click", () => {
   container.classList.add("active");
@@ -11,6 +11,25 @@ registerBtn.addEventListener("click", () => {
 loginBtn.addEventListener("click", () => {
   container.classList.remove("active");
 });
+
+// Helper function to handle form submission
+function handleFormSubmission(form, url) {
+  const formData = new FormData(form);
+
+  const xhr = new XMLHttpRequest();
+  xhr.open("POST", url, true);
+  xhr.onreadystatechange = function () {
+    if (xhr.readyState === XMLHttpRequest.DONE) {
+      const result = JSON.parse(xhr.responseText);
+      if (result.success) {
+        window.location.href = "../../pages/home.php";
+      } else {
+        showError(result.message);
+      }
+    }
+  };
+  xhr.send(formData);
+}
 
 signUpForm.addEventListener("submit", function (event) {
   event.preventDefault();
@@ -21,12 +40,29 @@ signUpForm.addEventListener("submit", function (event) {
   const email = signUpForm.querySelector('input[type="email"]').value.trim();
   const password = signUpForm.querySelector('input[type="password"]').value.trim();
 
-  if (!validateName(firstName) || !validateEmail(email) || !validatePassword(password)) {
-    alert("Please fill out all fields correctly.");
+  if (!validateFirstName(firstName)) {
+    alert("First name should be atleast 3 characters");
     return;
   }
-
-  alert("Registration successful!");
+  if (!validateLastName(lastName)) {
+    alert("Last name should be atleast 3 characters");
+    return;
+  }
+  if (!validateUsername(firstName)) {
+    alert("Username should be atleast 3 characters");
+    return;
+  }
+  if (!validateEmail(firstName)) {
+    alert("The email address is not valid");
+    return;
+  }
+  if (!validatePassword(firstName)) {
+    alert(
+      "Password should be atleast 8 characters, at least one uppercase letter, one lowercase letter and one number"
+    );
+    return;
+  }
+  handleFormSubmission(signUpForm, "../../pages/auth.php");
 });
 
 signInForm.addEventListener("submit", function (e) {
@@ -39,7 +75,7 @@ signInForm.addEventListener("submit", function (e) {
     return;
   }
 
-  alert("Login successful!");
+  handleFormSubmission(signInForm, "../../pages/auth.php");
 });
 
 function validateFirstName(firstName) {
@@ -55,7 +91,7 @@ function validateUsername(username) {
 }
 
 function validateEmail(email) {
-  const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const re = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
   return re.test(email);
 }
 
