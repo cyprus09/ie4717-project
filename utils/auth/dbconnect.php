@@ -1,11 +1,13 @@
 <?php
-$host = 'localhost';
-$dbname = 'footscape_db';
-$user = 'root';
-$pass = '12345';
+define('DBSERVER', 'localhost'); // Database server
+define('DBUSERNAME', 'root'); // Database username
+define('DBPASSWORD', '12345'); // Database password
+define('DBNAME', 'footscape_db'); // Database name
 
-$db = new mysqli($host, $user, $pass, $dbname);
+// Connect to the database
+$db = new mysqli(DBSERVER, DBUSERNAME, DBPASSWORD, DBNAME);
 
-if($db == false) {
-  die("Error: connection error.".mysqli_connect_error());
+// Check database connection
+if ($db->connect_error) {
+  die("Error: Connection error - " . $db->connect_error);
 }

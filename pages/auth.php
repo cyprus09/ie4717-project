@@ -1,59 +1,156 @@
 <?php
-include "../utils/auth/dbconnect.php";
+// Import DB connection and session starting
+require_once "../utils/auth/dbconnect.php";
+require_once "../utils/auth/session.php";
+
 session_start();
 
-// Handle user registration
-if (isset($_POST['register'])) {
-  // sanitise inputs
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['register'])) {
+  // Sanitize inputs
   $firstName = trim($_POST['firstName']);
   $lastName = trim($_POST['lastName']);
   $username = trim($_POST['username']);
   $email = trim($_POST['email']);
-  $password = password_hash(trim($_POST['password']), PASSWORD_DEFAULT);
+  $password = trim($_POST['password']);
 
-  // registration validation
-  if ($firstName && $lastName && $username && $email && $password) {
-    $stmt = $pdo->prepare("SELECT * FROM users WHERE email = :email OR username = :username");
-    $stmt->execute(['email' => $email, 'username' => $username]);
+  // Debug password requirements separately
+  $has_lowercase = preg_match('/[a-z]/', $password);
+  $has_uppercase = preg_match('/[A-Z]/', $password);
+  $has_number = preg_match('/\d/', $password);
+  $is_long_enough = strlen($password) >= 8;
 
-    if ($stmt->rowCount() > 0) {
-      echo json_encode(['success' => false, 'message' => 'Email or Username already exists.']);
-      exit;
-    }
-
-    $stmt = $pdo->prepare("INSERT INTO users (first_name, last_name, username, email, password) VALUES (:firstName, :lastName, :username, :email, :password)");
-
-    if ($stmt->execute(['firstName' => $firstName, 'lastName' => $lastName, 'username' => $username, 'email' => $email, 'password' => $password])) {
-      $_SESSION['user_id'] = $pdo->lastInsertId();
-      $_SESSION['username'] = $username;
-      $_SESSION['email'] = $email;
-      echo json_encode(['success' => true, 'redirect' => '../../pages/home.php']);
-      exit;
-    }
+  // Detailed validation with specific messages
+  if (!$is_long_enough) {
+    echo "<script>alert('Password must be at least 8 characters long.');</script>";
+    header('Location: ./auth.php');
+    exit;
   }
-  echo json_encode(['success' => false, 'message' => 'Registration failed.']);
+  if (!$has_lowercase) {
+    echo "<script>alert('Password must contain at least one lowercase letter.');</script>";
+    header('Location: ./auth.php');
+    exit;
+  }
+  if (!$has_uppercase) {
+    echo "<script>alert('Password must contain at least one uppercase letter.');</script>";
+    header('Location: ./auth.php');
+    exit;
+  }
+  if (!$has_number) {
+    echo "<script>alert('Password must contain at least one number.');</script>";
+    header('Location: ./auth.php');
+    exit;
+  }
+
+  // Hash the password for security
+  $password_hash = password_hash($password, PASSWORD_BCRYPT);
+
+  // Check if user already exists
+  if ($query = $db->prepare("SELECT * FROM users WHERE email = ? OR username = ?")) {
+    $query->bind_param('ss', $email, $username);
+    $query->execute();
+    $query->store_result();
+
+    if ($query->num_rows > 0) {
+      echo "<script>alert('The email address or username is already registered!');</script>";
+      $query->close();
+      header('Location: ./auth.php');
+      exit;
+    }
+    $query->close();
+  } else {
+    echo "<script>alert('Database error occurred. Please try again.');</script>";
+    exit;
+  }
+
+  // If we get here, validation passed - insert the new user
+  if ($insertQuery = $db->prepare("INSERT INTO users (first_name, last_name, username, email, password) VALUES (?, ?, ?, ?, ?)")) {
+    $insertQuery->bind_param("sssss", $firstName, $lastName, $username, $email, $password_hash);
+    $result = $insertQuery->execute();
+
+    if ($result) {
+      echo "<script>alert('Your registration was successful!'); window.location.href='../../pages/home.php';</script>";
+      $insertQuery->close();
+      header('Location: ./auth.php');
+      exit;
+    } else {
+      echo "<script>alert('Something went wrong during registration: " . $db->error . "');</script>";
+    }
+    $insertQuery->close();
+  } else {
+    echo "<script>alert('Database error occurred. Please try again.');</script>";
+  }
 }
 
-// Handle user login
-if (isset($_POST['login'])) {
+// Handle user login case
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login'])) {
   $email = trim($_POST['email']);
   $password = trim($_POST['password']);
 
-  $stmt = $pdo->prepare("SELECT * FROM users WHERE email = :email");
-  $stmt->execute(['email' => $email]);
-  $user = $stmt->fetch(PDO::FETCH_ASSOC);
-
-  // verify password
-  if ($user && password_verify($password, $user['password'])) {
-    $_SESSION['user_id'] = $user['id'];
-    $_SESSION['username'] = $user['username'];
-    echo json_encode(['success' => true, 'redirect' => '../../pages/home.php']);
-    exit;
-  } else {
-    echo json_encode(['success' => false, 'message' => 'Invalid email or password.']);
+  // Check for empty fields
+  if (empty($email)) {
+    echo "<script>alert('Please enter your email!');</script>";
     exit;
   }
+  if (empty($password)) {
+    echo "<script>alert('Please enter your password!');</script>";
+    exit;
+  }
+
+  // Basic email validation
+  if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    echo "<script>alert('Please enter a valid email address!');</script>";
+    exit;
+  }
+
+  // Query user from database
+  if ($query = $db->prepare("SELECT id, email, password FROM users WHERE email = ?")) {
+    $query->bind_param('s', $email);
+
+    if (!$query->execute()) {
+      echo "<script>alert('An error occurred during login. Please try again.');</script>";
+      $query->close();
+      exit;
+    }
+
+    $result = $query->get_result();
+
+    if ($result->num_rows === 1) {
+      $user = $result->fetch_assoc();
+
+      // Verify the password
+      if (password_verify($password, $user['password'])) {
+        // Start session if not already started
+        if (session_status() === PHP_SESSION_NONE) {
+          session_start();
+        }
+
+        // Set session variables
+        $_SESSION["userid"] = $user['id'];
+        $_SESSION['user'] = [
+          'id' => $user['id'],
+          'email' => $user['email']
+        ];
+
+        $query->close();
+
+        // Redirect to home page
+        header('Location: ./home.php');
+        exit;
+      } else {
+        echo "<script>alert('Invalid email or password.');</script>";
+      }
+    } else {
+      // Use generic message for security
+      echo "<script>alert('Invalid email or password.');</script>";
+    }
+    $query->close();
+  } else {
+    echo "<script>alert('An error occurred during login. Please try again.');</script>";
+  }
 }
+
+// Close DB connection
+mysqli_close($db);
 ?>
 
 
@@ -87,15 +184,18 @@ if (isset($_POST['login'])) {
   </header>
 
   <div class="container" id="container">
+
     <div class="form-container sign-up">
       <form method="POST" id="register-form" action="">
         <h1>Create Account</h1>
         <span class="subheading">Please enter your details below</span>
-        <input type="text" name="firstName" id="firstName" placeholder="First Name" required>
-        <input type="text" name="lastName" id="lastName" placeholder="Last Name" required>
-        <input type="text" name="username" id="username" placeholder="Username" required>
-        <input type="email" name="email" placeholder="Email" required>
-        <input type="password" name="password" placeholder="Password" required>
+
+        <input type="text" name="firstName" id="firstName" placeholder="First Name" required maxlength="50">
+        <input type="text" name="lastName" id="lastName" placeholder="Last Name" required maxlength="50">
+        <input type="text" name="username" id="username" placeholder="Username" required maxlength="20">
+        <input type="email" name="email" placeholder="Email" required maxlength="50">
+        <input type="password" name="password" placeholder="Password" required maxlength="500">
+
         <button type="submit" name="register" id="register">Sign Up</button>
       </form>
     </div>
@@ -109,6 +209,7 @@ if (isset($_POST['login'])) {
         <button type="submit" name="login" id="login">Sign In</button>
       </form>
     </div>
+
     <div class="toggle-container">
       <div class="toggle">
         <div class="toggle-panel toggle-left">
@@ -125,8 +226,8 @@ if (isset($_POST['login'])) {
         </div>
       </div>
     </div>
-  </div>
 
+  </div>
   <script src="../scripts/pages/auth.js"></script>
 </body>
 

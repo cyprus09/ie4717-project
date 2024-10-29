@@ -17,97 +17,34 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // Helper function to handle form submission
-  function handleFormSubmission(form, url) {
-    const formData = new FormData(form);
+  document.getElementById("register-form").addEventListener("submit", function (e) {
+    const password = document.querySelector('input[name="password"]').value;
 
-    fetch(url, {
-      method: "POST",
-      body: formData,
-    })
-      .then(response => response.json())
-      .then(data => {
-        if (data.success) {
-          // Navigate to redirect URL on success
-          window.location.href = data.redirect;
-        } else {
-          showError(data.message);
-        }
-      })
-      .catch(error => console.error("Error:", error));
-  }
+    // Check password requirements
+    const hasLowerCase = /[a-z]/.test(password);
+    const hasUpperCase = /[A-Z]/.test(password);
+    const hasNumber = /\d/.test(password);
+    const isLongEnough = password.length >= 8;
 
-  if (signUpForm) {
-    signUpForm.addEventListener("submit", function (event) {
-      event.preventDefault();
-
-      const firstName = document.getElementById("firstName").value.trim();
-      const lastName = document.getElementById("lastName").value.trim();
-      const username = document.getElementById("username").value.trim();
-      const email = signUpForm.querySelector('input[type="email"]').value.trim();
-      const password = signUpForm.querySelector('input[type="password"]').value.trim();
-
-      if (!validateFirstName(firstName)) {
-        alert("First name should be at least 3 characters");
-        return;
-      }
-      if (!validateLastName(lastName)) {
-        alert("Last name should be at least 3 characters");
-        return;
-      }
-      if (!validateUsername(username)) {
-        alert("Username should be at least 3 characters");
-        return;
-      }
-      if (!validateEmail(email)) {
-        alert("The email address is not valid");
-        return;
-      }
-      if (!validatePassword(password)) {
-        alert(
-          "Password should be at least 8 characters, at least one uppercase letter, one lowercase letter, and one number"
-        );
-        return;
-      }
-      handleFormSubmission(signUpForm, "../../pages/auth.php");
-    });
-  }
-
-  if (signInForm) {
-    signInForm.addEventListener("submit", function (e) {
+    if (!isLongEnough) {
+      alert("Password must be at least 8 characters long.");
       e.preventDefault();
-      const email = signInForm.querySelector('input[type="email"]').value.trim();
-      const password = signInForm.querySelector('input[type="password"]').value.trim();
-
-      if (!validateEmail(email) || !validatePassword(password)) {
-        alert("Please enter valid credentials.");
-        return;
-      }
-
-      handleFormSubmission(signInForm, "../../pages/auth.php");
-    });
-  }
-
-  function validateFirstName(firstName) {
-    return firstName.length >= 3;
-  }
-
-  function validateLastName(lastName) {
-    return lastName.length >= 3;
-  }
-
-  function validateUsername(username) {
-    return username.length >= 3;
-  }
-
-  function validateEmail(email) {
-    const re = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
-    return re.test(email);
-  }
-
-  function validatePassword(password) {
-    // minimum eight characters, at least one uppercase letter, one lowercase letter and one number
-    const re = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
-    return re.test(password);
-  }
+      return;
+    }
+    if (!hasLowerCase) {
+      alert("Password must contain at least one lowercase letter.");
+      e.preventDefault();
+      return;
+    }
+    if (!hasUpperCase) {
+      alert("Password must contain at least one uppercase letter.");
+      e.preventDefault();
+      return;
+    }
+    if (!hasNumber) {
+      alert("Password must contain at least one number.");
+      e.preventDefault();
+      return;
+    }
+  });
 });
