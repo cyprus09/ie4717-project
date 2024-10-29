@@ -1,47 +1,37 @@
 <?php
-$host = 'localhost';
-$db = 'footscape_db';
-$user = 'root';
-$pass = '12345';
-
-try {
-  // Create a new PDO instance
-  $pdo = new PDO("mysql:host=$host;dbname=$db;charset=utf8", $user, $pass);
-  $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch (PDOException $e) {
-  die("Could not connect to the database $db :" . $e->getMessage());
-}
+include "../utils/auth/dbconnect.php";
+session_start();
 
 // Handle user registration
 if (isset($_POST['register'])) {
+  // sanitise inputs
   $firstName = trim($_POST['firstName']);
   $lastName = trim($_POST['lastName']);
   $username = trim($_POST['username']);
   $email = trim($_POST['email']);
-  $password = password_hash(trim($_POST['password']), PASSWORD_DEFAULT); // Hash the password
+  $password = password_hash(trim($_POST['password']), PASSWORD_DEFAULT);
 
-  // Validate input
-  if (empty($firstName) || empty($lastName) || empty($username) || empty($email) || empty($password)) {
-    echo json_encode(['success' => false, 'message' => 'All fields are required.']);
-    exit;
-  }
+  // registration validation
+  if ($firstName && $lastName && $username && $email && $password) {
+    $stmt = $pdo->prepare("SELECT * FROM users WHERE email = :email OR username = :username");
+    $stmt->execute(['email' => $email, 'username' => $username]);
 
-  // Check if the email or username already exists
-  $stmt = $pdo->prepare("SELECT * FROM users WHERE email = :email OR username = :username");
-  $stmt->execute(['email' => $email, 'username' => $username]);
-  if ($stmt->rowCount() > 0) {
-    echo json_encode(['success' => false, 'message' => 'Email or Username already exists.']);
-    exit;
-  }
+    if ($stmt->rowCount() > 0) {
+      echo json_encode(['success' => false, 'message' => 'Email or Username already exists.']);
+      exit;
+    }
 
-  // Insert the new user into the database
-  $stmt = $pdo->prepare("INSERT INTO users (first_name, last_name, username, email, password) VALUES (:firstName, :lastName, :username, :email, :password)");
-  if ($stmt->execute(['firstName' => $firstName, 'lastName' => $lastName, 'username' => $username, 'email' => $email, 'password' => $password])) {
-    echo json_encode(['success' => true]);
-    header('Location: ./home.php'); 
-  } else {
-    echo json_encode(['success' => false, 'message' => 'Registration failed. Please try again.']);
+    $stmt = $pdo->prepare("INSERT INTO users (first_name, last_name, username, email, password) VALUES (:firstName, :lastName, :username, :email, :password)");
+
+    if ($stmt->execute(['firstName' => $firstName, 'lastName' => $lastName, 'username' => $username, 'email' => $email, 'password' => $password])) {
+      $_SESSION['user_id'] = $pdo->lastInsertId();
+      $_SESSION['username'] = $username;
+      $_SESSION['email'] = $email;
+      echo json_encode(['success' => true, 'redirect' => '../../pages/home.php']);
+      exit;
+    }
   }
+  echo json_encode(['success' => false, 'message' => 'Registration failed.']);
 }
 
 // Handle user login
@@ -49,24 +39,19 @@ if (isset($_POST['login'])) {
   $email = trim($_POST['email']);
   $password = trim($_POST['password']);
 
-  // Validate input
-  if (empty($email) || empty($password)) {
-    echo json_encode(['success' => false, 'message' => 'Email and Password are required.']);
-    exit;
-  }
-
-  // Fetch user by email
   $stmt = $pdo->prepare("SELECT * FROM users WHERE email = :email");
   $stmt->execute(['email' => $email]);
   $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-  // Verify password
+  // verify password
   if ($user && password_verify($password, $user['password'])) {
-    // Here you can set session variables or perform further actions upon successful login
-    echo json_encode(['success' => true]);
-    header('Location: ./home.php');
+    $_SESSION['user_id'] = $user['id'];
+    $_SESSION['username'] = $user['username'];
+    echo json_encode(['success' => true, 'redirect' => '../../pages/home.php']);
+    exit;
   } else {
     echo json_encode(['success' => false, 'message' => 'Invalid email or password.']);
+    exit;
   }
 }
 ?>
