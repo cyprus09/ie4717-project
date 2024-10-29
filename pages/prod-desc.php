@@ -67,21 +67,23 @@
 
       <button class="add-to-cart-btn">Add to Cart</button>
     </div>
+   
     <h1 class="header-similar-products">Similar Products</h1>
     <div class="similar-products">
-      <div class="product-item">
+      <div class="similar-product-item">
         <?php include "../components/product-card.php" ?>
       </div>
-      <div class="product-item">
+      <div class="similar-product-item">
         <?php include "../components/product-card.php" ?>
       </div>
-      <div class="product-item">
+      <div class="similar-product-item">
         <?php include "../components/product-card.php" ?>
       </div>
-      <div class="product-item">
+      <div class="similar-product-item">
         <?php include "../components/product-card.php" ?>
       </div>
     </div>
+
   </main>
   <!-- Footer -->
   <?php include "../components/footer.php" ?>

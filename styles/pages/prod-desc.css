@@ -5,7 +5,7 @@
   align-items: flex-start;
   gap: 3rem;
   max-width: 1200px;
-  margin: 150px auto;
+  margin: 150px auto 10px auto;
   padding: 2rem;
   background-color: var(--white);
   border-radius: 1rem;
@@ -143,23 +143,46 @@
   background-color: var(--dark-blue);
 }
 
-/* Similar Products */
+/* Similar Products Section */
 .header-similar-products {
-  margin-left: 100px;
-  margin-bottom: 10px;
+  font-size: 3rem;
+  font-weight: bold;
+  color: var(--dark-blue);
+  margin-top: 5rem;
+  margin-bottom: 3rem;
+  margin-left: 2rem;
+  text-align: left;
 }
+
 .similar-products {
   display: flex;
   flex-wrap: wrap;
+  gap: 5rem;
   justify-content: center;
-  align-items: center;
+  padding: 0 1rem;
+  margin-bottom: 30px;
 }
 
-.product-item {
-  width: 200px;
-  height: 70px;
-  margin-top: auto;
-  margin-bottom: 400px;
+.similar-product-item {
+  flex: 1 1 calc(25% - 2rem);
+  max-width: 250px;
+  min-width: 200px;
+  display: flex;
+  justify-content: center;
+}
+
+.similar-product-item .product-card {
+  background-color: var(--white);
+  width: 100%;
+  height: 24em;
+  border-radius: var(--br-big);
+  box-shadow: 0.5em 0.5em 0.5em rgba(54, 46, 91, 0.5);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.similar-product-item .product-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0.8em 0.8em 0.8em rgba(54, 46, 91, 0.6);
 }
 
 /* Size Chart Modal */
