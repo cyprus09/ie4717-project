@@ -1,10 +1,13 @@
 body {
-  background: linear-gradient(to right, var(--white), var(--light-blue));
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
   height: 100vh;
+  background-image: url(../../assets/background/nike.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .container {
@@ -15,10 +18,13 @@ body {
   overflow: hidden;
   width: 900px;
   max-width: 100%;
-  min-height: 900px;
+  min-height: 600px;
+  margin-top: auto;
+  bottom: 10%;
 }
 
 .container p {
+  font-family: var(--helvetica-neue);
   font-size: var(--fs-6);
   line-height: 20px;
   letter-spacing: 0.3px;
@@ -37,6 +43,7 @@ body {
 }
 
 .container button {
+  font-family: var(--dela-gothic-one);
   background-color: var(--medium-blue);
   color: var(--white);
   font-size: var(--fs-6);
@@ -66,7 +73,8 @@ body {
 }
 
 .container input {
-  background-color: var(--gray);
+  font-family: var(--helvetica-neue);
+  background-color: var(--light-gray);
   border: none;
   margin: 8px 0;
   padding: 10px 15px;
@@ -81,6 +89,22 @@ body {
   top: 0;
   height: 100%;
   transition: all 0.6s ease-in-out;
+}
+
+.form-container h1 {
+  font-family: var(--dela-gothic-one);
+  color: var(--dark-blue);
+}
+
+.form-container button:hover {
+  background-color: var(--light-blue);
+  transition: var(--transition-1);
+  transform: var(--transform-1);
+}
+
+.form-container .subheading {
+  font-family: var(--helvetica-neue);
+  color: var(--dark-blue);
 }
 
 .sign-in {
@@ -145,6 +169,10 @@ body {
   transition: all 0.6s ease-in-out;
   border-radius: 150px 0 0 100px;
   z-index: 1000;
+  background-image: url(../../assets/background/bellahadid.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .container.active .toggle-container {
@@ -153,9 +181,7 @@ body {
 }
 
 .toggle {
-  background-color: var(--dark-blue);
   height: 100%;
-  background: linear-gradient(to right, var(--light-blue), var(--medium-blue));
   color: var(--white);
   position: relative;
   left: -100%;
@@ -182,6 +208,23 @@ body {
   top: 0;
   transform: translateX(0);
   transition: all 0.6s ease-in-out;
+}
+
+.toggle-panel h1 {
+  font-family: var(--dela-gothic-one);
+  color: var(--white);
+}
+
+.toggle-panel button:hover {
+  background-color: var(--light-blue);
+  transition: var(--transition-1);
+  transform: var(--transform-1);
+  border-color: var(--light-blue);
+}
+
+.toggle-panel {
+  font-family: var(--helvetica-neue);
+  color: var(--white);
 }
 
 .toggle-left {

@@ -1,54 +1,50 @@
-const container = document.getElementById("container");
-const registerBtn = document.getElementById("register");
-const loginBtn = document.getElementById("login");
-const signUpForm = document.querySelector(".sign-up form");
-const signInForm = document.querySelector(".sign-in form");
+document.addEventListener("DOMContentLoaded", function () {
+  const container = document.getElementById("container");
+  const registerBtn = document.getElementById("registerToggle");
+  const loginBtn = document.getElementById("loginToggle");
+  const signUpForm = document.querySelector(".register-form form");
+  const signInForm = document.querySelector(".login-form form");
 
-registerBtn.addEventListener("click", () => {
-  container.classList.add("active");
-});
-
-loginBtn.addEventListener("click", () => {
-  container.classList.remove("active");
-});
-
-signUpForm.addEventListener("submit", function (event) {
-  event.preventDefault();
-
-  const name = signUpForm.querySelector('input[type="text"]').value.trim();
-  const email = signUpForm.querySelector('input[type="email"]').value.trim();
-  const password = signUpForm.querySelector('input[type="password"]').value.trim();
-
-  if (!validateName(name) || !validateEmail(email) || !validatePassword(password)) {
-    alert("Please fill out all fields correctly.");
-    return;
+  if (registerBtn) {
+    registerBtn.addEventListener("click", () => {
+      container.classList.add("active");
+    });
   }
 
-  alert("Registration successful!");
-});
-
-signInForm.addEventListener("submit", function (e) {
-  e.preventDefault();
-  const email = signInForm.querySelector('input[type="email"]').value.trim();
-  const password = signInForm.querySelector('input[type="password"]').value.trim();
-
-  if (!validateEmail(email) || !validatePassword(password)) {
-    alert("Please enter valid credentials.");
-    return;
+  if (loginBtn) {
+    loginBtn.addEventListener("click", () => {
+      container.classList.remove("active");
+    });
   }
 
-  alert("Login successful!");
+  document.getElementById("register-form").addEventListener("submit", function (e) {
+    const password = document.querySelector('input[name="password"]').value;
+
+    // Check password requirements
+    const hasLowerCase = /[a-z]/.test(password);
+    const hasUpperCase = /[A-Z]/.test(password);
+    const hasNumber = /\d/.test(password);
+    const isLongEnough = password.length >= 8;
+
+    if (!isLongEnough) {
+      alert("Password must be at least 8 characters long.");
+      e.preventDefault();
+      return;
+    }
+    if (!hasLowerCase) {
+      alert("Password must contain at least one lowercase letter.");
+      e.preventDefault();
+      return;
+    }
+    if (!hasUpperCase) {
+      alert("Password must contain at least one uppercase letter.");
+      e.preventDefault();
+      return;
+    }
+    if (!hasNumber) {
+      alert("Password must contain at least one number.");
+      e.preventDefault();
+      return;
+    }
+  });
 });
-
-function validateName(name) {
-  return name.length >= 3;
-}
-
-function validateEmail(email) {
-  const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  return re.test(email);
-}
-
-function validatePassword(password) {
-  return password.length >= 6;
-}
