@@ -63,11 +63,11 @@
             <button class="quantity-btn plus">+</button>
           </div>
         </div>
+        <button class="add-to-cart-btn">Add to Cart</button>
       </div>
 
-      <button class="add-to-cart-btn">Add to Cart</button>
     </div>
-   
+
     <h1 class="header-similar-products">Similar Products</h1>
     <div class="similar-products">
       <div class="similar-product-item">
