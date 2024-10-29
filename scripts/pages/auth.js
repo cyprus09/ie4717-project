@@ -100,3 +100,6 @@ function validatePassword(password) {
   const re = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
   return re.test(password);
 }
+
+// email: mayank1@gmail.com
+// password: Hello!4321

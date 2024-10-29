@@ -38,6 +38,7 @@ if (isset($_POST['register'])) {
   $stmt = $pdo->prepare("INSERT INTO users (first_name, last_name, username, email, password) VALUES (:firstName, :lastName, :username, :email, :password)");
   if ($stmt->execute(['firstName' => $firstName, 'lastName' => $lastName, 'username' => $username, 'email' => $email, 'password' => $password])) {
     echo json_encode(['success' => true]);
+    header('Location: ./home.php'); 
   } else {
     echo json_encode(['success' => false, 'message' => 'Registration failed. Please try again.']);
   }
@@ -63,6 +64,7 @@ if (isset($_POST['login'])) {
   if ($user && password_verify($password, $user['password'])) {
     // Here you can set session variables or perform further actions upon successful login
     echo json_encode(['success' => true]);
+    header('Location: ./home.php');
   } else {
     echo json_encode(['success' => false, 'message' => 'Invalid email or password.']);
   }
