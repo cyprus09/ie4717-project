@@ -2,7 +2,7 @@
 $host = 'localhost';
 $db = 'footscape_db';
 $user = 'root';
-$pass = '';
+$pass = '12345';
 
 try {
   // Create a new PDO instance
@@ -103,7 +103,7 @@ if (isset($_POST['login'])) {
     <div class="form-container sign-up">
       <form method="POST" id="register-form" action="">
         <h1>Create Account</h1>
-        <span>Please enter your details below</span>
+        <span class="subheading">Please enter your details below</span>
         <input type="text" name="firstName" id="firstName" placeholder="First Name" required>
         <input type="text" name="lastName" id="lastName" placeholder="Last Name" required>
         <input type="text" name="username" id="username" placeholder="Username" required>
@@ -116,7 +116,7 @@ if (isset($_POST['login'])) {
     <div class="form-container sign-in">
       <form method="POST" id="login-form" action="">
         <h1>Sign In</h1>
-        <span>Please enter your details below</span>
+        <span class="subheading">Please enter your details below</span>
         <input type="email" name="email" placeholder="Email" required>
         <input type="password" name="password" placeholder="Password" required>
         <button type="submit" name="login" id="login">Sign In</button>
@@ -126,13 +126,13 @@ if (isset($_POST['login'])) {
       <div class="toggle">
         <div class="toggle-panel toggle-left">
           <p><img src="../assets/logos/favicon-logo.png" height="80" width="80" /></p>
-          <h1>Welcome Back!</h1>
+          <h1>Welcome Back !</h1>
           <p>Enter your personal details to use all of site features</p>
           <button class="hidden" id="loginToggle">Sign In</button>
         </div>
         <div class="toggle-panel toggle-right">
           <p><img src="../assets/logos/favicon-logo.png" height="80" width="80" /></p>
-          <h1>Hello, Friend!</h1>
+          <h1>Hello, Friend !</h1>
           <p>Register with your personal details to use all of site features</p>
           <button class="hidden" id="registerToggle">Sign Up</button>
         </div>
