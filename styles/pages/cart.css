@@ -10,7 +10,7 @@ h1 {
 }
 
 .cart-items {
-  background-color: var(--gray);
+  background-color: var(--light-gray);
   border-radius: var(--br-big);
   padding: 20px;
   margin-bottom: 30px;
@@ -50,7 +50,7 @@ h1 {
 }
 
 .quantity-btn {
-  background-color: var(--gray);
+  background-color: var(--light-gray);
   border: none;
   width: 30px;
   height: 30px;
@@ -75,18 +75,19 @@ h1 {
 .order-summary {
   display: flex;
   flex-direction: column;
-  background-color: var(--gray);
+  background-color: var(--light-gray);
   border-radius: var(--br-medium);
   font-size: var(--fs-6);
   padding: 20px;
 }
 
-.delivery-address input{
+.delivery-address input {
   margin-top: 10px;
 }
 
-input[type="text"],
-input[type="tel"] {
+.card-details input[type="text"],
+.delivery-address input[type="text"],
+.delivery-address input[type="tel"] {
   width: 100%;
   padding: 10px;
   margin-bottom: 10px;

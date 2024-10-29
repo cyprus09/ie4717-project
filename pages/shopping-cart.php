@@ -33,7 +33,7 @@
           </div>
           <div class="quantity">
             <button class="quantity-btn minus">-</button>
-            <input type="number" value="1" min="1" max="10" class="quantity-input" />
+            <input type="number" value="1" min="1" max="10" class="quantity-input" readonly/>
             <button class="quantity-btn plus">+</button>
           </div>
         </div>
@@ -47,7 +47,7 @@
           </div>
           <div class="quantity">
             <button class="quantity-btn minus">-</button>
-            <input type="number" value="1" min="1" max="10" class="quantity-input" />
+            <input type="number" value="1" min="1" max="10" class="quantity-input" readonly/>
             <button class="quantity-btn plus">+</button>
           </div>
         </div>

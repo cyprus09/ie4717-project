@@ -1,4 +1,4 @@
-<a class="product-card" href="../pages/prod_desc.php">
+<a class="product-card" href="../pages/prod-desc.php">
     <div class="product-img"></div>
     <div class="product-desc-section">
         <h3 class="product-name">Jordan 1</h3>
