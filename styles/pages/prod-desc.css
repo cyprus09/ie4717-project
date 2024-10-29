@@ -1,0 +1,237 @@
+/* Product Container */
+.product-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 3rem;
+  max-width: 1500px;
+  margin: 150px auto 10px auto;
+  padding: 2rem;
+  background-color: var(--white);
+  border-radius: var(--br-big);
+  box-shadow: 0.3em 0.3em 0.3em var(--gray);
+}
+
+/* Product Image */
+.product-image-container {
+  background-color: var(--light-blue);
+  border-radius: var(--br-big);
+  padding: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 400px;
+  max-height: 400px;
+  flex: 1;
+}
+
+.product-image {
+  width: 100%;
+  height: auto;
+  max-width: 300px;
+  max-height: 300px;
+  object-fit: contain;
+}
+
+/* Product Info */
+.product-info {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 600px;
+  text-align: justify;
+}
+
+.product-title {
+  font-family: var(--dela-gothic-one);
+  font-size: var(--fs-3);
+  font-weight: var(--fw-600);
+  color: var(--dark-blue);
+  margin: 0;
+}
+
+.product-price {
+  font-size: var(--fs-7);
+  font-weight: var(--fw-600);
+  color: var(--dark-blue);
+  margin: 0;
+}
+
+.product-description {
+  font-family: var(--helvetica-neue);
+  font-size: var(--fs-6);
+  color: var(--gray);
+  line-height: 1.6;
+  margin: 1rem 0;
+}
+
+/* Product Options */
+.product-options {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.option-label {
+  font-size: var(--fs-7);
+}
+
+/* Size Selector */
+.size-selector {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.size-select {
+  appearance: none;
+  background-color: var(--dark-blue);
+  color: var(--white);
+  padding: 0.5rem 1.5rem;
+  border: none;
+  border-radius: var(--br-medium);
+  font-size: var(--fs-9);
+  cursor: pointer;
+}
+
+.size-chart-link {
+  color: var(--dark-blue);
+  text-decoration: underline;
+  font-size: var(--fs-7);
+}
+
+/* Quantity Selector */
+.quantity-selector {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  border-color: var(--dark-blue);
+}
+
+.quantity {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem;
+  margin-left: 4px;
+  border-color: var(--dark-blue);
+}
+
+.quantity-btn {
+  border-radius: var(--br-medium);
+  overflow: hidden;
+  background-color: var(--dark-blue);
+  width: 30px;
+  height: 30px;
+  padding: 1rem 1.2rem;
+  font-size: var(--fs-8);
+  color: var(--white);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.quantity input {
+  width: 30px;
+  text-align: center;
+  margin: 0 2px;
+}
+
+/* Add to Cart Button */
+.add-to-cart-btn {
+  background-color: var(--dark-blue);
+  color: var(--white);
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: var(--br-medium);
+  font-size: var(--fs-8);
+  font-weight: var(--fw-600);
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.add-to-cart-btn:hover {
+  background-color: var(--light-blue);
+  transform: scale(1.03);
+  transition: var(--transition-1);
+}
+
+/* Similar Products Section */
+.header-similar-products {
+  font-family: var(--dela-gothic-one);
+  font-size: var(--fs-3);
+  font-weight: var(--fw-600);
+  color: var(--dark-blue);
+  margin-top: 5rem;
+  margin-bottom: 3rem;
+  margin-left: 4rem;
+  text-align: left;
+}
+
+.similar-products {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5rem;
+  justify-content: center;
+  padding: 0 1rem;
+  margin-bottom: 30px;
+}
+
+.similar-product-item {
+  flex: 1 1 calc(25% - 2rem);
+  max-width: 250px;
+  min-width: 200px;
+  display: flex;
+  justify-content: center;
+}
+
+.similar-product-item .product-card {
+  background-color: var(--white);
+  width: 100%;
+  height: 24em;
+  border-radius: var(--br-big);
+  box-shadow: 0.5em 0.5em 0.5em rgba(54, 46, 91, 0.5);
+  transition: var(--transition-1), box-shadow 0.3s;
+}
+
+.similar-product-item .product-card:hover {
+  transform: var(--transform-1);
+  box-shadow: 0.8em 0.8em 0.8em rgba(54, 46, 91, 0.6);
+}
+
+/* Size Chart Modal */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}

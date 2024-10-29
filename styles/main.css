@@ -21,7 +21,8 @@
   --dark-blue: #211C42;
   --medium-blue: #454887;
   --light-blue: #646BFF;
-  --gray: #EAEAF5;
+  --gray: #797979;
+  --light-gray: #e2e2e2;
   --white: #F9F9FF;
   --black: #000000;
   --gradient-background: linear-gradient(to right, #EAEAF5, #646BFF);
@@ -35,7 +36,7 @@
   --fs-3: 3.4rem;
   --fs-4: 2.4rem;
   --fs-5: 2rem;
-  --fs-6: 1.8rem;
+  --fs-6: 1.8rem; 
   --fs-7: 1.5rem;
   --fs-8: 1.4rem;
   --fs-9: 1.3rem;
@@ -69,6 +70,10 @@
   --transition-1: 0.25s ease;
   --transition-2: 0.5s ease;
   --transition-3: 1s ease;
+
+  /* tranform */
+  --transform-1: scale(1.05);
+  
   --cubic-in: cubic-bezier(0.51, 0.03, 0.64, 0.28);
   --cubic-out: cubic-bezier(0.33, 0.85, 0.4, 0.96);
 }
