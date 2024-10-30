@@ -6,20 +6,22 @@
     <title>FootScape | Home</title>
     <!-- Favicon -->
     <link rel="shortcut icon" href="../assets/logos/favicon-logo.png" type="image/png" />
-    <!-- Page CSS -->
+    <!-- Main CSS -->
     <link rel="stylesheet" href="../styles/main.css" />
-    <link rel="stylesheet" href="../styles/pages/home.css" />
     <!-- Components CSS -->
     <link rel="stylesheet" href="../styles/components/navbar.css" />
     <link rel="stylesheet" href="../styles/components/footer.css" />
     <link rel="stylesheet" href="../styles/components/main-carousel.css" />
     <link rel="stylesheet" href="../styles/components/product-card.css" />
+    <link rel="stylesheet" href="../styles/components/card-carousel.css" />
+    <!-- Page CSS -->
+    <link rel="stylesheet" href="../styles/pages/home.css" />
   </head>
   <body>
     <!-- Navbar -->
     <?php include "../components/navbar.php" ?>
     <!-- Main Content -->
-    <main>
+    <main class="main-content">
       <!-- Main Highlight -->
       <div class="highlight-section main-highlight">
         <?php include "../components/main-carousel.php" ?>
@@ -44,19 +46,37 @@
       </div>
       <!-- Sale Highlight -->
       <div class="highlight-section sale-highlight">
-        <h1 class="highlight-header">Flash Sale</h1>
-        <?php include "../components/product-card.php" ?>
+        <div class="header-wrapper">
+          <h1 class="highlight-header">Flash Sale</h1>
+          <a class="view-more-button" href="#">View More</a>
+        </div> 
+        <div class="bg-text bg-text-gray bg-text-top">Sale Sale Sale Sale Sale Sale Sale Sale Sale Sale</div>
+        <div class="bg-text bg-text-gray bg-text-bottom">Sale Sale Sale Sale Sale Sale Sale Sale Sale Sale</div>
+        <?php include "../components/card-carousel.php" ?>
       </div>
       <!-- Trending Highlight -->
       <div class="highlight-section trending-highlight">
-        <h1 class="highlight-header">Trending</h1>
+        <div class="header-wrapper">
+          <h1 class="highlight-header">Trending</h1>
+          <a class="view-more-button" href="#">View More</a>
+        </div>
+        <div class="bg-text bg-text-white bg-text-top">Trending Trending Trending Trending Trending Trending</div>
+        <div class="bg-text bg-text-white bg-text-bottom">Trending Trending Trending Trending Trending Trending</div>
+        <?php include "../components/card-carousel.php" ?>
       </div>
       <!-- Categories Highlight -->
       <div class="highlight-section category-highlight">
-        <h1 class="highlight-header">Categories</h1>
+        <div class="header-wrapper">
+          <h1 class="highlight-header">Categories</h1>
+          <a class="view-more-button" href="#">View More</a>
+        </div>
+        <div class="bg-text bg-text-gray bg-text-top">Explore Explore Explore Explore Explore Explore Explore</div>
+        <div class="bg-text bg-text-gray bg-text-bottom">Explore Explore Explore Explore Explore Explore Explore</div>
+        <?php include "../components/card-carousel.php" ?>
       </div>
-    </main>
     <!-- Footer -->
     <?php include "../components/footer.php" ?>
+    </main>
+    <script src="../scripts/pages/home.js"></script>
   </body>
 </html>

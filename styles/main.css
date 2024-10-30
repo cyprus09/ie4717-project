@@ -60,8 +60,8 @@
   /* border radius */
   --br-xl: 1.8em;
   --br-big: 1.2em;
-  --br-medium: 0.6em;
-  --br-small: 0.2em;
+  --br-medium: 0.8em;
+  --br-small: 0.6em;
 
   /* radius */
   --radius-3: 3px;
@@ -120,12 +120,17 @@ html {
   color: var(--dark-blue);
   background-color: var(--white);
   scroll-behavior: smooth;
+  width: 100vw;
+  overflow: auto;
+  overflow-x: hidden;
 }
 
 body {
   font-size: 1.6rem;
   font-weight: var(--fw-500);
   line-height: 1.6;
+  width: 100vw;
+  overflow-x: hidden;
 }
 
 :focus-visible { outline-offset: 4px; }

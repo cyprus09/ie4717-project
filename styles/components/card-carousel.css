@@ -1,0 +1,19 @@
+.card-carousel-container {
+    width: 100%;
+    overflow: hidden;
+}
+  
+.card-carousel {
+    display: flex;
+    width: 100%;
+    height: 28vw;
+    transition: transform 0.5s ease-in-out;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.product-card {
+    flex: 0 0 23.7%; /* Ensure only 4 cards are visible */
+    margin: 0% 1.3% 0% 0%;
+}
