@@ -98,7 +98,7 @@
 /* Sale Highlight Section */
 
 .sale-highlight {
-    background-color: var(--gray);
+    background-color: var(--light-gray);
 }
 
 /* Trending Highlight Section */
@@ -110,7 +110,7 @@
 /* Category Highlight Section */
 
 .category-highlight {
-    background-color: var(--gray);
+    background-color: var(--light-gray);
 }
 
 /* Background Text */

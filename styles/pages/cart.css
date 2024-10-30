@@ -1,0 +1,226 @@
+.container {
+  max-width: 1200px;
+  margin: 150px auto;
+  padding: 20px;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 30px;
+  font-family: var(--dela-gothic-one);
+}
+
+.cart-items {
+  background-color: var(--light-gray);
+  border-radius: var(--br-big);
+  padding: 20px;
+  margin-bottom: 30px;
+}
+
+.cart-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+  background-color: var(--white);
+  border-radius: var(--br-medium);
+  padding: 15px;
+}
+
+.cart-item h2 {
+  font-family: var(--dela-gothic-one);
+}
+
+.cart-item img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: var(--br-medium);
+  margin-right: 20px;
+}
+
+.item-details h2 {
+  font-family: var(--helvetica-neue);
+  margin: 0;
+  font-size: var(--fs-7);
+}
+
+.price {
+  color: var(--dark-blue);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.size {
+  color: var(--dark-blue);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.quantity {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+}
+
+.quantity-btn {
+  background-color: var(--light-gray);
+  border: none;
+  width: 30px;
+  height: 30px;
+  font-size: var(--fs-7);
+  cursor: pointer;
+}
+
+.quantity input {
+  width: 40px;
+  text-align: center;
+  margin: 0 10px;
+}
+
+.checkout-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+}
+
+.delivery-address,
+.payment-details {
+  font-family: var(--dela-gothic-one);
+  display: flex;
+  flex-direction: column;
+  background-color: var(--light-gray);
+  border-radius: var(--br-medium);
+  font-size: var(--fs-6);
+  padding: 20px;
+  margin-bottom: 30px;
+}
+
+.delivery-address input {
+  margin-top: 10px;
+}
+
+.card-details input[type="text"],
+.delivery-address input[type="text"],
+.delivery-address input[type="tel"] {
+  font-family: var(--helvetica-neue);
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  background-color: var(--white);
+  border: 1px solid var(--white);
+  border-radius: var(--br-small);
+}
+
+.payment-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.payment-options label {
+  display: flex;
+  align-items: center;
+  background-color: var(--white);
+  border: 1px solid var(--gray);
+  border-radius: var(--br-small);
+  padding: 10px 15px;
+  cursor: pointer;
+  transition: all var(--transition-1);
+}
+
+.payment-options label:hover {
+  transform: var(--transform-1);
+  box-shadow: var(--shadow-2);
+}
+
+.payment-options input[type="radio"] {
+  display: none;
+}
+
+.payment-options img {
+  height: 30px;
+  width: 30px;
+  margin: auto;
+}
+
+.payment-options input[type="radio"]:checked + img {
+  filter: none;
+}
+
+.payment-options input[type="radio"]:not(:checked) + img {
+  filter: grayscale(100%);
+  opacity: 0.6;
+}
+
+.card-details {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.card-details input {
+  width: 100%;
+}
+
+.order-summary {
+  font-family: var(--helvetica-neue);
+  display: flex;
+  flex-direction: column;
+  background-color: var(--light-gray);
+  border-radius: var(--br-medium);
+  font-size: var(--fs-6);
+  padding: 20px;
+  margin-bottom: 30px;
+}
+
+.order-summary h2 {
+  font-family: var(--dela-gothic-one);
+}
+
+.order-summary p {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: var(--fs-5);
+  margin: 8px 0;
+}
+
+.order-summary .total {
+  font-family: var(--dela-gothic-one);
+  font-weight: var(--fw-400);
+}
+
+.order-summary p span:first-child {
+  font-weight: 500;
+  color: var(--dark-blue);
+}
+
+.order-summary .total span:first-child {
+  font-weight: bold;
+  font-size: var(--fs-5);
+}
+
+.order-summary span {
+  color: var(--dark-blue);
+}
+
+.checkout-btn {
+  font-family: var(--dela-gothic-one);
+  grid-column: 1 / -1;
+  background-color: var(--medium-blue);
+  color: var(--white);
+  border: none;
+  padding: 15px;
+  font-size: var(--fs-6);
+  border-radius: var(--br-medium);
+  cursor: pointer;
+}
+
+.checkout-btn:hover {
+  transform: var(--transform-1);
+  transition: var(--transition-1);
+  box-shadow: 0 2px 5px var(--dark-blue);
+}
