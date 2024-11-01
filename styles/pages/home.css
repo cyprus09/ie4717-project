@@ -58,7 +58,7 @@
 }
 
 .card-carousel-container {
-  z-index: 5;
+  z-index: 3;
 }
 
 /* Main Highlight Section */
@@ -162,4 +162,60 @@
 
 .bg-text-bottom {
   bottom: 2%;
+}
+
+/* Category Card */
+
+.category-carousel {
+    display: flex;
+    width: 100%;
+    height: 28vw;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 2em;
+}
+
+.category-card {
+    background-image: url(../../assets/category/sneakers.png);
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+    background-position: top;
+    width: 24%;
+    height: 28em;
+    border-radius: var(--br-big);
+    box-shadow: 0.5em 0.5em 0.5em rgba(54, 46, 91, 0.5);
+    z-index: 2;
+    display: flex;
+    align-items: end;
+    justify-content: center;
+  }
+  
+.category-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0.8em 0.8em 0.8em rgba(54, 46, 91, 0.6);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.sneakers-card {
+    background-image: url(../../assets/category/sneakers.png);
+}
+
+.running-card {
+    background-image: url(../../assets/category/running.png);
+}
+
+.casual-card {
+    background-image: url(../../assets/category/casual.png);
+}
+
+.below100-card {
+    background-image: url(../../assets/category/below100.png);
+}
+
+.category-name {
+    color: var(--white);
+    font-size: 2em;
+    font-weight: bold;
+    padding: 0.8em;
 }
