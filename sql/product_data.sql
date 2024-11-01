@@ -1,5 +1,4 @@
--- Adding sample data with gender variants
-insert into
+INSERT INTO
   products (
     product_id,
     name,
@@ -8,9 +7,10 @@ insert into
     gender,
     price,
     size,
-    quantity
+    quantity,
+    brand
   )
-values
+VALUES
   (
     1,
     'Air Max 90',
@@ -19,7 +19,8 @@ values
     'man',
     129.99,
     7,
-    20
+    20,
+    'Nike'
   ),
   (
     2,
@@ -29,7 +30,8 @@ values
     'man',
     129.99,
     8,
-    20
+    20,
+    'Nike'
   ),
   (
     3,
@@ -39,7 +41,8 @@ values
     'man',
     129.99,
     9,
-    20
+    20,
+    'Nike'
   ),
   (
     4,
@@ -49,7 +52,8 @@ values
     'man',
     139.99,
     10,
-    20
+    20,
+    'Nike'
   ),
   (
     5,
@@ -59,7 +63,8 @@ values
     'man',
     139.99,
     11,
-    20
+    20,
+    'Nike'
   ),
   (
     6,
@@ -69,7 +74,8 @@ values
     'unisex',
     229.98,
     6,
-    30
+    30,
+    'Adidas'
   ),
   (
     7,
@@ -79,7 +85,8 @@ values
     'unisex',
     229.98,
     7,
-    30
+    30,
+    'Adidas'
   ),
   (
     8,
@@ -89,7 +96,8 @@ values
     'unisex',
     229.98,
     9,
-    30
+    30,
+    'Adidas'
   ),
   (
     9,
@@ -99,7 +107,8 @@ values
     'unisex',
     239.98,
     10,
-    30
+    30,
+    'Adidas'
   ),
   (
     10,
@@ -109,7 +118,8 @@ values
     'woman',
     89.99,
     5,
-    30
+    30,
+    'Reebok'
   ),
   (
     11,
@@ -119,7 +129,8 @@ values
     'woman',
     89.99,
     6,
-    30
+    30,
+    'Reebok'
   ),
   (
     12,
@@ -129,7 +140,8 @@ values
     'woman',
     89.99,
     7,
-    30
+    30,
+    'Reebok'
   ),
   (
     13,
@@ -139,7 +151,8 @@ values
     'woman',
     99.99,
     8,
-    30
+    30,
+    'Reebok'
   ),
   (
     14,
@@ -149,7 +162,8 @@ values
     'unisex',
     75.99,
     7,
-    30
+    30,
+    'Adidas'
   ),
   (
     15,
@@ -159,7 +173,8 @@ values
     'unisex',
     75.99,
     8,
-    30
+    30,
+    'Adidas'
   ),
   (
     16,
@@ -169,7 +184,8 @@ values
     'unisex',
     75.99,
     9,
-    30
+    30,
+    'Adidas'
   ),
   (
     17,
@@ -179,7 +195,8 @@ values
     'unisex',
     60.00,
     6,
-    120
+    120,
+    'Converse'
   ),
   (
     18,
@@ -189,7 +206,8 @@ values
     'unisex',
     60.00,
     7,
-    120
+    120,
+    'Converse'
   ),
   (
     19,
@@ -199,7 +217,8 @@ values
     'unisex',
     60.00,
     10,
-    120
+    120,
+    'Converse'
   ),
   (
     20,
@@ -209,7 +228,8 @@ values
     'man',
     160.50,
     9,
-    40
+    40,
+    'ASICS'
   ),
   (
     21,
@@ -219,7 +239,8 @@ values
     'man',
     160.50,
     10,
-    40
+    40,
+    'ASICS'
   ),
   (
     22,
@@ -229,7 +250,8 @@ values
     'man',
     160.50,
     11,
-    40
+    40,
+    'ASICS'
   ),
   (
     23,
@@ -239,7 +261,8 @@ values
     'unisex',
     180.00,
     8,
-    25
+    25,
+    'Adidas'
   ),
   (
     24,
@@ -249,7 +272,8 @@ values
     'unisex',
     180.00,
     9,
-    25
+    25,
+    'Adidas'
   ),
   (
     25,
@@ -259,7 +283,8 @@ values
     'unisex',
     180.00,
     10,
-    25
+    25,
+    'Adidas'
   ),
   (
     26,
@@ -269,7 +294,8 @@ values
     'woman',
     250.00,
     6,
-    15
+    15,
+    'Nike'
   ),
   (
     27,
@@ -279,7 +305,8 @@ values
     'woman',
     250.00,
     7,
-    15
+    15,
+    'Nike'
   ),
   (
     28,
@@ -289,5 +316,6 @@ values
     'woman',
     250.00,
     8,
-    15
+    15,
+    'Nike'
   );
