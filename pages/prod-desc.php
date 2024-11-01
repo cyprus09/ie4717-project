@@ -23,11 +23,11 @@
   <main>
     <div class="product-container">
       <div class="product-image-container">
-        <img src="../assets/products/nike-shoe2.jpg" alt="Jordan 1 Black & White" class="product-image">
+        <img src="../assets/products/nike-shoe2.jpg" alt="<?php echo htmlspecialchars($_GET['name']); ?>" class="product-image">
       </div>
       <div class="product-info">
-        <h1 class="product-title">Jordan 1 Black & White</h1>
-        <p class="product-price">$499.00</p>
+        <h1 class="product-title"><?php echo htmlspecialchars($_GET['name']); ?></h1>
+        <p class="product-price">$<?php echo htmlspecialchars($_GET['price']); ?></p>
         <p class="product-description">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
         </p>
@@ -68,21 +68,32 @@
 
     </div>
 
-    <h1 class="header-similar-products">Similar Products</h1>
-    <div class="similar-products">
-      <div class="similar-product-item">
-        <?php include "../components/product-card.php" ?>
+    <?php
+    include "../utils/auth/dbconnect.php";
+
+    $query = "SELECT name, price FROM products ORDER BY RAND() LIMIT 4";
+    $result = $db->query($query);
+
+    if ($result->num_rows > 0): ?>
+      <h1 class="header-similar-products">Similar Products</h1>
+      <div class="similar-products">
+        <?php while ($row = $result->fetch_assoc()): ?>
+          <div class="similar-product-item">
+            <?php
+            $product_name = $row['name'];
+            $product_price = $row['price'];
+
+            include "../components/product-card.php";
+            ?>
+          </div>
+        <?php endwhile; ?>
       </div>
-      <div class="similar-product-item">
-        <?php include "../components/product-card.php" ?>
-      </div>
-      <div class="similar-product-item">
-        <?php include "../components/product-card.php" ?>
-      </div>
-      <div class="similar-product-item">
-        <?php include "../components/product-card.php" ?>
-      </div>
-    </div>
+    <?php
+    endif;
+
+    $db->close();
+    ?>
+
 
   </main>
   <!-- Footer -->
