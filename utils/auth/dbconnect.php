@@ -6,7 +6,7 @@ define('DBPASSWORD', '12345');
 define('DBNAME', 'footscape_db');
 
 // Connect to the database and set it as a global variable
-$db = new mysqli(DBSERVER, DBUSERNAME, DBPASSWORD, DBNAME);
+@$db = new mysqli(DBSERVER, DBUSERNAME, DBPASSWORD, DBNAME);
 
 // Check for a connection error
 if ($db->connect_error) {
