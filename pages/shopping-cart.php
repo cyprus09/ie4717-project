@@ -1,3 +1,9 @@
+<?php
+if (session_status() === PHP_SESSION_NONE) {
+  session_start();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -24,33 +30,25 @@
     <div class="container">
       <h1 class="cart-main-header">My Cart</h1>
       <div class="cart-items">
-        <div class="cart-item" data-price="499">
-          <img src="../assets/products/nike-shoe.jpg" alt="Jordan 1 Black & White" />
-          <div class="item-details">
-            <h2>Jordan 1 Black & White</h2>
-            <p class="size">Size (US): <span>10</span></p>
-            <p class="price">$<span>499.00</span></p>
-          </div>
-          <div class="quantity">
-            <button class="quantity-btn minus">-</button>
-            <input type="number" value="1" min="1" max="10" class="quantity-input" readonly/>
-            <button class="quantity-btn plus">+</button>
-          </div>
-        </div>
-
-        <div class="cart-item" data-price="399">
-          <img src="../assets/products/adidas-shoe.jpg" alt="Adidas UltraBoost" />
-          <div class="item-details">
-            <h2>Adidas UltraBoost</h2>
-            <p class="size">Size (US): <span>9</span></p>
-            <p class="price">$<span>399.00</span></p>
-          </div>
-          <div class="quantity">
-            <button class="quantity-btn minus">-</button>
-            <input type="number" value="1" min="1" max="10" class="quantity-input" readonly/>
-            <button class="quantity-btn plus">+</button>
-          </div>
-        </div>
+        <?php if (isset($_SESSION['cart']) && count($_SESSION['cart']) > 0): ?>
+          <?php foreach ($_SESSION['cart'] as $item): ?>
+            <div class="cart-item" data-price="<?php echo htmlspecialchars($item['price']); ?>">
+              <img src="../assets/products/nike-shoe.jpg" alt="<?php echo htmlspecialchars($item['name']); ?>" />
+              <div class="item-details">
+                <h2><?php echo htmlspecialchars($item['name']); ?></h2>
+                <p class="size">Size (US): <span><?php echo htmlspecialchars($item['size']); ?></span></p>
+                <p class="price">$<span><?php echo htmlspecialchars($item['price']); ?></span></p>
+              </div>
+              <div class="quantity">
+                <button class="quantity-btn minus">-</button>
+                <input type="number" value="<?php echo htmlspecialchars($item['quantity']); ?>" min="1" max="10" class="quantity-input" readonly />
+                <button class="quantity-btn plus">+</button>
+              </div>
+            </div>
+          <?php endforeach; ?>
+        <?php else: ?>
+          <p>Your cart is empty.</p>
+        <?php endif; ?>
       </div>
 
       <form class="checkout-form">

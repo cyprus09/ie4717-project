@@ -3,7 +3,9 @@
 require_once "../utils/auth/dbconnect.php";
 require_once "../utils/auth/session.php";
 
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+  session_start();
+}
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['register'])) {
   // Sanitize inputs

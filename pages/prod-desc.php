@@ -1,3 +1,9 @@
+<?php
+if (session_status() === PHP_SESSION_NONE) {
+  session_start();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -63,7 +69,7 @@
             <button class="quantity-btn plus">+</button>
           </div>
         </div>
-        <button class="add-to-cart-btn">Add to Cart</button>
+        <button class="add-to-cart-btn" onclick="addToCart('<?php echo htmlspecialchars($product_name); ?>', <?php echo $product_price; ?>, <?php echo $product_quantity ?>, <?php echo $product_size ?>)">Add to Cart</button>
       </div>
 
     </div>
@@ -98,6 +104,28 @@
   </main>
   <!-- Footer -->
   <?php include "../components/footer.php" ?>
+  <script>
+    function addToCart(name, price, quantity) {
+      fetch("../utils/cart/add-to-cart.php", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: name,
+          price: price,
+          quantity: quantity,
+          size: size
+        }),
+      }).then(response => {
+        if (response.ok) {
+          alert("Product added to cart!");
+        } else {
+          alert("Failed to add product to cart.");
+        }
+      });
+    }
+  </script>
   <script src="../scripts/pages/prod-desc.js"></script>
 </body>
 
