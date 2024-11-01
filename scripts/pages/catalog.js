@@ -1,38 +1,33 @@
-document.getElementById('filter-form').addEventListener('change', updateURLParams);
+// Function to update the URL with form values upon submission
+function updateURLParams(event) {
+    event.preventDefault(); // Prevent the form from submitting the traditional way
 
-// Function to Update URL parameters when user provide input on filter forms
-function updateURLParams() {
-    const form = document.getElementById('filter-form');
+    const form = event.target; // Get the form that triggered the event
     const formData = new FormData(form);
-    const params = new URLSearchParams(window.location.search);
+    const params = new URLSearchParams();
 
-    // Collecting checkboxes with multiple selections
-    ['brand', 'category', 'gender'].forEach(key => {
-        const values = formData.getAll(key);
-        if (values.length > 0) {
-            params.set(key, values.join(',')); // use set to update existing or add new params
+    // Iterate over form data and append it to the URLSearchParams object
+    formData.forEach((value, key) => {
+        // If the key is for a checkbox group
+        if (key.endsWith('[]')) {
+            // Remove the brackets from the key for URL parameters
+            const cleanKey = key.slice(0, -2); // Remove the '[]' from the key
+            params.append(cleanKey, value); // Append the value
         } else {
-            params.delete(key); // remove param if no checkbox is selected
+            params.set(key, value); // Use set to ensure only one value for non-multiple fields
         }
     });
 
-    // Collecting min and max price
-    const minPrice = formData.get('minPrice');
-    const maxPrice = formData.get('maxPrice');
-    if (minPrice) {
-        params.set('min-price', minPrice);
-    } else {
-        params.delete('min-price');
-    }
-    if (maxPrice) {
-        params.set('max-price', maxPrice);
-    } else {
-        params.delete('max-price');
-    }
+    // Construct the new URL with parameters
+    const newURL = `${window.location.pathname}?${params.toString()}`;
 
-    // Update the current URL without reloading the page
-    window.history.replaceState({}, '', `${window.location.pathname}?${params.toString()}`);
+    // Navigate to the new URL
+    window.location.href = newURL;
 }
+
+// Add an event listener to the form to call the function on submission
+document.getElementById('filter-form').addEventListener('submit', updateURLParams);
+
 
 // function to parse URL params into object
 function parseURLParams() {
@@ -61,7 +56,7 @@ function populateFiltersFromURL() {
     ['brand', 'category', 'gender'].forEach(key => {
         if (params[key]) {
             params[key].forEach(value => {
-                const checkbox = document.querySelector(`input[name="${key}"][value="${value.charAt(0).toUpperCase() + value.slice(1)}"]`);
+                const checkbox = document.querySelector(`input[name="${key}[]"][value="${value.charAt(0).toUpperCase() + value.slice(1)}"]`);
                 if (checkbox) checkbox.checked = true;
             });
         }
@@ -76,38 +71,38 @@ function populateFiltersFromURL() {
     }
 }
 
-function fetchProducts(filters) {
-    fetch("../utils/catalog/fetch-prod.php", {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(filters),
-    })
-    .then(response => response.json())
-    .then(products => {
-        populateProductGrid(products);
-    })
-    .catch(error => console.error('Error fetching products:', error));
-}
+// function fetchProducts(filters) {
+//     fetch("../utils/catalog/fetch-prod.php", {
+//         method: 'POST',
+//         headers: {
+//             'Content-Type': 'application/json',
+//         },
+//         body: JSON.stringify(filters),
+//     })
+//     .then(response => response.json())
+//     .then(products => {
+//         populateProductGrid(products);
+//     })
+//     .catch(error => console.error('Error fetching products:', error));
+// }
 
-function populateProductGrid(products) {
-    const productGrid = document.querySelector('.product-grid');
-    productGrid.innerHTML = ''; // Clear the existing product cards
+// function populateProductGrid(products) {
+//     const productGrid = document.querySelector('.product-grid');
+//     productGrid.innerHTML = ''; // Clear the existing product cards
 
-    products.forEach(product => {
-        // Create a new element to hold the product card
-        const productCardContainer = document.createElement('div');
-        productCardContainer.innerHTML = `
-            <?php include "../components/product-card.php"; ?>
-        `;
+//     products.forEach(product => {
+//         // Create a new element to hold the product card
+//         const productCardContainer = document.createElement('div');
+//         productCardContainer.innerHTML = `
+//             <?php include "../components/product-card.php"; ?>
+//         `;
 
-        // Replace the placeholders in product-card.php with actual product data
-        const productCard = productCardContainer.firstChild;
-        productCard.querySelector('.product-card').href = `../pages/prod-desc.php?id=${product.product_id}`;
-        productCard.querySelector('.product-name').textContent = product.name;
-        productCard.querySelector('.product-price').textContent = `$${parseFloat(product.price).toFixed(2)}`;
+//         // Replace the placeholders in product-card.php with actual product data
+//         const productCard = productCardContainer.firstChild;
+//         productCard.querySelector('.product-card').href = `../pages/prod-desc.php?id=${product.product_id}`;
+//         productCard.querySelector('.product-name').textContent = product.name;
+//         productCard.querySelector('.product-price').textContent = `$${parseFloat(product.price).toFixed(2)}`;
         
-        productGrid.appendChild(productCard);
-    });
-}
+//         productGrid.appendChild(productCard);
+//     });
+// }

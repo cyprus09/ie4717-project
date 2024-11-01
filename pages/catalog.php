@@ -98,25 +98,15 @@
     <!-- Main Content -->
     <main class="main-content">
         <div class="sidebar">
-        <?php
-        function buildQueryString($query, $params) {
-            foreach ($params as $param) {
-                // Replace the first placeholder with the actual parameter value
-                $query = preg_replace('/\?/', "'" . addslashes($param) . "'", $query, 1);
-            }
-            return $query;
-        }
-        echo buildQueryString($query, $params);
-        ?>
             <h1>Filter</h1>
             <form method="get" id="filter-form" class="filter-form" oninput="updateURLParams(event)">
                 <!-- Brand Checkbox Group -->
                 <fieldset>
                     <legend>Brand</legend>
-                    <div class="checkbox-wrapper"><input type="checkbox" name="brand[]" value="Nike" class="checkbox" id="nike"><label for="nike"><span></span>Nike</label></div><br>
-                    <div class="checkbox-wrapper"><input type="checkbox" name="brand[]" value="Adidas" class="checkbox" id="adidas"><label for="adidas"><span></span>Adidas</label></div><br>
-                    <div class="checkbox-wrapper"><input type="checkbox" name="brand[]" value="Puma" class="checkbox" id="puma"><label for="puma"><span></span>Puma</label></div><br>
-                    <div class="checkbox-wrapper"><input type="checkbox" name="brand[]" value="Converse" class="checkbox" id="converse"><label for="converse"><span></span>Converse</label></div>
+                    <div class="checkbox-wrapper"><input type="checkbox" name="brand[]" value="Nike" class="checkbox" id="Nike"><label for="Nike"><span></span>Nike</label></div><br>
+                    <div class="checkbox-wrapper"><input type="checkbox" name="brand[]" value="Adidas" class="checkbox" id="Adidas"><label for="Adidas"><span></span>Adidas</label></div><br>
+                    <div class="checkbox-wrapper"><input type="checkbox" name="brand[]" value="Puma" class="checkbox" id="Puma"><label for="Puma"><span></span>Puma</label></div><br>
+                    <div class="checkbox-wrapper"><input type="checkbox" name="brand[]" value="Converse" class="checkbox" id="Converse"><label for="Converse"><span></span>Converse</label></div>
                 </fieldset>
 
                 <!-- Category Checkbox Group -->
