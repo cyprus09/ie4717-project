@@ -27,6 +27,7 @@ create table
   if not exists products (
     product_id int unsigned not null auto_increment,
     name varchar(100) not null default '',
+    brand varchar(50) not null,
     description varchar(255) not null default '',
     category varchar(20) not null,
     gender varchar(10) not null default 'unisex',
