@@ -8,14 +8,10 @@ document.addEventListener("DOMContentLoaded", () => {
       const input = event.target.parentElement.querySelector("input[type='number']");
       let currentValue = parseInt(input.value);
 
-      if (event.target.classList.contains("plus")) {
-        if (currentValue < 10) {
-          input.value = currentValue + 1;
-        }
-      } else if (event.target.classList.contains("minus")) {
-        if (currentValue > 1) {
-          input.value = currentValue - 1;
-        }
+      if (this.classList.contains("plus") && currentValue < 10) {
+        input.value = currentValue + 1;
+      } else if (this.classList.contains("minus") && currentValue > 1) {
+        input.value = currentValue - 1;
       }
     });
   });
@@ -151,21 +147,6 @@ document.addEventListener("DOMContentLoaded", () => {
     gstElement.textContent = gst.toFixed(2);
     totalElement.textContent = total.toFixed(2);
   }
-
-  // Event listeners for quantity buttons and manual input changes
-  document.querySelectorAll(".quantity-btn").forEach(button => {
-    button.addEventListener("click", function () {
-      const input = this.parentElement.querySelector(".quantity-input");
-      let quantity = parseInt(input.value);
-      if (this.classList.contains("plus") && quantity < 10) {
-        quantity += 1;
-      } else if (this.classList.contains("minus") && quantity > 1) {
-        quantity -= 1;
-      }
-      input.value = quantity;
-      updateCart();
-    });
-  });
 
   document.querySelectorAll(".quantity-input").forEach(input => {
     input.addEventListener("change", function () {

@@ -3,6 +3,7 @@
 .footer {
   background-color: var(--dark-blue);
   padding: 1em 5em;
+  position: sticky
 }
 
 /* Footer Header */
