@@ -1,7 +1,7 @@
 <?php
 define('DBSERVER', 'localhost'); // Database server
 define('DBUSERNAME', 'root'); // Database username
-define('DBPASSWORD', '12345'); // Database password
+define('DBPASSWORD', ''); // Database password
 define('DBNAME', 'footscape_db'); // Database name
 
 // Connect to the database
