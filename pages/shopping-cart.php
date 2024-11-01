@@ -2,6 +2,9 @@
 if (session_status() === PHP_SESSION_NONE) {
   session_start();
 }
+
+$csrf_token = bin2hex(random_bytes(32));
+$_SESSION['csrf_token'] = $csrf_token;
 ?>
 
 <!DOCTYPE html>
@@ -29,66 +32,81 @@ if (session_status() === PHP_SESSION_NONE) {
   <main>
     <div class="container">
       <h1 class="cart-main-header">My Cart</h1>
-      <div class="cart-items">
-        <?php if (isset($_SESSION['cart']) && count($_SESSION['cart']) > 0): ?>
-          <?php foreach ($_SESSION['cart'] as $item): ?>
+
+      <?php if (isset($_SESSION['cart']) && count($_SESSION['cart']) > 0): ?>
+        <div class="cart-items">
+          <?php foreach ($_SESSION['cart'] as $index => $item): ?>
             <div class="cart-item" data-price="<?php echo htmlspecialchars($item['price']); ?>">
               <img src="../assets/products/nike-shoe.jpg" alt="<?php echo htmlspecialchars($item['name']); ?>" />
               <div class="item-details">
                 <h2><?php echo htmlspecialchars($item['name']); ?></h2>
                 <p class="size">Size (US): <span><?php echo htmlspecialchars($item['size']); ?></span></p>
                 <p class="price">$<span><?php echo htmlspecialchars($item['price']); ?></span></p>
+                <button type="button" class="remove-item" onclick="removeItem(<?php echo $index; ?>)">
+                  Remove
+                </button>
               </div>
               <div class="quantity">
-                <button class="quantity-btn minus">-</button>
-                <input type="number" value="<?php echo htmlspecialchars($item['quantity']); ?>" min="1" max="10" class="quantity-input" readonly />
-                <button class="quantity-btn plus">+</button>
+                <button type="button" class="quantity-btn minus">-</button>
+                <input type="number" value="<?php echo htmlspecialchars($item['quantity']); ?>"
+                  min="1" max="10" class="quantity-input" readonly />
+                <button type="button" class="quantity-btn plus">+</button>
               </div>
             </div>
           <?php endforeach; ?>
-        <?php else: ?>
+        </div>
+
+        <form class="checkout-form" method="POST" action="../utils/checkout/process-order.php">
+          <input type="hidden" name="csrf_token" value="<?php echo $csrf_token; ?>">
+
+          <!-- Delivery Address Section -->
+          <div class="delivery-address">
+            <h2>Delivery Address</h2>
+            <input type="text" name="address" placeholder="Address" required
+              pattern=".{10,}" title="Please enter a valid address (minimum 10 characters)" />
+            <input type="text" name="postal_code" placeholder="Postal Code" required
+              pattern="[0-9]{6}" title="Please enter a valid 6-digit postal code" />
+            <input type="text" name="full_name" placeholder="Full Name" required
+              pattern="[A-Za-z\s]{2,}" title="Please enter a valid name" />
+            <input type="tel" name="mobile" placeholder="Mobile" required
+              pattern="[0-9]{8,}" title="Please enter a valid phone number" />
+          </div>
+
+          <!-- Payment Details Section -->
+          <div class="payment-details">
+            <h2>Payment Details</h2>
+            <div class="payment-options">
+              <!-- Payment options remain the same -->
+            </div>
+            <div class="card-details">
+              <input type="text" name="card_name" placeholder="Full Name" required
+                pattern="[A-Za-z\s]{2,}" title="Please enter the name as shown on card" />
+              <input type="text" name="card_number" placeholder="Card Number" required
+                pattern="[0-9]{16}" title="Please enter a valid 16-digit card number" />
+              <input type="text" name="expiry" placeholder="MM/YY" required
+                pattern="(0[1-9]|1[0-2])\/([0-9]{2})" title="Please enter a valid expiry date (MM/YY)" />
+              <input type="text" name="cvv" placeholder="CVV" required
+                pattern="[0-9]{3,4}" title="Please enter a valid CVV" />
+            </div>
+          </div>
+
+          <!-- Order Summary Section -->
+          <div class="order-summary">
+            <h2>Order Summary</h2>
+            <p>Subtotal: $<span id="subtotal">0.00</span></p>
+            <p>Delivery Fee: $<span id="delivery-fee">15.00</span></p>
+            <p>GST (10%): $<span id="gst">0.00</span></p>
+            <p class="total">Total: $<span id="total">0.00</span></p>
+          </div>
+
+          <button type="submit" class="checkout-btn">Checkout</button>
+        </form>
+      <?php else: ?>
+        <div class="empty-cart">
           <p>Your cart is empty.</p>
-        <?php endif; ?>
-      </div>
-
-      <form class="checkout-form">
-        <!-- Delivery Address -->
-        <div class="delivery-address">
-          <h2>Delivery Address</h2>
-          <input type="text" placeholder="Address" required />
-          <input type="text" placeholder="Postal Code" required />
-          <input type="text" placeholder="Full Name" required />
-          <input type="tel" placeholder="Mobile" required />
+          <a href="../pages/products.php" class="continue-shopping">Continue Shopping</a>
         </div>
-
-        <!-- Payment Details -->
-        <div class="payment-details">
-          <h2>Payment Details</h2>
-          <div class="payment-options">
-            <label><input type="radio" name="payment" value="visa" /> <img src="../assets/icons/brand/visa.svg"></label>
-            <label><input type="radio" name="payment" value="mastercard" /> <img src="../assets/icons/brand/mastercard.svg"></label>
-            <label><input type="radio" name="payment" value="alipay" /> <img src="../assets/icons/brand/alipay.svg"></label>
-            <label><input type="radio" name="payment" value="paypal" /> <img src="../assets/icons/brand/paypal.svg"></label>
-          </div>
-          <div class="card-details">
-            <input type="text" placeholder="Full Name" required />
-            <input type="text" placeholder="Card Number" required />
-            <input type="text" placeholder="Expiry Date" required />
-            <input type="text" placeholder="CVV" required />
-          </div>
-        </div>
-
-        <!-- Order Summary -->
-        <div class="order-summary">
-          <h2>Order Summary</h2>
-          <p>Subtotal: $<span id="subtotal">0.00</span></p>
-          <p>Delivery Fee: $<span id="delivery-fee">15.00</span></p>
-          <p>GST (10%): $<span id="gst">0.00</span></p>
-          <p class="total">Total: $<span id="total">0.00</span></p>
-        </div>
-
-        <button type="submit" class="checkout-btn">Checkout</button>
-      </form>
+      <?php endif; ?>
     </div>
   </main>
 
