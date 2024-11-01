@@ -11,7 +11,7 @@ if (session_status() === PHP_SESSION_NONE) {
     </a>
     <div class="link-wrapper">
         <!-- Navigation Links -->
-        <a href="#" class="nav-link">Explore</a>
+        <a href="../pages/catalog.php" class="nav-link">Explore</a>
         <a href="../pages/shopping-cart.php" class="nav-link">Cart</a>
         <!-- In navbar.php -->
         <?php if (isset($_SESSION['userid']) && $_SESSION['userid'] > 0): ?>

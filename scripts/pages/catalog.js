@@ -29,6 +29,7 @@ function updateURLParams(event) {
 document.getElementById('filter-form').addEventListener('submit', updateURLParams);
 
 
+
 // function to parse URL params into object
 function parseURLParams() {
     const params = new URLSearchParams(window.location.search);
@@ -56,7 +57,7 @@ function populateFiltersFromURL() {
     ['brand', 'category', 'gender'].forEach(key => {
         if (params[key]) {
             params[key].forEach(value => {
-                const checkbox = document.querySelector(`input[name="${key}[]"][value="${value.charAt(0).toUpperCase() + value.slice(1)}"]`);
+                const checkbox = document.querySelector(`input[name="${key}"][value="${value.charAt(0).toUpperCase() + value.slice(1)}"]`);
                 if (checkbox) checkbox.checked = true;
             });
         }

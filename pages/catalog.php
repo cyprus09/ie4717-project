@@ -1,9 +1,4 @@
 <?php
-    // Enable error reporting for debugging
-    ini_set('display_errors', 1);
-    ini_set('display_startup_errors', 1);
-    error_reporting(E_ALL);
-
     // Import DB connection and session starting
     require_once "../utils/auth/dbconnect.php";
     require_once "../utils/auth/session.php";
@@ -18,7 +13,7 @@
     $maxPrice = isset($_GET['max-price']) ? floatval($_GET['max-price']) : null;
 
     // Build the SQL query based on filters
-    $query = "SELECT * FROM products WHERE 1=1";
+    $query = "SELECT product_id, name, brand, category, gender, price FROM products WHERE 1=1";
     $params = [];
 
     if (!empty($brand)) {
@@ -103,35 +98,35 @@
                 <!-- Brand Checkbox Group -->
                 <fieldset>
                     <legend>Brand</legend>
-                    <div class="checkbox-wrapper"><input type="checkbox" name="brand[]" value="Nike" class="checkbox" id="Nike"><label for="Nike"><span></span>Nike</label></div><br>
-                    <div class="checkbox-wrapper"><input type="checkbox" name="brand[]" value="Adidas" class="checkbox" id="Adidas"><label for="Adidas"><span></span>Adidas</label></div><br>
-                    <div class="checkbox-wrapper"><input type="checkbox" name="brand[]" value="Puma" class="checkbox" id="Puma"><label for="Puma"><span></span>Puma</label></div><br>
-                    <div class="checkbox-wrapper"><input type="checkbox" name="brand[]" value="Converse" class="checkbox" id="Converse"><label for="Converse"><span></span>Converse</label></div>
+                    <div class="checkbox-wrapper"><input type="checkbox" name="brand" value="Nike" class="checkbox" id="Nike"><label for="Nike"><span></span>Nike</label></div><br>
+                    <div class="checkbox-wrapper"><input type="checkbox" name="brand" value="Adidas" class="checkbox" id="Adidas"><label for="Adidas"><span></span>Adidas</label></div><br>
+                    <div class="checkbox-wrapper"><input type="checkbox" name="brand" value="Puma" class="checkbox" id="Puma"><label for="Puma"><span></span>Puma</label></div><br>
+                    <div class="checkbox-wrapper"><input type="checkbox" name="brand" value="Converse" class="checkbox" id="Converse"><label for="Converse"><span></span>Converse</label></div>
                 </fieldset>
 
                 <!-- Category Checkbox Group -->
                 <fieldset>
                     <legend>Category</legend>
-                    <div class="checkbox-wrapper"><input type="checkbox" name="category[]" value="Sneakers" class="checkbox" id="sneakers"><label for="sneakers"><span></span>Sneakers</label></div><br>
-                    <div class="checkbox-wrapper"><input type="checkbox" name="category[]" value="Running" class="checkbox" id="running"><label for="running"><span></span>Running</label></div><br>
-                    <div class="checkbox-wrapper"><input type="checkbox" name="category[]" value="Casual" class="checkbox" id="casual"><label for="casual"><span></span>Casual</label></div>
+                    <div class="checkbox-wrapper"><input type="checkbox" name="category" value="Sneakers" class="checkbox" id="sneakers"><label for="sneakers"><span></span>Sneakers</label></div><br>
+                    <div class="checkbox-wrapper"><input type="checkbox" name="category" value="Running" class="checkbox" id="running"><label for="running"><span></span>Running</label></div><br>
+                    <div class="checkbox-wrapper"><input type="checkbox" name="category" value="Casual" class="checkbox" id="casual"><label for="casual"><span></span>Casual</label></div>
                 </fieldset>
 
                 <!-- Gender Checkbox Group -->
                 <fieldset>
                     <legend>Gender</legend>
-                    <div class="checkbox-wrapper"><input type="checkbox" name="gender[]" value="Male" class="checkbox" id="male"><label for="male"><span></span>Male</label></div><br>
-                    <div class="checkbox-wrapper"><input type="checkbox" name="gender[]" value="Female" class="checkbox" id="female"><label for="female"><span></span>Female</label></div><br>
-                    <div class="checkbox-wrapper"><input type="checkbox" name="gender[]" value="Unisex" class="checkbox" id="unisex"><label for="unisex"><span></span>Unisex</label></div>
+                    <div class="checkbox-wrapper"><input type="checkbox" name="gender" value="Male" class="checkbox" id="male"><label for="male"><span></span>Male</label></div><br>
+                    <div class="checkbox-wrapper"><input type="checkbox" name="gender" value="Female" class="checkbox" id="female"><label for="female"><span></span>Female</label></div><br>
+                    <div class="checkbox-wrapper"><input type="checkbox" name="gender" value="Unisex" class="checkbox" id="unisex"><label for="unisex"><span></span>Unisex</label></div>
                 </fieldset>
 
                 <!-- Price Range -->
                 <fieldset>
                     <legend>Price Range</legend>
                     <div class="price-range-wrapper">
-                        <input type="number" id="min-price" name="min-price" placeholder="0" step="0.01">
+                        <input type="number" id="min-price" name="min-price" value="0" step="0.01">
                         -
-                        <input type="number" id="max-price" name="max-price" placeholder="1000" step="0.01">
+                        <input type="number" id="max-price" name="max-price" value="1000" step="0.01">
                     </div>
                 </fieldset>
 
