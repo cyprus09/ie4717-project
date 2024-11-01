@@ -1,7 +1,7 @@
-<a class="product-card" href="../pages/prod-desc.php">
+<a class="product-card" href="#">
     <div class="product-img"></div>
     <div class="product-desc-section">
-        <h3 class="product-name">Jordan 1</h3>
-        <p class="product-price">$499.99</p>
+        <h3 class="product-name"><?php echo htmlspecialchars($product_name); ?></h3>
+        <p class="product-price">$<?php echo htmlspecialchars($product_price); ?></p>
     </div>
 </a>

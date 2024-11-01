@@ -68,21 +68,32 @@
 
     </div>
 
-    <h1 class="header-similar-products">Similar Products</h1>
-    <div class="similar-products">
-      <div class="similar-product-item">
-        <?php include "../components/product-card.php" ?>
+    <?php
+    include "../utils/auth/dbconnect.php";
+
+    $query = "SELECT name, price FROM products ORDER BY RAND() LIMIT 4";
+    $result = $db->query($query);
+
+    if ($result->num_rows > 0): ?>
+      <h1 class="header-similar-products">Similar Products</h1>
+      <div class="similar-products">
+        <?php while ($row = $result->fetch_assoc()): ?>
+          <div class="similar-product-item">
+            <?php
+            $product_name = $row['name'];
+            $product_price = $row['price'];
+
+            include "../components/product-card.php";
+            ?>
+          </div>
+        <?php endwhile; ?>
       </div>
-      <div class="similar-product-item">
-        <?php include "../components/product-card.php" ?>
-      </div>
-      <div class="similar-product-item">
-        <?php include "../components/product-card.php" ?>
-      </div>
-      <div class="similar-product-item">
-        <?php include "../components/product-card.php" ?>
-      </div>
-    </div>
+    <?php
+    endif;
+
+    $db->close();
+    ?>
+
 
   </main>
   <!-- Footer -->
