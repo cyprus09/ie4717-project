@@ -1,3 +1,9 @@
+<?php
+if (session_status() === PHP_SESSION_NONE) {
+  session_start();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -63,7 +69,7 @@
             <button class="quantity-btn plus">+</button>
           </div>
         </div>
-        <button class="add-to-cart-btn">Add to Cart</button>
+        <button class="add-to-cart-btn" onclick="addToCart('<?php echo htmlspecialchars($_GET['name']); ?>', <?php echo htmlspecialchars($_GET['price']); ?>)">Add to Cart</button>
       </div>
 
     </div>
@@ -98,6 +104,37 @@
   </main>
   <!-- Footer -->
   <?php include "../components/footer.php" ?>
+  <script>
+    function addToCart(name, price) {
+      const selectedSize = document.querySelector('.size-select').value;
+      const selectedQuantity = parseInt(document.querySelector('.quantity-input').value);
+
+      fetch("../utils/cart/add-to-cart.php", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            name: name,
+            price: price,
+            quantity: selectedQuantity,
+            size: selectedSize
+          }),
+        })
+        .then(response => response.json())
+        .then(data => {
+          if (data.success) {
+            alert("Product added to cart!");
+          } else {
+            alert("Failed to add product to cart.");
+          }
+        })
+        .catch(error => {
+          console.error('Error:', error);
+          alert("An error occurred while adding to cart.");
+        });
+    }
+  </script>
   <script src="../scripts/pages/prod-desc.js"></script>
 </body>
 

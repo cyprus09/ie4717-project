@@ -25,6 +25,8 @@
   --light-gray: #e2e2e2;
   --white: #F9F9FF;
   --black: #000000;
+  --red: #dc3545;
+  --green: #28a745;
   --gradient-background: linear-gradient(to right, #EAEAF5, #646BFF);
 
   /* typography */
@@ -121,7 +123,7 @@ html {
   background-color: var(--white);
   scroll-behavior: smooth;
   width: 100vw;
-  overflow: hidden;
+  overflow: auto;
   overflow-x: hidden;
 }
 
