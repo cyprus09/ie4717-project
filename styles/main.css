@@ -121,7 +121,7 @@ html {
   background-color: var(--white);
   scroll-behavior: smooth;
   width: 100vw;
-  overflow: hidden;
+  overflow: auto;
   overflow-x: hidden;
 }
 

@@ -1,77 +1,78 @@
 <?php
-    // Import DB connection and session starting
-    require_once "../utils/auth/dbconnect.php";
-    require_once "../utils/auth/session.php";
+// Import DB connection and session starting
+require_once "../utils/auth/dbconnect.php";
+require_once "../utils/auth/session.php";
 
-    session_start();
+session_start();
 
-    // Retrieve filters from the URL parameters
-    $brand = isset($_GET['brand']) ? explode(',', strtolower($_GET['brand'])) : [];
-    $category = isset($_GET['category']) ? explode(',', strtolower($_GET['category'])) : [];
-    $gender = isset($_GET['gender']) ? explode(',', strtolower($_GET['gender'])) : [];
-    $minPrice = isset($_GET['min-price']) ? floatval($_GET['min-price']) : null;
-    $maxPrice = isset($_GET['max-price']) ? floatval($_GET['max-price']) : null;
+// Retrieve filters from the URL parameters
+$brand = isset($_GET['brand']) ? explode(',', strtolower($_GET['brand'])) : [];
+$category = isset($_GET['category']) ? explode(',', strtolower($_GET['category'])) : [];
+$gender = isset($_GET['gender']) ? explode(',', strtolower($_GET['gender'])) : [];
+$minPrice = isset($_GET['min-price']) ? floatval($_GET['min-price']) : null;
+$maxPrice = isset($_GET['max-price']) ? floatval($_GET['max-price']) : null;
 
-    // Build the SQL query based on filters
-    $query = "SELECT product_id, name, brand, category, gender, price FROM products WHERE 1=1";
-    $params = [];
+// Build the SQL query based on filters
+$query = "SELECT product_id, name, brand, category, gender, price FROM products WHERE 1=1";
+$params = [];
 
-    if (!empty($brand)) {
-        $placeholders = implode(',', array_fill(0, count($brand), '?'));
-        $query .= " AND LOWER(brand) IN ($placeholders)";
-        $params = array_merge($params, $brand);
-    }
+if (!empty($brand)) {
+    $placeholders = implode(',', array_fill(0, count($brand), '?'));
+    $query .= " AND LOWER(brand) IN ($placeholders)";
+    $params = array_merge($params, $brand);
+}
 
-    if (!empty($category)) {
-        $placeholders = implode(',', array_fill(0, count($category), '?'));
-        $query .= " AND LOWER(category) IN ($placeholders)";
-        $params = array_merge($params, $category);
-    }
+if (!empty($category)) {
+    $placeholders = implode(',', array_fill(0, count($category), '?'));
+    $query .= " AND LOWER(category) IN ($placeholders)";
+    $params = array_merge($params, $category);
+}
 
-    if (!empty($gender)) {
-        $placeholders = implode(',', array_fill(0, count($gender), '?'));
-        $query .= " AND LOWER(gender) IN ($placeholders)";
-        $params = array_merge($params, $gender);
-    }
+if (!empty($gender)) {
+    $placeholders = implode(',', array_fill(0, count($gender), '?'));
+    $query .= " AND LOWER(gender) IN ($placeholders)";
+    $params = array_merge($params, $gender);
+}
 
-    if ($minPrice !== null) {
-        $query .= " AND price >= ?";
-        $params[] = $minPrice;
-    }
+if ($minPrice !== null) {
+    $query .= " AND price >= ?";
+    $params[] = $minPrice;
+}
 
-    if ($maxPrice !== null) {
-        $query .= " AND price <= ?";
-        $params[] = $maxPrice;
-    }
+if ($maxPrice !== null) {
+    $query .= " AND price <= ?";
+    $params[] = $maxPrice;
+}
 
-    // Group products based on product name
-    $query .= " GROUP BY name";
+// Group products based on product name
+$query .= " GROUP BY name";
 
-    // Prepare the SQL query
-    $stmt = $db->prepare($query);
+// Prepare the SQL query
+$stmt = $db->prepare($query);
 
-    // Check if the statement was prepared successfully
-    if (!$stmt) {
-        die("Error preparing statement: " . $db->error);
-    }
+// Check if the statement was prepared successfully
+if (!$stmt) {
+    die("Error preparing statement: " . $db->error);
+}
 
-    // Bind parameters dynamically
-    if (!empty($params)) {
-        // Assuming all parameters are strings; adjust as necessary
-        $types = str_repeat('s', count($params)); 
-        $stmt->bind_param($types, ...$params);
-    }
+// Bind parameters dynamically
+if (!empty($params)) {
+    // Assuming all parameters are strings; adjust as necessary
+    $types = str_repeat('s', count($params));
+    $stmt->bind_param($types, ...$params);
+}
 
-    // Execute the statement
-    $stmt->execute();
-    $result = $stmt->get_result(); // Get the result set
+// Execute the statement
+$stmt->execute();
+$result = $stmt->get_result(); // Get the result set
 
-    // Fetch products
-    $products = $result->fetch_all(MYSQLI_ASSOC);
+// Fetch products
+$products = $result->fetch_all(MYSQLI_ASSOC);
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -87,6 +88,7 @@
     <!-- Page CSS -->
     <link rel="stylesheet" href="../styles/pages/catalog.css" />
 </head>
+
 <body onload="populateFiltersFromURL()">
     <!-- Navbar -->
     <?php include "../components/navbar.php"; ?>
@@ -151,4 +153,5 @@
     <?php include "../components/footer.php"; ?>
     <script src="../scripts/pages/catalog.js"></script>
 </body>
+
 </html>
