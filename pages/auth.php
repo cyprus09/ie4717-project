@@ -181,7 +181,7 @@ mysqli_close($db);
     </a>
     <div class="link-wrapper">
       <!-- Navigation Links -->
-      <a href="#" class="nav-link">Explore</a>
+      <a href="../pages/catalog.php" class="nav-link">Explore</a>
     </div>
   </header>
 
