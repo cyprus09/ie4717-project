@@ -76,7 +76,10 @@ $_SESSION['csrf_token'] = $csrf_token;
           <div class="payment-details">
             <h2>Payment Details</h2>
             <div class="payment-options">
-              <!-- Payment options remain the same -->
+              <label><input type="radio" name="payment" value="visa" /> <img src="../assets/icons/brand/visa.svg"></label>
+              <label><input type="radio" name="payment" value="mastercard" /> <img src="../assets/icons/brand/mastercard.svg"></label>
+              <label><input type="radio" name="payment" value="alipay" /> <img src="../assets/icons/brand/alipay.svg"></label>
+              <label><input type="radio" name="payment" value="paypal" /> <img src="../assets/icons/brand/paypal.svg"></label>
             </div>
             <div class="card-details">
               <input type="text" name="card_name" placeholder="Full Name" required
@@ -103,8 +106,8 @@ $_SESSION['csrf_token'] = $csrf_token;
         </form>
       <?php else: ?>
         <div class="empty-cart">
-          <p>Your cart is empty.</p>
-          <a href="../pages/products.php" class="continue-shopping">Continue Shopping</a>
+          <h2>Your cart is empty.</h2>
+          <a href="../pages/home.php" class="continue-shopping">Continue Shopping</a>
         </div>
       <?php endif; ?>
     </div>
