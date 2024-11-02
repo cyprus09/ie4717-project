@@ -20,6 +20,7 @@ if (session_status() === PHP_SESSION_NONE) {
   <link rel="stylesheet" href="../styles/components/navbar.css" />
   <link rel="stylesheet" href="../styles/components/footer.css" />
   <link rel="stylesheet" href="../styles/components/product-card.css" />
+  <link rel="stylesheet" href="../styles/components/card-carousel.css" />
 </head>
 
 <body>
@@ -71,35 +72,9 @@ if (session_status() === PHP_SESSION_NONE) {
         </div>
         <button class="add-to-cart-btn" onclick="addToCart('<?php echo htmlspecialchars($_GET['name']); ?>', <?php echo htmlspecialchars($_GET['price']); ?>)">Add to Cart</button>
       </div>
-
-    </div>
-
-    <?php
-    include "../utils/auth/dbconnect.php";
-
-    $query = "SELECT name, price FROM products ORDER BY RAND() LIMIT 4";
-    $result = $db->query($query);
-
-    if ($result->num_rows > 0): ?>
       <h1 class="header-similar-products">Similar Products</h1>
-      <div class="similar-products">
-        <?php while ($row = $result->fetch_assoc()): ?>
-          <div class="similar-product-item">
-            <?php
-            $product_name = $row['name'];
-            $product_price = $row['price'];
-
-            include "../components/product-card.php";
-            ?>
-          </div>
-        <?php endwhile; ?>
-      </div>
-    <?php
-    endif;
-
-    $db->close();
-    ?>
-
+      <?php include "../components/card-carousel.php" ?>
+    </div>
 
   </main>
   <!-- Footer -->
