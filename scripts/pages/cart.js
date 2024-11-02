@@ -112,7 +112,7 @@ document.addEventListener("DOMContentLoaded", () => {
       mobile: document.querySelector("input[placeholder='Mobile']"),
       cardName: document.querySelector("input[name='card_name']"),
       cardNumber: document.querySelector("input[placeholder='Card Number']"),
-      expiryDate: document.querySelector("input[placeholder='Expiry Date']"),
+      expiryDate: document.querySelector("input[placeholder='MM/YY']"),
       cvv: document.querySelector("input[placeholder='CVV']"),
       paymentOptions: document.querySelectorAll("input[name='payment']"),
     };
@@ -157,15 +157,21 @@ document.addEventListener("DOMContentLoaded", () => {
       },
     ];
 
+    // Check all validations
+    let allValidationsPassed = true;
     for (const validation of validations) {
       if (!validation.check()) {
         alert(validation.message);
+        allValidationsPassed = false;
         return;
       }
     }
 
-    // If all validations pass, submit the form
-    checkoutForm.submit();
+    // If all validations pass, show success message and submit the form
+    if (allValidationsPassed) {
+      alert("Order placed successfully!");
+      checkoutForm.submit();
+    }
   });
 
   // Validation Functions
