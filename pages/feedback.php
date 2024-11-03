@@ -25,6 +25,16 @@
     <h2>We Value Your Feedback</h2>
     <p>Your thoughts and feedback help us improve our services!</p>
 
+    <?php
+    if (isset($_SESSION['feedback_status'])) {
+      $status = $_SESSION['feedback_status'];
+      $messageClass = ($status === 'success') ? 'success-message' : 'error-message';
+      echo "<div class='$messageClass'>{$_SESSION['feedback_message']}</div>";
+      unset($_SESSION['feedback_status']);
+      unset($_SESSION['feedback_message']);
+    }
+    ?>
+
     <form action="../utils/submit-feedback.php" method="POST" class="feedback-form">
       <label for="name">Name:</label>
       <input type="text" id="name" name="name" required>
