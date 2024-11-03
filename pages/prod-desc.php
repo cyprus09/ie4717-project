@@ -72,9 +72,12 @@ if (session_status() === PHP_SESSION_NONE) {
         </div>
         <button class="add-to-cart-btn" onclick="addToCart('<?php echo htmlspecialchars($_GET['name']); ?>', <?php echo htmlspecialchars($_GET['price']); ?>)">Add to Cart</button>
       </div>
+    </div>
+    <div class="similar-products-container">
       <h1 class="header-similar-products">Similar Products</h1>
       <?php include "../components/card-carousel.php" ?>
     </div>
+    
 
   </main>
   <!-- Footer -->
