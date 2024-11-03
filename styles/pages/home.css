@@ -92,6 +92,7 @@
 }
 
 .brand-name {
+  font-family: var(--dela-gothic-one);
   font-size: var(--fs-5);
 }
 
