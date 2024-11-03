@@ -1,5 +1,10 @@
 <?php
-// utils/cart/update-quantity.phpsession_start();
+session_start();
+
+require_once '../auth/dbconnect.php';
+require_once 'cart-functions.php';
+
+header('Content-Type: application/json');
 
 $data = json_decode(file_get_contents('php://input'), true);
 
@@ -16,8 +21,14 @@ if ($quantity <= 0 || $quantity > 10) {
     exit;
 }
 
-if (isset($_SESSION['cart'][$index])) {
+if (isset($_SESSION['cart'][$index]) || !is_array($_SESSION['cart'])) {
     $_SESSION['cart'][$index]['quantity'] = $quantity;
+
+    // // Sync with database if user is logged in
+    // if (isset($_SESSION['user_id'])) {
+    //     sync_cart_with_db($_SESSION['user_id']);
+    // }
+
     echo json_encode([
         'success' => true,
         'newQuantity' => $quantity,

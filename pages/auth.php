@@ -127,11 +127,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login'])) {
         }
 
         // Set session variables
-        $_SESSION["userid"] = $user['id'];
-        $_SESSION['user'] = [
-          'id' => $user['id'],
-          'email' => $user['email']
-        ];
+        $_SESSION['user_id'] = $user['id'];
+        $_SESSION['user_email'] = $user['email'];
+
+        // require_once "../utils/cart/cart-functions.php";
+        // load_cart_from_db($_SESSION['user_id']);
 
         $query->close();
 

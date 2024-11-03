@@ -28,6 +28,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Function to update quantity on server
   function updateQuantity(index, quantity, cartItem) {
+    console.log("Updating quantity:", { index, quantity });
+
     fetch("../utils/cart/update-quantity.php", {
       method: "POST",
       headers: {
@@ -37,6 +39,7 @@ document.addEventListener("DOMContentLoaded", () => {
         index: index,
         quantity: quantity,
       }),
+      credentials: "same-origin",
     })
       .then(response => response.json())
       .then(data => {
@@ -48,7 +51,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       })
       .catch(error => {
-        console.error("Error:", error);
         alert("An error occurred while updating the cart");
       });
   }

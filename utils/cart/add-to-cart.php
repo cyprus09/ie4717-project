@@ -1,5 +1,6 @@
 <?php
 session_start();
+require_once 'cart-functions.php';
 
 // Retrieve product details from the request
 $data = json_decode(file_get_contents('php://input'), true);
@@ -51,5 +52,10 @@ if (!$product_exists) {
     'size' => $product_size
   ];
 }
+
+// // Sync with database if user is logged in
+// if (isset($_SESSION['user_id'])) {
+//   sync_cart_with_db($_SESSION['user_id']);
+// }
 
 echo json_encode(['success' => true]);
