@@ -14,7 +14,7 @@ $maxPrice = isset($_GET['max-price']) ? floatval($_GET['max-price']) : null;
 $search = isset($_GET['search']) ? trim($_GET['search']) : '';
 
 // Build the SQL query based on filters
-$query = "SELECT product_id, name, brand, category, gender, price FROM products WHERE 1=1";
+$query = "SELECT product_id, name, brand, category, gender, price, image_url FROM products WHERE 1=1";
 $params = [];
 
 if (!empty($search)) {

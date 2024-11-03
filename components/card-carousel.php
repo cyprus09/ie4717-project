@@ -4,7 +4,7 @@
     include "../utils/auth/dbconnect.php";
 
     // Fetch random 8 products
-    $query = "SELECT name, price FROM products ORDER BY RAND() LIMIT 8";
+    $query = "SELECT name, price, image_url FROM products ORDER BY RAND() LIMIT 8";
     $result = $db->query($query);
 
     if ($result->num_rows > 0): ?>
