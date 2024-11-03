@@ -86,6 +86,7 @@
   </main>
   <script src="../scripts/pages/home.js"></script>
   <script src="../scripts/utils/reveal-animation.js"></script>
+  <script src="../scripts/utils/bg-text-animation.js"></script>
 </body>
 
 </html>

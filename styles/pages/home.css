@@ -87,10 +87,10 @@
 }
 
 .brand-category-item:hover {
-    transform: scale(1.05);
+    transform: scale(1.04);
     box-shadow: 0.4em 0.4em 0.4em rgba(54, 46, 91, 0.6);
     transition: transform 0.3s, box-shadow 0.3s;
-  }
+}
 
 .brand-logo {
   width: 20%;
