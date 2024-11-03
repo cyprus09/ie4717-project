@@ -1,3 +1,44 @@
+// Add this at the beginning of your carousel initialization
+function initCarousel() {
+  const carousel = document.querySelector('.card-carousel');
+  
+  // Add this class while dragging
+  carousel.addEventListener('mousedown', () => {
+      carousel.classList.add('is-dragging');
+  });
+  
+  // Remove class when done dragging
+  document.addEventListener('mouseup', () => {
+      carousel.classList.remove('is-dragging');
+  });
+  
+  // Your existing carousel code here...
+}
+
+// Preserve hover states
+function preserveHoverStates() {
+  const cards = document.querySelectorAll('.card-carousel .product-card');
+  cards.forEach(card => {
+      card.addEventListener('mouseenter', () => {
+          if (card.classList.contains('reveal-complete')) {
+              // Prevent carousel from interfering with hover
+              card.style.pointerEvents = 'auto';
+              card.style.zIndex = '10';
+          }
+      });
+      
+      card.addEventListener('mouseleave', () => {
+          card.style.removeProperty('z-index');
+      });
+  });
+}
+
+// Initialize
+document.addEventListener('DOMContentLoaded', () => {
+  initCarousel();
+  preserveHoverStates();
+});
+
 // Function to check if element is in viewport with snap scrolling
 function isInViewport(element) {
   const rect = element.getBoundingClientRect();
