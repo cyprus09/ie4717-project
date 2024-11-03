@@ -486,7 +486,7 @@ VALUES
     120,
     'Converse',
     'https://drive.google.com/thumbnail?id=1TX-zhOTMhddt7k2bHTasFNEMOvvfFdPg&sz=w1000'
-  )
+  ),
 
   -- Air Max 97
 
@@ -525,7 +525,7 @@ VALUES
     120,
     'Nike',
     'https://drive.google.com/thumbnail?id=1kxUrVedEcEeAPNeL_4LsB2HQ_fA3sbj7&sz=w1000'
-  )
+  ),
 
   -- TRC Blaze HC
 
@@ -603,7 +603,7 @@ VALUES
     25,
     'Nike',
     'https://drive.google.com/thumbnail?id=1NJfwodpmp6oCjeWqWnLhaHtJ3MC_zD8_&sz=w1000'
-  )
+  ),
 
   -- NMD Pharrell Williams
 
@@ -642,7 +642,7 @@ VALUES
     25,
     'Nike',
     'https://drive.google.com/thumbnail?id=1owTmiGAojisBgwldTIDBhzcpXsJWBN4i&sz=w1000'
-  )
+  ),
 
   -- Gazelle Indoor
 
