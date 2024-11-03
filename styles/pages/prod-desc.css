@@ -6,10 +6,10 @@
   gap: 3rem;
   max-width: 1500px;
   margin: 150px auto 10px auto;
-  padding: 2rem;
+  padding: 2rem 0rem;
   background-color: var(--white);
   border-radius: var(--br-big);
-  box-shadow: 0.3em 0.3em 0.3em var(--gray);
+  /* box-shadow: 0.3em 0.3em 0.3em var(--gray); */
 }
 
 /* Product Image */
@@ -20,8 +20,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  max-width: 400px;
-  max-height: 400px;
+  max-width: 600px;
+  max-height: 600px;
   flex: 1;
 }
 
@@ -158,14 +158,17 @@
 }
 
 /* Similar Products Section */
+
+.similar-products-container {
+  padding: 0em 5.5em 3em 5.5em;
+}
+
 .header-similar-products {
   font-family: var(--dela-gothic-one);
   font-size: var(--fs-3);
   font-weight: var(--fw-600);
   color: var(--dark-blue);
   margin-top: 5rem;
-  margin-bottom: 3rem;
-  margin-left: 4rem;
   text-align: left;
 }
 
