@@ -17,6 +17,7 @@ body {
   padding: 2rem;
   background-color: var(--white);
   text-align: center;
+  border-radius: var(--br-medium);
 }
 
 .feedback-container h2 {

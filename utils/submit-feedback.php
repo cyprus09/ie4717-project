@@ -1,5 +1,7 @@
 <?php
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+  session_start();
+}
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $name = filter_input(INPUT_POST, 'name', FILTER_UNSAFE_RAW);
