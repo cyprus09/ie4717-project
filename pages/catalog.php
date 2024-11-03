@@ -96,7 +96,7 @@ $products = $result->fetch_all(MYSQLI_ASSOC);
     <main class="main-content">
         <div class="sidebar">
             <h1>Filter</h1>
-            <form method="get" id="filter-form" class="filter-form" oninput="updateURLParams(event)">
+            <form method="get" id="filter-form" class="filter-form">
                 <!-- Brand Checkbox Group -->
                 <fieldset>
                     <legend>Brand</legend>
