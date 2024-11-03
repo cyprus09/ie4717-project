@@ -414,7 +414,7 @@ VALUES
 
   (
     32,
-    'Commes Des Garcons Chuck',
+    'CDG Chuck',
     'Crafted by the exceptional Japanese Designer',
     'Casual',
     'women',
@@ -426,7 +426,7 @@ VALUES
   ),
   (
     33,
-    'Commes Des Garcons Chuck',
+    'CDG Chuck',
     'Crafted by the exceptional Japanese Designer',
     'Casual',
     'women',
@@ -438,7 +438,7 @@ VALUES
   ),
   (
     34,
-    'Commes Des Garcons Chuck',
+    'CDG Chuck',
     'Crafted by the exceptional Japanese Designer',
     'Casual',
     'women',
