@@ -6,13 +6,13 @@
     width: 100vw;
     height: 100%;
     margin-top: 7.6em;
-    overflow-y: scroll;
-    scroll-snap-type: y proximity;
+    /* overflow-y: scroll;
+    scroll-snap-type: y proximity; */
     scroll-behavior: smooth;
     display: flex;
     flex-direction: row;
     box-sizing: border-box;
-    background-color: var(--gray);
+    background-color: var(--light-gray);
 }
 
 h1 {
@@ -27,7 +27,7 @@ h1 {
 .sidebar {
     height: 100%;
     width: 22vw;
-    background-color: var(--gray);
+    background-color: var(--light-gray);
     padding: 1em 5em;
     display: inline-block;
 }
@@ -178,7 +178,7 @@ input[type=number] {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-left: 0.5em;
+    /* margin-left: 0.5em; */
 }
 
 /* Checkbox */
