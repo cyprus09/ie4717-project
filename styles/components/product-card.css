@@ -3,13 +3,13 @@
 .product-card {
   background-color: var(--white);
   width: 24%;
-  height: 24em;
+  height: 25em;
   border-radius: var(--br-big);
   box-shadow: 0.5em 0.5em 0.5em rgba(54, 46, 91, 0.5);
 }
 
 .product-card:hover {
-  transform: scale(1.05);
+  transform: scale(1.04);
   box-shadow: 0.8em 0.8em 0.8em rgba(54, 46, 91, 0.6);
   transition: transform 0.3s, box-shadow 0.3s;
 }
@@ -30,15 +30,20 @@
   width: 100%;
   height: 35%;
   padding: 1.2em 2em;
+  position: relative;
 }
 
 .product-name {
   font-size: 2em;
   font-weight: bold;
   color: var(--dark-blue);
+  line-height: 1.1;
+  position: absolute;
 }
 
 .product-price {
   font-size: 1.4em;
   color: var(--medium-blue);
+  position: absolute;
+  bottom: 0.6em;
 }
