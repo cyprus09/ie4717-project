@@ -2,6 +2,9 @@
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
+
+// Get search parameter from URL
+$searchValue = isset($_GET['search']) ? htmlspecialchars($_GET['search']) : '';
 ?>
 
 <header class="navbar">
@@ -20,9 +23,12 @@ if (session_status() === PHP_SESSION_NONE) {
             <a href="../pages/auth.php" class="nav-link">Login</a>
         <?php endif; ?>
         <!-- Search Bar -->
-        <form class="search-bar">
-            <input type="text" class="search-input" placeholder="Search">
-            <a href="#"><img class="search-submit" src="../assets/icons/utilities/search-icon.svg" alt="Submit"></a>
+        <form class="search-bar" action="../pages/catalog.php" method="GET">
+            <input type="text" name="search" class="search-input" placeholder="Search" value="<?php echo $searchValue; ?>">
+            <button type="submit" class="search-submit">
+                <img src="../assets/icons/utilities/search-icon.svg" alt="Submit">
+            </button>
         </form>
     </div>
 </header>
+<script src="../scripts/components/navbar.js"></script>

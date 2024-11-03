@@ -65,8 +65,12 @@
     border: none;
     outline: none;
 }
+
+.search-submit img{
+    width: 3.5rem;
+    height: 2.8rem;
+}
   
 .search-submit:hover {
     cursor: pointer;
 }
-  
