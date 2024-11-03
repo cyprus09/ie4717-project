@@ -25,7 +25,7 @@
     <h2>We Value Your Feedback</h2>
     <p>Your thoughts and feedback help us improve our services!</p>
 
-    <form action="submit_feedback.php" method="POST" class="feedback-form">
+    <form action="../utils/submit-feedback.php" method="POST" class="feedback-form">
       <label for="name">Name:</label>
       <input type="text" id="name" name="name" required>
 

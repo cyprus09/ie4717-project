@@ -1,3 +1,11 @@
+body {
+  height: 100vh;
+  background-image: url(../../assets/background/nike.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 .feedback-container {
   height: 100vh;
   width: 100vw;
@@ -5,14 +13,16 @@
   margin-top: 13rem;
   margin-left: auto;
   margin-right: auto;
+  margin-bottom: 2rem;
   padding: 2rem;
+  background-color: var(--white);
   text-align: center;
 }
 
 .feedback-container h2 {
   font-family: var(--dela-gothic-one);
-  color: var(--dark-blue);
   font-size: var(--fs-2);
+  color: var(--dark-blue);
   margin-bottom: 1rem;
   text-align: center;
 }
@@ -39,8 +49,9 @@
 
 .feedback-form input,
 .feedback-form textarea {
-  padding: 0.5rem;
-  font-size: 1rem;
+  padding: 1.5rem;
+  font-family: var(--helvetica-neue);
+  font-size: var(--fs-7);
   border: 1px solid var(--light-gray);
   border-radius: var(--br-medium);
 }
