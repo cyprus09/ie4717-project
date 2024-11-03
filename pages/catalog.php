@@ -93,6 +93,7 @@ $products = $result->fetch_all(MYSQLI_ASSOC);
     <link rel="stylesheet" href="../styles/components/navbar.css" />
     <link rel="stylesheet" href="../styles/components/footer.css" />
     <link rel="stylesheet" href="../styles/components/product-card.css" />
+    <link rel="stylesheet" href="../styles/components/no-product.css" />
     <!-- Page CSS -->
     <link rel="stylesheet" href="../styles/pages/catalog.css" />
 </head>
@@ -148,9 +149,15 @@ $products = $result->fetch_all(MYSQLI_ASSOC);
             <h1>Explore</h1>
             <div class="product-grid">
                 <?php
-                foreach ($products as $product) {
-                    // Include product card with product data
-                    include "../components/product-card.php";
+                if (empty($products)) {
+                    echo '<div></div>';
+                    include "../components/no-product.php";
+                    echo '<div></div>';
+                } else {
+                    foreach ($products as $product) {
+                        // Include product card with product data
+                        include "../components/product-card.php";
+                    }
                 }
                 ?>
             </div>

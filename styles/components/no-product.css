@@ -1,0 +1,21 @@
+.no-product {
+    height: 50vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.no-product img{
+    width: 18em;
+    height: 18em;
+    margin-bottom: 1em;
+}
+
+.no-product h2{
+    font-family: var(--dela-gothic-one);
+    color: var(--dark-blue);
+    font-size: var(--fs-3);
+    font-weight: var(--fw-800);
+    line-height: 1.2;
+}
