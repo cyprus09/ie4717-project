@@ -1,22 +1,47 @@
+// Add event listeners after the DOM is loaded
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('filter-form');
+    
+    // Listen for form submission
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        updateURLParams();
+    });
+});
+
 // Function to update the URL with form values upon submission
 function updateURLParams(event) {
-    event.preventDefault(); // Prevent the form from submitting the traditional way
-
-    const form = event.target; // Get the form that triggered the event
+    event.preventDefault(); // Prevent the form from submitting traditionally
+    
+    const form = document.getElementById('filter-form');
     const formData = new FormData(form);
     const params = new URLSearchParams();
+    
+    // Create an object to store multiple values
+    const multiValueParams = {};
 
-    // Iterate over form data and append it to the URLSearchParams object
+    // Collect all form data
     formData.forEach((value, key) => {
-        // If the key is for a checkbox group
-        if (key.endsWith('[]')) {
-            // Remove the brackets from the key for URL parameters
-            const cleanKey = key.slice(0, -2); // Remove the '[]' from the key
-            params.append(cleanKey, value); // Append the value
+        const multipleSet = new Set(['brand', 'category', 'gender']);
+        if (multipleSet.has(key)) {
+            // Initialize array if it doesn't exist
+            if (!multiValueParams[key]) {
+                multiValueParams[key] = [];
+            }
+            // Add value to array
+            multiValueParams[key].push(value);
         } else {
-            params.set(key, value); // Use set to ensure only one value for non-multiple fields
+            // For single value params (like min-price and max-price)
+            params.set(key, value);
         }
     });
+
+    // Add collected multiple values to params with comma separation
+    for (const [key, values] of Object.entries(multiValueParams)) {
+        if (values.length > 0) {
+            params.set(key, values.join(','));
+        }
+    }
 
     // Construct the new URL with parameters
     const newURL = `${window.location.pathname}?${params.toString()}`;
@@ -71,39 +96,3 @@ function populateFiltersFromURL() {
         document.getElementById('max-price').value = params['max-price'];
     }
 }
-
-// function fetchProducts(filters) {
-//     fetch("../utils/catalog/fetch-prod.php", {
-//         method: 'POST',
-//         headers: {
-//             'Content-Type': 'application/json',
-//         },
-//         body: JSON.stringify(filters),
-//     })
-//     .then(response => response.json())
-//     .then(products => {
-//         populateProductGrid(products);
-//     })
-//     .catch(error => console.error('Error fetching products:', error));
-// }
-
-// function populateProductGrid(products) {
-//     const productGrid = document.querySelector('.product-grid');
-//     productGrid.innerHTML = ''; // Clear the existing product cards
-
-//     products.forEach(product => {
-//         // Create a new element to hold the product card
-//         const productCardContainer = document.createElement('div');
-//         productCardContainer.innerHTML = `
-//             <?php include "../components/product-card.php"; ?>
-//         `;
-
-//         // Replace the placeholders in product-card.php with actual product data
-//         const productCard = productCardContainer.firstChild;
-//         productCard.querySelector('.product-card').href = `../pages/prod-desc.php?id=${product.product_id}`;
-//         productCard.querySelector('.product-name').textContent = product.name;
-//         productCard.querySelector('.product-price').textContent = `$${parseFloat(product.price).toFixed(2)}`;
-        
-//         productGrid.appendChild(productCard);
-//     });
-// }

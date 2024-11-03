@@ -96,7 +96,7 @@ $products = $result->fetch_all(MYSQLI_ASSOC);
     <main class="main-content">
         <div class="sidebar">
             <h1>Filter</h1>
-            <form method="get" id="filter-form" class="filter-form" oninput="updateURLParams(event)">
+            <form method="get" id="filter-form" class="filter-form">
                 <!-- Brand Checkbox Group -->
                 <fieldset>
                     <legend>Brand</legend>
@@ -146,12 +146,10 @@ $products = $result->fetch_all(MYSQLI_ASSOC);
                 }
                 ?>
             </div>
-            <a class="button hover-filled-slide-right" href="#"><span>View More</span></a>
         </div>
     </main>
     <!-- Footer -->
     <?php include "../components/footer.php"; ?>
     <script src="../scripts/pages/catalog.js"></script>
 </body>
-
 </html>

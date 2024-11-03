@@ -56,7 +56,7 @@ $_SESSION['csrf_token'] = $csrf_token;
           <?php endforeach; ?>
         </div>
 
-        <form class="checkout-form" method="POST" action="../utils/checkout/process-order.php">
+        <form class="checkout-form" method="POST" action="../pages/home.php">
           <input type="hidden" name="csrf_token" value="<?php echo $csrf_token; ?>">
 
           <!-- Delivery Address Section -->
