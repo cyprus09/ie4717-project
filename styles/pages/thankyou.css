@@ -4,6 +4,8 @@ body {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  background-color: #a1a6ff;
+  background-blend-mode: multiply;
 }
 
 .thank-you-content {
@@ -45,7 +47,8 @@ h1 {
   margin-bottom: 2rem;
 }
 
-.order-summary, .shipping-details {
+.order-summary,
+.shipping-details {
   color: var(--dark-blue);
   margin-bottom: 2rem;
   padding: 1.5rem;
