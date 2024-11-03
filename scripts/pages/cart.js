@@ -192,7 +192,7 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     }
 
-    // If all validations pass, show success message and submit the form
+    // If all validations pass, submit the form and redirect
     if (allValidationsPassed) {
       alert("Order placed successfully!");
       checkoutForm.submit();

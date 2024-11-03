@@ -103,12 +103,28 @@ try {
   $stmt->execute();
   $stmt->close();
 
+  // Store order details in session for thank you page
+  $_SESSION['last_order'] = array(
+    'order_id' => $order_id,
+    'total_amount' => $total_amount,
+    'subtotal' => $subtotal,
+    'delivery_fee' => $delivery_fee,
+    'gst' => $gst,
+    'items' => $_SESSION['cart'],
+    'shipping' => array(
+      'name' => $_POST['full_name'],
+      'address' => $_POST['address'],
+      'postal_code' => $_POST['postal_code'],
+      'mobile' => $_POST['mobile']
+    )
+  );
+
   // Clear session cart
   $_SESSION['cart'] = array();
 
   $db->commit();
   $_SESSION['success'] = "Order placed successfully!";
-  header("Location: ../../pages/home.php");
+  header("Location: ../../pages/thank-you.php");
   exit;
 } catch (Exception $e) {
   $db->rollback();

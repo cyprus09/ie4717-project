@@ -1,0 +1,129 @@
+body {
+  height: 100vh;
+  background-image: url(../../assets/background/nike.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.thank-you-content {
+  font-family: var(--helvetica-neue);
+  max-width: 800px;
+  height: 100%;
+  margin: 100px auto 30px auto;
+  padding: 3rem;
+  background: var(--white);
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.success-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.success-icon img {
+  width: 150px;
+  height: 150px;
+}
+
+h1 {
+  font-family: var(--dela-gothic-one);
+  font-size: var(--fs-2);
+  margin-top: 10px;
+  text-align: center;
+  color: var(--dark-blue);
+  margin-bottom: 1rem;
+}
+
+.order-number {
+  text-align: center;
+  color: var(--gray);
+  font-size: var(--fs-6);
+  margin-bottom: 2rem;
+}
+
+.order-summary, .shipping-details {
+  color: var(--dark-blue);
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  background: #f8f9fa;
+  border-radius: 6px;
+}
+
+h2 {
+  font-family: var(--dela-gothic-one);
+  font-size: var(--fs-5);
+  color: var(--dark-blue);
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--light-gray);
+}
+
+.order-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--light-gray);
+}
+
+.item-info h3 {
+  font-family: var(--helvetica-neue);
+  margin: 0;
+  color: var(--dark-blue);
+}
+
+.item-info p {
+  font-size: var(--fs-6);
+  margin: 0.3rem 0;
+}
+
+.price-breakdown {
+  margin-top: 1.5rem;
+}
+
+.price-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 0;
+}
+
+.price-row.total {
+  font-weight: var(--fw-600);
+  font-size: var(--fs-5);
+  border-top: 2px solid var(--light-gray);
+  margin-top: 0.5rem;
+  padding-top: 1rem;
+}
+
+.shipping-details p {
+  font-size: var(--fs-6);
+  margin: 0.5rem 0;
+  color: var(--dark-blue);
+}
+
+.next-steps {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.continue-shopping-btn {
+  font-family: var(--dela-gothic-one);
+  font-size: var(--fs-6);
+  display: inline-block;
+  margin-top: 10px;
+  margin-bottom: 30px;
+  transition: background-color var(--transition-1);
+  padding: 15px;
+  background-color: var(--medium-blue);
+  color: var(--white);
+  text-decoration: none;
+  border-radius: var(--br-medium);
+  border: none;
+}
+
+.continue-shopping-btn:hover {
+  background-color: var(--light-blue);
+}

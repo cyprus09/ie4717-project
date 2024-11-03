@@ -11,6 +11,7 @@ function load_cart_from_db($user_id)
   try {
     $stmt = $db->prepare("
             SELECT 
+                p.product_id,
                 p.name,
                 p.price,
                 p.size,
@@ -21,12 +22,24 @@ function load_cart_from_db($user_id)
             ORDER BY c.id ASC
         ");
 
+    if (!$stmt) {
+      error_log("Failed to prepare statement: " . $db->error);
+      return false;
+    }
+
     $stmt->bind_param("i", $user_id);
-    $stmt->execute();
+
+    if (!$stmt->execute()) {
+      error_log("Failed to execute statement: " . $stmt->error);
+      $stmt->close();
+      return false;
+    }
+
     $result = $stmt->get_result();
 
     while ($row = $result->fetch_assoc()) {
-      $_SESSION['cart'] = array(
+      $_SESSION['cart'][] = array(
+        'product_id' => $row['product_id'],
         'name' => $row['name'],
         'price' => $row['price'],
         'size' => $row['size'],

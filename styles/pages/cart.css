@@ -245,6 +245,10 @@ h1 {
   border: none;
 }
 
+.continue-shopping-btn:hover {
+  background-color: var(--light-blue);
+}
+
 .remove-item {
   background: none;
   border: none;

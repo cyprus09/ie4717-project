@@ -67,10 +67,11 @@ if (!$product_exists) {
     'price' => $product_price,
     'quantity' => $product_quantity,
     'size' => $product_size,
-    'product_id' => $product_id 
+    'product_id' => $product_id
   );
 }
 
+// Update database if user is logged in
 if (isset($_SESSION['user_id'])) {
   try {
     $db->begin_transaction();
