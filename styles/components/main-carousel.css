@@ -3,9 +3,9 @@
 .main-carousel {
     position: relative;
     width: 100%;
-    height: 65%;
-    /* overflow: hidden; */
+    height: 75%;
     margin: 0 auto;
+    margin-top: 2%;
     border-radius: var(--br-big);
     z-index: 3;
 }
@@ -109,27 +109,39 @@
 
 /* Advertisement Item*/
 
-.bg-color-01{
-      background: navy;
-      width: 100%;
-      height: 100%;
-      border-radius: var(--br-big);
+.ads-1{
+    background-image: url("../../assets/advertisement/1.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100%;
+    border-radius: var(--br-big);
 }
-.bg-color-02{
-      background: teal;
-      width: 100%;
-      height: 100%;
-      border-radius: var(--br-big);
+.ads-2{
+    background-image: url("../../assets/advertisement/2.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100%;
+    border-radius: var(--br-big);
 }
-.bg-color-03{
-      background: cornflowerblue;
-      width: 100%;
-      height: 100%;
-      border-radius: var(--br-big);
+.ads-3{
+    background-image: url("../../assets/advertisement/3.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100%;
+    border-radius: var(--br-big);
 }
-.bg-color-04{
-      background: indigo;
-      width: 100%;
-      height: 100%;
-      border-radius: var(--br-big);
+.ads-4{
+    background-image: url("../../assets/advertisement/4.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100%;
+    border-radius: var(--br-big);
 }

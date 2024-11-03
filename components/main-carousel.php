@@ -2,16 +2,16 @@
     <!-- carousel wrapper -->
     <div class="carousel-inner">
         <div class="carousel-item slider-bg-01 active">
-            <div class="bg-color-01"></div>
+            <div class="ads-1"></div>
         </div>
         <div class="carousel-item slider-bg-01">
-            <div class="bg-color-02"></div>        
+            <div class="ads-2"></div>        
         </div>
         <div class="carousel-item slider-bg-01">
-            <div class="bg-color-03"></div>        
+            <div class="ads-3"></div>        
         </div>
         <div class="carousel-item slider-bg-01">
-            <div class="bg-color-04"></div>        
+            <div class="ads-4"></div>        
         </div>
     </div>
     <!-- control button -->
