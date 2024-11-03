@@ -71,39 +71,3 @@ function populateFiltersFromURL() {
         document.getElementById('max-price').value = params['max-price'];
     }
 }
-
-// function fetchProducts(filters) {
-//     fetch("../utils/catalog/fetch-prod.php", {
-//         method: 'POST',
-//         headers: {
-//             'Content-Type': 'application/json',
-//         },
-//         body: JSON.stringify(filters),
-//     })
-//     .then(response => response.json())
-//     .then(products => {
-//         populateProductGrid(products);
-//     })
-//     .catch(error => console.error('Error fetching products:', error));
-// }
-
-// function populateProductGrid(products) {
-//     const productGrid = document.querySelector('.product-grid');
-//     productGrid.innerHTML = ''; // Clear the existing product cards
-
-//     products.forEach(product => {
-//         // Create a new element to hold the product card
-//         const productCardContainer = document.createElement('div');
-//         productCardContainer.innerHTML = `
-//             <?php include "../components/product-card.php"; ?>
-//         `;
-
-//         // Replace the placeholders in product-card.php with actual product data
-//         const productCard = productCardContainer.firstChild;
-//         productCard.querySelector('.product-card').href = `../pages/prod-desc.php?id=${product.product_id}`;
-//         productCard.querySelector('.product-name').textContent = product.name;
-//         productCard.querySelector('.product-price').textContent = `$${parseFloat(product.price).toFixed(2)}`;
-        
-//         productGrid.appendChild(productCard);
-//     });
-// }

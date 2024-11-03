@@ -224,3 +224,49 @@ h1 {
   transition: var(--transition-1);
   box-shadow: 0 2px 5px var(--dark-blue);
 }
+
+.empty-cart {
+  text-align: center;
+  padding: 2rem;
+}
+
+.continue-shopping {
+  font-family: var(--dela-gothic-one);
+  font-size: var(--fs-6);
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 15px;
+  background-color: var(--medium-blue);
+  color: var(--white);
+  text-decoration: none;
+  border-radius: var(--br-medium);
+  border: none;
+}
+
+.remove-item {
+  background: none;
+  border: none;
+  color: var(--red);
+  cursor: pointer;
+  padding: 0.25rem 0;
+  margin-top: 0.5rem;
+  font-size: var(--fs-9);
+}
+
+.remove-item:hover {
+  text-decoration: underline;
+}
+
+input:invalid {
+  border-color: var(--red);
+}
+
+input:valid {
+  border-color: var(--green);
+}
+
+.input-error {
+  color: var(--red);
+  font-size: var(--fs-9);
+  margin-top: 0.25rem;
+}

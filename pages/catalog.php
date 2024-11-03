@@ -146,12 +146,10 @@ $products = $result->fetch_all(MYSQLI_ASSOC);
                 }
                 ?>
             </div>
-            <a class="button hover-filled-slide-right" href="#"><span>View More</span></a>
         </div>
     </main>
     <!-- Footer -->
     <?php include "../components/footer.php"; ?>
     <script src="../scripts/pages/catalog.js"></script>
 </body>
-
 </html>

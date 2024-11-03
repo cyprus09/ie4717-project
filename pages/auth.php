@@ -3,7 +3,9 @@
 require_once "../utils/auth/dbconnect.php";
 require_once "../utils/auth/session.php";
 
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+  session_start();
+}
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['register'])) {
   // Sanitize inputs
@@ -179,7 +181,7 @@ mysqli_close($db);
     </a>
     <div class="link-wrapper">
       <!-- Navigation Links -->
-      <a href="#" class="nav-link">Explore</a>
+      <a href="../pages/catalog.php" class="nav-link">Explore</a>
     </div>
   </header>
 
