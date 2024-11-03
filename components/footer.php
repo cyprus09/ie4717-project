@@ -38,7 +38,7 @@
             <div class="footer-content-section feedback-section">
                 <h3 class="footer-header-content">FEEDBACK</h3>
                 <p>We are open to hear your feedback and concerns to improve our services</p>
-                <a href="#" class="feedback-button">Feedback</a>
+                <a href="../pages/feedback.php" class="feedback-button">Feedback</a>
             </div>
         </div>
     </div>
