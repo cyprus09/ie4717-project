@@ -17,6 +17,15 @@ function updateURLParams(event) {
     const formData = new FormData(form);
     const params = new URLSearchParams();
     
+    // Get search value from navbar search input
+    const searchInput = document.querySelector('.search-input');
+    const searchValue = searchInput.value.trim();
+    
+    // Add search parameter if it's not empty
+    if (searchValue) {
+        params.set('search', searchValue);
+    }
+    
     // Create an object to store multiple values
     const multiValueParams = {};
 
@@ -49,6 +58,12 @@ function updateURLParams(event) {
     // Navigate to the new URL
     window.location.href = newURL;
 }
+
+// Add event listener for form submission
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('filter-form');
+    form.addEventListener('submit', updateURLParams);
+});
 
 // Add an event listener to the form to call the function on submission
 document.getElementById('filter-form').addEventListener('submit', updateURLParams);
