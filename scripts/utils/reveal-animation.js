@@ -55,7 +55,7 @@ style.textContent = `
     }
     
     .highlight-section .brand-category-item.reveal.revealed {
-        transform: translateX(0);
+        transform: translateY(0);
     }
     
     .category-card.reveal {

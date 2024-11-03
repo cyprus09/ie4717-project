@@ -41,7 +41,7 @@
 
 .highlight-header {
   font-family: var(--dela-gothic-one);
-  font-size: var(--fs-2);
+  font-size: var(--fs-1);
   text-align: center;
 }
 
@@ -85,6 +85,12 @@
   border-radius: var(--br-big);
   cursor: pointer;
 }
+
+.brand-category-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0.4em 0.4em 0.4em rgba(54, 46, 91, 0.6);
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
 
 .brand-logo {
   width: 20%;
@@ -178,8 +184,7 @@
 }
 
 .category-card {
-    background-image: url(../../assets/category/sneakers.png);
-    background-size: 100% auto;
+    background-size: cover;
     background-repeat: no-repeat;
     background-position: top;
     width: 24%;
@@ -193,7 +198,7 @@
   }
   
 .category-card:hover {
-    transform: scale(1.05);
+    transform: scale(1.04);
     box-shadow: 0.8em 0.8em 0.8em rgba(54, 46, 91, 0.6);
     transition: transform 0.3s, box-shadow 0.3s;
 }
@@ -216,7 +221,7 @@
 
 .category-name {
     color: var(--white);
-    font-size: var(--fs-5);
+    font-size: var(--fs-3);
     font-weight: var(--fw-800);
     padding: 0.8em;
 }
