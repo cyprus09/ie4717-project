@@ -22,6 +22,8 @@ Footscape is a dynamic e-commerce platform offering a curated selection of the l
 - **Product Description Page**: Contains detailed information about each shoe, including brand, sizing options, high-quality images, and customer reviews. Users can add items to their cart directly from this page.
 - **Cart and Checkout Pages**: Provides a secure, session-based cart system allowing users to add, remove, and modify items. Users proceed through a seamless checkout process to finalize their purchases.
 - **User Authentication**: Users can create accounts, log in, and manage their profiles securely.
+- **Feedback Page**: Users can submit feedback on the products, website.
+- **Order Confirmation Page**: Page seen post submission of order to confirm order details.
 - **Responsive Design**: Optimized for both desktop and mobile devices to ensure a consistent user experience.
 
 ## Tech Stack
@@ -38,17 +40,20 @@ ie4717-project/
 ├── assets/              # Images and logos used on the site
 ├── components/          # Reusable components (carousels, footers, etc.)
 │   ├── card-carousel.php
+│   ├── category-card.php
 │   ├── footer.php
 │   ├── main-carousel.php
 │   ├── navbar.php
 │   └── product-card.php
 ├── pages/
-│   ├── auth.php         # Authentication page
-│   ├── catalog.php      # Product catalog page
-│   ├── home.php         # Home page
-│   ├── prod-desc.php    # Product description page
-│   └── shopping-cart.php # Cart and checkout page
-├── scripts/             # JavaScript files
+│   ├── auth.php          # Authentication page
+│   ├── catalog.php       # Product catalog page
+│   ├── feedback.php      # Feedback page
+│   ├── home.php          # Home page
+│   ├── prod-desc.php     # Product description page
+│   ├── shopping-cart.php # Cart and checkout page
+│   └── thank-you.php     # Order confirmation page
+├── scripts/              # JavaScript files
 │   ├── components/
 │   │   ├── card-carousel.js
 │   │   ├── main-carousel.js
@@ -56,6 +61,7 @@ ie4717-project/
 │   ├── pages/
 │   │   ├── auth.js
 │   │   ├── cart.js
+│   │   ├── catalog.js
 │   │   ├── home.js
 │   │   └── prod-desc.js
 ├── css/                 # Stylesheets for different pages and components
@@ -69,8 +75,10 @@ ie4717-project/
 │   │   ├── auth.css
 │   │   ├── cart.css
 │   │   ├── catalog.css
+│   │   ├── feedback.css
 │   │   ├── home.css
-│   │   └── prod-desc.css
+│   │   ├── prod-desc.css
+│   │   └── thank-you.css
 │   └── main.css         # Global styles
 └── utils/               # Utility functions for backend operations
    ├── auth/
@@ -79,6 +87,8 @@ ie4717-project/
    │   └── session.php
    └── cart/
        ├── add-to-cart.php
+       ├── cart-functions.php
+       ├── process-order.php
        ├── remove-item.php
        └── update-quantity.php
 ```
