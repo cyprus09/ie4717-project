@@ -166,5 +166,6 @@ $products = $result->fetch_all(MYSQLI_ASSOC);
     <!-- Footer -->
     <?php include "../components/footer.php"; ?>
     <script src="../scripts/pages/catalog.js"></script>
+    <script src="../scripts/utils/reveal-animation.js"></script>
 </body>
 </html>
