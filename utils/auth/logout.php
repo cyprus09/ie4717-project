@@ -24,9 +24,7 @@ setcookie(
 );
 
 if (isset($_SESSION['user_id'])) {
-  // require_once "../utils/cart/cart-functions.php";
-  // sync_cart_with_db($_SESSION['user_id']);
-
+  $_SESSION['cart'] = array();
   // Clear all session variables
   session_unset();
   session_destroy();

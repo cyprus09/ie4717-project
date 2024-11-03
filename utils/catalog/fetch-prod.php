@@ -3,7 +3,9 @@
 require_once "../utils/auth/dbconnect.php";
 require_once "../utils/auth/session.php";
 
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 
 // Fetch products based on filter parameters from the POST request
 $filters = json_decode(file_get_contents("php://input"), true);

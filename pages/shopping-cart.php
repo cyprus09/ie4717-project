@@ -4,15 +4,12 @@ if (session_status() === PHP_SESSION_NONE) {
   session_start();
 }
 
-$csrf_token = bin2hex(random_bytes(32));
-$_SESSION['csrf_token'] = $csrf_token;
-
 // Initialize cart if it doesn't exist
 if (!isset($_SESSION['cart'])) {
   $_SESSION['cart'] = array();
 }
 
-// // Load cart if user is logged in
+// Load cart if user is logged in
 // if (isset($_SESSION['user_id'])) {
 //   require_once "../utils/cart/cart-functions.php";
 //   load_cart_from_db($_SESSION['user_id']);
@@ -69,8 +66,8 @@ if (!isset($_SESSION['cart'])) {
           <?php endforeach; ?>
         </div>
 
-        <form class="checkout-form" method="POST" action="../utils/cart/process-order.php">
-          <input type="hidden" name="csrf_token" value="<?php echo $csrf_token; ?>">
+        <form class="checkout-form" name="checkout-form" method="POST" action="../utils/cart/process-order.php">
+          <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
 
           <!-- Delivery Address Section -->
           <div class="delivery-address">

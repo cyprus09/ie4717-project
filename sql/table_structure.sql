@@ -46,8 +46,11 @@ create table
     product_id int unsigned not null,
     primary key (id),
     foreign key (product_id) references products (product_id),
-    foreign key (user_id) references users (id)
+    foreign key (user_id) references users (id),
+    constraint unique_user_product unique (user_id, product_id)
   );
+
+create index idx_user_product on cart (user_id, product_id);
 
 create table
   if not exists orders (

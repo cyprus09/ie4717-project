@@ -1,12 +1,13 @@
 <?php
-// utils/cart/process-order.php
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+  session_start();
+}
 require_once '../auth/dbconnect.php';
 
 if (
-  $_SERVER['REQUEST_METHOD'] !== 'POST' || 
+  $_SERVER['REQUEST_METHOD'] !== 'POST' ||
   !isset($_SESSION['csrf_token']) ||
-  !isset($_POST['csrf_token']) || 
+  !isset($_POST['csrf_token']) ||
   $_SESSION['csrf_token'] !== $_POST['csrf_token']
 ) {
   header("Location: ../../pages/shopping-cart.php");
@@ -24,12 +25,13 @@ $db->begin_transaction();
 
 try {
   // Calculate total amount
-  $total_amount = 0;
+  $subtotal = 0;
   foreach ($_SESSION['cart'] as $item) {
-    $total_amount += $item['price'] * $item['quantity'];
+    $subtotal += $item['price'] * $item['quantity'];
   }
-  $total_amount += 15.00; // Delivery fee
-  $total_amount *= 1.10;  // Add 10% GST
+  $delivery_fee = 15.00;
+  $gst = ($subtotal + $delivery_fee) * 0.10;
+  $total_amount = $subtotal + $delivery_fee + $gst;
 
   // Create order
   $stmt = $db->prepare("
@@ -50,62 +52,59 @@ try {
   $order_id = $db->insert_id;
   $stmt->close();
 
-  // Prepare statements for order items and product updates
-  $stmt_order_items = $db->prepare("
-        INSERT INTO order_items (order_id, product_id, quantity, price)
-        VALUES (?, ?, ?, ?)
-    ");
-
-  $stmt_update_product = $db->prepare("
-        UPDATE products 
-        SET quantity = quantity - ? 
-        WHERE product_id = ? AND quantity >= ?
-    ");
-
+  // Process each item in cart
   foreach ($_SESSION['cart'] as $item) {
-    // Check product quantity
-    $stmt_check = $db->prepare("SELECT quantity FROM products WHERE product_id = ?");
-    $stmt_check->bind_param("i", $item['product_id']);
-    $stmt_check->execute();
-    $result = $stmt_check->get_result();
-    $row = $result->fetch_assoc();
-    $current_quantity = $row['quantity'];
-    $stmt_check->close();
+    // Check product availability
+    $stmt = $db->prepare("
+            SELECT quantity 
+            FROM products 
+            WHERE product_id = ? 
+            FOR UPDATE
+        ");
+    $stmt->bind_param("i", $item['product_id']);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $product = $result->fetch_assoc();
+    $stmt->close();
 
-    if ($current_quantity < $item['quantity']) {
-      throw new Exception("Insufficient stock for " . $item['name']);
+    if (!$product || $product['quantity'] < $item['quantity']) {
+      throw new Exception("Insufficient stock for product: " . $item['name']);
     }
 
     // Add order item
-    $stmt_order_items->bind_param(
+    $stmt = $db->prepare("
+            INSERT INTO order_items (order_id, product_id, quantity, price)
+            VALUES (?, ?, ?, ?)
+        ");
+    $stmt->bind_param(
       "iiid",
       $order_id,
       $item['product_id'],
       $item['quantity'],
       $item['price']
     );
-    $stmt_order_items->execute();
+    $stmt->execute();
+    $stmt->close();
 
     // Update product quantity
-    $stmt_update_product->bind_param(
-      "iii",
-      $item['quantity'],
-      $item['product_id'],
-      $item['quantity']
-    );
-    $stmt_update_product->execute();
+    $stmt = $db->prepare("
+            UPDATE products 
+            SET quantity = quantity - ? 
+            WHERE product_id = ?
+        ");
+    $stmt->bind_param("ii", $item['quantity'], $item['product_id']);
+    $stmt->execute();
+    $stmt->close();
   }
 
-  $stmt_order_items->close();
-  $stmt_update_product->close();
-
-  // Clear cart
+  // Clear user's cart
   $stmt = $db->prepare("DELETE FROM cart WHERE user_id = ?");
   $stmt->bind_param("i", $_SESSION['user_id']);
   $stmt->execute();
   $stmt->close();
 
-  $_SESSION['cart'] = [];
+  // Clear session cart
+  $_SESSION['cart'] = array();
 
   $db->commit();
   $_SESSION['success'] = "Order placed successfully!";

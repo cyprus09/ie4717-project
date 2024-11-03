@@ -1,34 +1,33 @@
-document.addEventListener("DOMContentLoaded", () => {
-  // Get references to key elements
+document.addEventListener("DOMContentLoaded", function () {
   const cartItems = document.querySelectorAll(".cart-item");
-  const subtotalElement = document.getElementById("subtotal");
-  const gstElement = document.getElementById("gst");
-  const totalElement = document.getElementById("total");
-  const deliveryFee = 15.0;
 
-  // Quantity buttons
-  const quantityButtons = document.querySelectorAll(".quantity-btn");
-  quantityButtons.forEach(button => {
-    button.addEventListener("click", event => {
-      event.preventDefault();
-      const input = event.target.parentElement.querySelector(".quantity-input");
-      const cartItem = event.target.closest(".cart-item");
-      const itemIndex = Array.from(document.querySelectorAll(".cart-item")).indexOf(cartItem);
-      let currentValue = parseInt(input.value);
+  cartItems.forEach(item => {
+    const minusBtn = item.querySelector(".minus");
+    const plusBtn = item.querySelector(".plus");
+    const quantityInput = item.querySelector(".quantity-input");
+    const index = Array.from(cartItems).indexOf(item);
 
-      if (event.target.classList.contains("plus") && currentValue < 10) {
-        currentValue += 1;
-      } else if (event.target.classList.contains("minus") && currentValue > 1) {
-        currentValue -= 1;
+    // Initialize quantity buttons
+    minusBtn.addEventListener("click", () => {
+      const currentQuantity = parseInt(quantityInput.value);
+      if (currentQuantity > 1) {
+        updateQuantity(index, currentQuantity - 1, item);
       }
+    });
 
-      updateQuantity(itemIndex, currentValue, cartItem);
+    plusBtn.addEventListener("click", () => {
+      const currentQuantity = parseInt(quantityInput.value);
+      if (currentQuantity < 10) {
+        updateQuantity(index, currentQuantity + 1, item);
+      }
     });
   });
 
   // Function to update quantity on server
   function updateQuantity(index, quantity, cartItem) {
-    console.log("Updating quantity:", { index, quantity });
+    const loadingOverlay = document.createElement("div");
+    loadingOverlay.className = "loading-overlay";
+    cartItem.appendChild(loadingOverlay);
 
     fetch("../utils/cart/update-quantity.php", {
       method: "POST",
@@ -45,30 +44,69 @@ document.addEventListener("DOMContentLoaded", () => {
       .then(data => {
         if (data.success) {
           cartItem.querySelector(".quantity-input").value = data.newQuantity;
-          updateCart();
+          updateCartTotals();
         } else {
           alert(data.message || "Failed to update quantity");
+          // Reset to previous quantity
+          cartItem.querySelector(".quantity-input").value = quantity;
         }
       })
       .catch(error => {
+        console.error("Error:", error);
         alert("An error occurred while updating the cart");
+        // Reset to previous quantity
+        cartItem.querySelector(".quantity-input").value = quantity;
+      })
+      .finally(() => {
+        loadingOverlay.remove();
       });
+  }
+
+  // Function to update cart totals
+  function updateCartTotals() {
+    let subtotal = 0;
+    cartItems.forEach(item => {
+      const price = parseFloat(item.dataset.price);
+      const quantity = parseInt(item.querySelector(".quantity-input").value);
+      subtotal += price * quantity;
+    });
+
+    const deliveryFee = 15.0;
+    const gst = (subtotal + deliveryFee) * 0.1;
+    const total = subtotal + deliveryFee + gst;
+
+    document.getElementById("subtotal").textContent = subtotal.toFixed(2);
+    document.getElementById("delivery-fee").textContent = deliveryFee.toFixed(2);
+    document.getElementById("gst").textContent = gst.toFixed(2);
+    document.getElementById("total").textContent = total.toFixed(2);
   }
 
   // Remove item function
   window.removeItem = function (index) {
     if (confirm("Are you sure you want to remove this item?")) {
+      const cartItem = cartItems[index];
+      const loadingOverlay = document.createElement("div");
+      loadingOverlay.className = "loading-overlay";
+      cartItem.appendChild(loadingOverlay);
+
       fetch("../utils/cart/remove-item.php", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ index: index }),
+        credentials: "same-origin",
       })
         .then(response => response.json())
         .then(data => {
           if (data.success) {
-            location.reload();
+            cartItem.remove();
+            updateCartTotals();
+
+            // If cart is empty, show empty cart message
+            if (document.querySelectorAll(".cart-item").length === 0) {
+              location.reload();
+            }
           } else {
             alert(data.message || "Failed to remove item");
           }
@@ -76,30 +114,15 @@ document.addEventListener("DOMContentLoaded", () => {
         .catch(error => {
           console.error("Error:", error);
           alert("An error occurred while removing the item");
+        })
+        .finally(() => {
+          loadingOverlay.remove();
         });
     }
   };
 
-  // Function to update the cart's subtotal, GST, and total
-  function updateCart() {
-    let subtotal = 0;
-
-    cartItems.forEach(item => {
-      const price = parseFloat(item.getAttribute("data-price"));
-      const quantityInput = item.querySelector(".quantity-input");
-      const quantity = parseInt(quantityInput.value);
-      const itemTotal = price * quantity;
-      subtotal += itemTotal;
-    });
-
-    const gst = subtotal * 0.1; // 10% GST
-    const total = subtotal + gst + deliveryFee;
-
-    // Update the displayed values
-    subtotalElement.textContent = subtotal.toFixed(2);
-    gstElement.textContent = gst.toFixed(2);
-    totalElement.textContent = total.toFixed(2);
-  }
+  // Initial update of totals
+  updateCartTotals();
 
   // Form Validation
   const checkoutForm = document.querySelector(".checkout-form");

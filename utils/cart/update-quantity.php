@@ -1,5 +1,7 @@
 <?php
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 
 require_once '../auth/dbconnect.php';
 require_once 'cart-functions.php';
@@ -21,13 +23,24 @@ if ($quantity <= 0 || $quantity > 10) {
     exit;
 }
 
-if (isset($_SESSION['cart'][$index]) || !is_array($_SESSION['cart'])) {
+if (isset($_SESSION['cart'][$index])) {
+    // Update session cart
     $_SESSION['cart'][$index]['quantity'] = $quantity;
 
-    // // Sync with database if user is logged in
-    // if (isset($_SESSION['user_id'])) {
-    //     sync_cart_with_db($_SESSION['user_id']);
-    // }
+    // Update database if user is logged in
+    if (isset($_SESSION['user_id'])) {
+        try {
+            $product_id = $_SESSION['cart'][$index]['product_id'];
+
+            $stmt = $db->prepare("UPDATE cart SET quantity = ? WHERE user_id = ? AND product_id = ?");
+            $stmt->bind_param("iii", $quantity, $_SESSION['user_id'], $product_id);
+            $stmt->execute();
+        } catch (Exception $e) {
+            error_log("Quantity update failed: " . $e->getMessage());
+            echo json_encode(['success' => false, 'message' => 'Database error']);
+            exit;
+        }
+    }
 
     echo json_encode([
         'success' => true,
