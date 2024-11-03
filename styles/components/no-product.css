@@ -7,8 +7,8 @@
 }
 
 .no-product img{
-    width: 18em;
-    height: 18em;
+    width: 20em;
+    height: 20em;
     margin-bottom: 1em;
 }
 
@@ -18,4 +18,5 @@
     font-size: var(--fs-3);
     font-weight: var(--fw-800);
     line-height: 1.2;
+    text-align: center;
 }
