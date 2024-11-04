@@ -15,7 +15,7 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 
 // If the user is already logged in, redirect them to the welcome page
-if (isset($_SESSION["userid"]) && $_SESSION["userid"] === true) {
+if (isset($_SESSION["user"]) && $_SESSION["user"] === true) {
   header("Location: ../../pages/home.php");
   exit;
 }

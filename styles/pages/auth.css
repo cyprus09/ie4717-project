@@ -8,6 +8,8 @@ body {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  background-color: #a1a6ff;
+  background-blend-mode: multiply;
 }
 
 .container {

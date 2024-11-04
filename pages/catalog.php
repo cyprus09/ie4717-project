@@ -3,7 +3,9 @@
 require_once "../utils/auth/dbconnect.php";
 require_once "../utils/auth/session.php";
 
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 
 // Retrieve filters from the URL parameters
 $brand = isset($_GET['brand']) ? explode(',', strtolower($_GET['brand'])) : [];

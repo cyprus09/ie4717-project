@@ -1,3 +1,9 @@
+<?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -75,10 +81,18 @@
       <div class="bg-text bg-text-gray bg-text-bottom">Explore Explore Explore Explore Explore Explore Explore</div>
       <br /> <br />
       <div class="category-carousel">
-        <a class="category-card sneakers-card reveal" href="./catalog.php?category=Sneakers"><h3 class="category-name">Sneakers</h3></a>
-        <a class="category-card running-card reveal" href="./catalog.php?category=Running"><h3 class="category-name">Running</h3></a>
-        <a class="category-card casual-card reveal" href="./catalog.php?category=Casual"><h3 class="category-name">Casual</h3></a>
-        <a class="category-card below100-card reveal" href="./catalog.php?min-price=0&max-price=100"><h3 class="category-name">Below $100</h3></a>
+        <a class="category-card sneakers-card" href="./catalog.php?category=Sneakers">
+          <h3 class="category-name">Sneakers</h3>
+        </a>
+        <a class="category-card running-card" href="./catalog.php?category=Running">
+          <h3 class="category-name">Running</h3>
+        </a>
+        <a class="category-card casual-card" href="./catalog.php?category=Casual">
+          <h3 class="category-name">Casual</h3>
+        </a>
+        <a class="category-card below100-card" href="./catalog.php?min-price=0&max-price=100">
+          <h3 class="category-name">Below $100</h3>
+        </a>
       </div>
     </div>
     <!-- Footer -->

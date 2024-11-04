@@ -4,6 +4,8 @@ body {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  background-color: #a1a6ff;
+  background-blend-mode: multiply;
 }
 
 .feedback-container {
@@ -17,6 +19,7 @@ body {
   padding: 2rem;
   background-color: var(--white);
   text-align: center;
+  border-radius: var(--br-medium);
 }
 
 .feedback-container h2 {
@@ -58,9 +61,9 @@ body {
 
 .submit-feedback {
   padding: 0.75rem;
-  font-family: var(--helvetica-neue);
-  font-size: var(--fs-7);
-  background-color: var(--light-blue);
+  font-family: var(--dela-gothic-one);
+  font-size: var(--fs-6);
+  background-color: var(--dark-blue);
   color: var(--white);
   border: none;
   border-radius: var(--br-medium);
@@ -70,8 +73,7 @@ body {
 }
 
 .submit-feedback:hover {
-  transition: var(--transition-1);
-  transform: var(--transform-1);
+  background-color: var(--light-blue);
 }
 
 .success-message {

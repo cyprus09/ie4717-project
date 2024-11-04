@@ -3,8 +3,24 @@ if (session_status() === PHP_SESSION_NONE) {
   session_start();
 }
 
-$csrf_token = bin2hex(random_bytes(32));
-$_SESSION['csrf_token'] = $csrf_token;
+// Generate CSRF token if not exists
+if (!isset($_SESSION['csrf_token'])) {
+  $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+}
+
+// Initialize cart if it doesn't exist
+if (!isset($_SESSION['cart'])) {
+  $_SESSION['cart'] = array();
+}
+
+// Load cart if user is logged in
+// if (isset($_SESSION['user_id']) && isset($_SESSION['cart'])) {
+//   require_once "../utils/cart/cart-functions.php";
+//   load_cart_from_db($_SESSION['user_id']);
+// }
+
+// Debug cart contents
+error_log("Current cart contents: " . json_encode($_SESSION['cart']));
 ?>
 
 <!DOCTYPE html>
@@ -36,28 +52,38 @@ $_SESSION['csrf_token'] = $csrf_token;
       <?php if (isset($_SESSION['cart']) && count($_SESSION['cart']) > 0): ?>
         <div class="cart-items">
           <?php foreach ($_SESSION['cart'] as $index => $item): ?>
-            <div class="cart-item" data-price="<?php echo htmlspecialchars($item['price']); ?>">
-              <img src="../assets/products/nike-shoe.jpg" alt="<?php echo htmlspecialchars($item['name']); ?>" />
+            <div class="cart-item"
+              data-price="<?php echo htmlspecialchars($item['price']); ?>"
+              data-product-id="<?php echo htmlspecialchars($item['product_id']); ?>">
+              <img src="../assets/products/nike-shoe.jpg"
+                alt="<?php echo htmlspecialchars($item['name']); ?>" />
               <div class="item-details">
                 <h2><?php echo htmlspecialchars($item['name']); ?></h2>
                 <p class="size">Size (US): <span><?php echo htmlspecialchars($item['size']); ?></span></p>
-                <p class="price">$<span><?php echo htmlspecialchars($item['price']); ?></span></p>
-                <button type="button" class="remove-item" onclick="removeItem(<?php echo $index; ?>)">
+                <p class="price">$<span><?php echo number_format($item['price'], 2); ?></span></p>
+                <button type="button" class="remove-item"
+                  onclick="removeItem(<?php echo $index; ?>, <?php echo $item['product_id']; ?>)">
                   Remove
                 </button>
               </div>
               <div class="quantity">
                 <button type="button" class="quantity-btn minus">-</button>
-                <input type="number" value="<?php echo htmlspecialchars($item['quantity']); ?>"
-                  min="1" max="10" class="quantity-input" readonly />
+                <input type="number"
+                  value="<?php echo htmlspecialchars($item['quantity']); ?>"
+                  min="1"
+                  max="10"
+                  class="quantity-input"
+                  readonly
+                  data-index="<?php echo $index; ?>"
+                  data-product-id="<?php echo $item['product_id']; ?>" />
                 <button type="button" class="quantity-btn plus">+</button>
               </div>
             </div>
           <?php endforeach; ?>
         </div>
 
-        <form class="checkout-form" method="POST" action="../pages/home.php">
-          <input type="hidden" name="csrf_token" value="<?php echo $csrf_token; ?>">
+        <form class="checkout-form" name="checkout-form" method="POST" action="../utils/cart/process-order.php">
+          <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
 
           <!-- Delivery Address Section -->
           <div class="delivery-address">
@@ -101,7 +127,6 @@ $_SESSION['csrf_token'] = $csrf_token;
             <p>GST (10%): $<span id="gst">0.00</span></p>
             <p class="total">Total: $<span id="total">0.00</span></p>
           </div>
-
           <button type="submit" class="checkout-btn">Checkout</button>
         </form>
       <?php else: ?>
