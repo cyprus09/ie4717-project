@@ -7,148 +7,168 @@ if (session_status() === PHP_SESSION_NONE) {
   session_start();
 }
 
+// Generate CSRF token if not exists
+if (!isset($_SESSION['csrf_token'])) {
+  $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+}
+
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['register'])) {
+  // Verify CSRF token
+  if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
+    die("CSRF token validation failed");
+  }
+
   // Sanitize inputs
-  $firstName = trim($_POST['firstName']);
-  $lastName = trim($_POST['lastName']);
-  $username = trim($_POST['username']);
-  $email = trim($_POST['email']);
+  $firstName = trim(htmlspecialchars($_POST['firstName']));
+  $lastName = trim(htmlspecialchars($_POST['lastName']));
+  $username = trim(htmlspecialchars($_POST['username']));
+  $email = filter_var(trim($_POST['email']), FILTER_SANITIZE_EMAIL);
   $password = trim($_POST['password']);
+
+  // Validate email
+  if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    echo "<script>alert('Please enter a valid email address.');</script>";
+    header('Location: ./auth.php');
+    exit;
+  }
 
   // Debug password requirements separately
   $has_lowercase = preg_match('/[a-z]/', $password);
   $has_uppercase = preg_match('/[A-Z]/', $password);
   $has_number = preg_match('/\d/', $password);
+  $has_special = preg_match('/[^A-Za-z0-9]/', $password);
   $is_long_enough = strlen($password) >= 8;
 
   // Detailed validation with specific messages
-  if (!$is_long_enough) {
-    echo "<script>alert('Password must be at least 8 characters long.');</script>";
-    header('Location: ./auth.php');
-    exit;
-  }
-  if (!$has_lowercase) {
-    echo "<script>alert('Password must contain at least one lowercase letter.');</script>";
-    header('Location: ./auth.php');
-    exit;
-  }
-  if (!$has_uppercase) {
-    echo "<script>alert('Password must contain at least one uppercase letter.');</script>";
-    header('Location: ./auth.php');
-    exit;
-  }
-  if (!$has_number) {
-    echo "<script>alert('Password must contain at least one number.');</script>";
+  if (!$is_long_enough || !$has_lowercase || !$has_uppercase || !$has_number || !$has_special) {
+    $error_message = "Password must contain:\n";
+    if (!$is_long_enough) $error_message .= "- At least 8 characters\n";
+    if (!$has_lowercase) $error_message .= "- At least one lowercase letter\n";
+    if (!$has_uppercase) $error_message .= "- At least one uppercase letter\n";
+    if (!$has_number) $error_message .= "- At least one number\n";
+    if (!$has_special) $error_message .= "- At least one special character\n";
+
+    echo "<script>alert(" . json_encode($error_message) . ");</script>";
     header('Location: ./auth.php');
     exit;
   }
 
   // Hash the password for security
-  $password_hash = password_hash($password, PASSWORD_BCRYPT);
+  $password_hash = password_hash($password, PASSWORD_BCRYPT, ['cost' => 12]);
 
   // Check if user already exists
-  if ($query = $db->prepare("SELECT * FROM users WHERE email = ? OR username = ?")) {
-    $query->bind_param('ss', $email, $username);
-    $query->execute();
-    $query->store_result();
-
-    if ($query->num_rows > 0) {
-      echo "<script>alert('The email address or username is already registered!');</script>";
-      $query->close();
-      header('Location: ./auth.php');
-      exit;
-    }
-    $query->close();
-  } else {
+  $stmt = $db->prepare("SELECT * FROM users WHERE email = ? OR username = ?");
+  if (!$stmt) {
     echo "<script>alert('Database error occurred. Please try again.');</script>";
     exit;
   }
 
-  // If we get here, validation passed - insert the new user
-  if ($insertQuery = $db->prepare("INSERT INTO users (first_name, last_name, username, email, password) VALUES (?, ?, ?, ?, ?)")) {
-    $insertQuery->bind_param("sssss", $firstName, $lastName, $username, $email, $password_hash);
-    $result = $insertQuery->execute();
+  $stmt->bind_param('ss', $email, $username);
+  $stmt->execute();
+  $result = $stmt->get_result();
 
-    if ($result) {
-      echo "<script>alert('Your registration was successful!'); window.location.href='../../pages/home.php';</script>";
-      $insertQuery->close();
-      header('Location: ./auth.php');
-      exit;
-    } else {
-      echo "<script>alert('Something went wrong during registration: " . $db->error . "');</script>";
-    }
-    $insertQuery->close();
-  } else {
-    echo "<script>alert('Database error occurred. Please try again.');</script>";
+  if ($result->num_rows > 0) {
+    echo "<script>alert('The email address or username is already registered!');</script>";
+    $stmt->close();
+    header('Location: ./auth.php');
+    exit;
   }
+  $stmt->close();
+
+  // Insert the new user
+  $stmt = $db->prepare("INSERT INTO users (first_name, last_name, username, email, password) VALUES (?, ?, ?, ?, ?)");
+  if (!$stmt) {
+    echo "<script>alert('Database error occurred. Please try again.');</script>";
+    exit;
+  }
+
+  $stmt->bind_param("sssss", $firstName, $lastName, $username, $email, $password_hash);
+  if ($stmt->execute()) {
+    $user_id = $db->insert_id;
+
+    // Start session and set session variables
+    $_SESSION['user_id'] = $user_id;
+    $_SESSION['user_email'] = $email;
+    $_SESSION['username'] = $username;
+
+    // Initialize empty cart
+    $_SESSION['cart'] = array();
+
+    echo "<script>alert('Registration successful!'); window.location.href='../../pages/home.php';</script>";
+    $stmt->close();
+    exit;
+  } else {
+    echo "<script>alert('Registration failed: " . $db->error . "');</script>";
+  }
+  $stmt->close();
 }
 
-// Handle user login case
+// Handle user login
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login'])) {
-  $email = trim($_POST['email']);
+  // Verify CSRF token
+  if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
+    die("CSRF token validation failed");
+  }
+
+  $email = filter_var(trim($_POST['email']), FILTER_SANITIZE_EMAIL);
   $password = trim($_POST['password']);
 
-  // Check for empty fields
-  if (empty($email)) {
-    echo "<script>alert('Please enter your email!');</script>";
-    exit;
-  }
-  if (empty($password)) {
-    echo "<script>alert('Please enter your password!');</script>";
+  // Validate inputs
+  if (empty($email) || empty($password)) {
+    echo "<script>alert('Please fill in all fields!');</script>";
     exit;
   }
 
-  // Basic email validation
   if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
     echo "<script>alert('Please enter a valid email address!');</script>";
     exit;
   }
 
   // Query user from database
-  if ($query = $db->prepare("SELECT id, email, password FROM users WHERE email = ?")) {
-    $query->bind_param('s', $email);
+  $stmt = $db->prepare("SELECT id, email, username, password FROM users WHERE email = ?");
+  if (!$stmt) {
+    echo "<script>alert('Database error occurred. Please try again.');</script>";
+    exit;
+  }
 
-    if (!$query->execute()) {
-      echo "<script>alert('An error occurred during login. Please try again.');</script>";
-      $query->close();
+  $stmt->bind_param('s', $email);
+
+  if (!$stmt->execute()) {
+    echo "<script>alert('An error occurred during login. Please try again.');</script>";
+    $stmt->close();
+    exit;
+  }
+
+  $result = $stmt->get_result();
+
+  if ($result->num_rows === 1) {
+    $user = $result->fetch_assoc();
+
+    // Verify the password
+    if (password_verify($password, $user['password'])) {
+      // Start new session
+      session_regenerate_id(true);
+
+      // Set session variables
+      $_SESSION['user_id'] = $user['id'];
+      $_SESSION['user_email'] = $user['email'];
+      $_SESSION['username'] = $user['username'];
+
+      // Initialize cart
+      $_SESSION['cart'] = array();
+
+      // Load cart from database
+      // load_cart_from_db($user['id']);
+
+      $stmt->close();
+      header('Location: ./home.php');
       exit;
     }
-
-    $result = $query->get_result();
-
-    if ($result->num_rows === 1) {
-      $user = $result->fetch_assoc();
-
-      // Verify the password
-      if (password_verify($password, $user['password'])) {
-        // Start session if not already started
-        if (session_status() === PHP_SESSION_NONE) {
-          session_start();
-        }
-
-        // Set session variables
-        $_SESSION["userid"] = $user['id'];
-        $_SESSION['user'] = [
-          'id' => $user['id'],
-          'email' => $user['email']
-        ];
-
-        $query->close();
-
-        // Redirect to home page
-        header('Location: ./home.php');
-        exit;
-      } else {
-        echo "<script>alert('Invalid email or password.');</script>";
-      }
-    } else {
-      // Use generic message for security
-      echo "<script>alert('Invalid email or password.');</script>";
-    }
-    $query->close();
-  } else {
-    echo "<script>alert('An error occurred during login. Please try again.');</script>";
   }
+
+  // Invalid credentials
+  echo "<script>alert('Invalid email or password.');</script>";
+  $stmt->close();
 }
 
 // Close DB connection
@@ -191,6 +211,7 @@ mysqli_close($db);
       <form method="POST" id="register-form" action="">
         <h1>Create Account</h1>
         <span class="subheading">Please enter your details below</span>
+        <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
 
         <input type="text" name="firstName" id="firstName" placeholder="First Name" required maxlength="50">
         <input type="text" name="lastName" id="lastName" placeholder="Last Name" required maxlength="50">
@@ -206,6 +227,8 @@ mysqli_close($db);
       <form method="POST" id="login-form" action="">
         <h1>Sign In</h1>
         <span class="subheading">Please enter your details below</span>
+        <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
+
         <input type="email" name="email" placeholder="Email" required>
         <input type="password" name="password" placeholder="Password" required>
         <button type="submit" name="login" id="login">Sign In</button>
