@@ -13,10 +13,18 @@ $category = isset($_GET['category']) ? explode(',', strtolower($_GET['category']
 $gender = isset($_GET['gender']) ? explode(',', strtolower($_GET['gender'])) : [];
 $minPrice = isset($_GET['min-price']) ? floatval($_GET['min-price']) : null;
 $maxPrice = isset($_GET['max-price']) ? floatval($_GET['max-price']) : null;
+$search = isset($_GET['search']) ? trim($_GET['search']) : '';
 
 // Build the SQL query based on filters
 $query = "SELECT product_id, name, brand, category, gender, price FROM products WHERE 1=1";
 $params = [];
+
+if (!empty($search)) {
+    $query .= " AND (LOWER(name) LIKE ? OR LOWER(brand) LIKE ?)";
+    $searchTerm = '%' . strtolower($search) . '%';
+    $params[] = $searchTerm;
+    $params[] = $searchTerm;
+}
 
 if (!empty($brand)) {
     $placeholders = implode(',', array_fill(0, count($brand), '?'));

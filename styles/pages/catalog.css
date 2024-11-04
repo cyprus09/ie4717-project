@@ -86,9 +86,9 @@ input[type=number] {
 /* Catalog Section */
 
 .catalog-section {
-    width: 75vw;
+    width: 78vw;
     background-color: var(--white);
-    padding: 1vw 2vw;
+    padding: 1vw 4vw 1vw 3vw;
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -120,7 +120,7 @@ input[type=number] {
 }
 
 .button {
-    background-color: var(--white);
+    background-color: var(--light-gray);
     color: var(--white);
     width: 12vw;
     border-radius: var(--br-small);
