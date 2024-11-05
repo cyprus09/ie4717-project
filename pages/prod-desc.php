@@ -79,6 +79,7 @@ $stmt->close();
                 <option value="11">11</option>
               </select>
             </div>
+            <!-- <a href="#" class="size-chart-link" id="sizeChart">Size Chart</a> -->
             <div id="myModal" class="modal">
               <div class="modal-content">
                 <span class="close">&times;</span>
