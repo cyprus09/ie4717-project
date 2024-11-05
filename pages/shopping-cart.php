@@ -56,8 +56,7 @@ error_log("Current cart contents: " . json_encode($_SESSION['cart']));
             <div class="cart-item"
               data-price="<?php echo htmlspecialchars($item['price']); ?>"
               data-product-id="<?php echo htmlspecialchars($item['product_id']); ?>">
-              <img src="<?php echo htmlspecialchars($item['image_url']); ?>"
-                alt="<?php echo htmlspecialchars($item['image_url']); ?>" />
+              <!-- <img src="<?php echo htmlspecialchars($item['image_url']); ?>" alt="<?php echo htmlspecialchars($item['image_url']); ?>" /> -->
               <div class="item-details">
                 <h2><?php echo htmlspecialchars($item['name']); ?></h2>
                 <p class="size">Size (US): <span><?php echo htmlspecialchars($item['size']); ?></span></p>
