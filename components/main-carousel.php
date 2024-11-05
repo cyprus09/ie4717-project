@@ -16,8 +16,8 @@
     </div>
     <!-- control button -->
     <div class="carousel-controls ">
-        <button class="prev" onclick="prevSlide()"><</button>
-        <button class="next" onclick="nextSlide()">></button>
+        <!-- <button class="prev" onclick="prevSlide()"><</button> -->
+        <!-- <button class="next" onclick="nextSlide()">></button> -->
     </div>
     <!-- indicator bar -->
     <div class="carousel-indicators d-none d-lg-block">
