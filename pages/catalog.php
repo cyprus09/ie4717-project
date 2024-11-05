@@ -16,7 +16,7 @@ $maxPrice = isset($_GET['max-price']) ? floatval($_GET['max-price']) : null;
 $search = isset($_GET['search']) ? trim($_GET['search']) : '';
 
 // Build the SQL query based on filters
-$query = "SELECT product_id, name, brand, category, gender, price FROM products WHERE 1=1";
+$query = "SELECT product_id, name, brand, category, gender, price, image_url FROM products WHERE 1=1";
 $params = [];
 
 if (!empty($search)) {
@@ -95,6 +95,7 @@ $products = $result->fetch_all(MYSQLI_ASSOC);
     <link rel="stylesheet" href="../styles/components/navbar.css" />
     <link rel="stylesheet" href="../styles/components/footer.css" />
     <link rel="stylesheet" href="../styles/components/product-card.css" />
+    <link rel="stylesheet" href="../styles/components/no-product.css" />
     <!-- Page CSS -->
     <link rel="stylesheet" href="../styles/pages/catalog.css" />
 </head>
@@ -150,9 +151,15 @@ $products = $result->fetch_all(MYSQLI_ASSOC);
             <h1>Explore</h1>
             <div class="product-grid">
                 <?php
-                foreach ($products as $product) {
-                    // Include product card with product data
-                    include "../components/product-card.php";
+                if (empty($products)) {
+                    echo '<div></div>';
+                    include "../components/no-product.php";
+                    echo '<div></div>';
+                } else {
+                    foreach ($products as $product) {
+                        // Include product card with product data
+                        include "../components/product-card.php";
+                    }
                 }
                 ?>
             </div>
@@ -161,5 +168,6 @@ $products = $result->fetch_all(MYSQLI_ASSOC);
     <!-- Footer -->
     <?php include "../components/footer.php"; ?>
     <script src="../scripts/pages/catalog.js"></script>
+    <script src="../scripts/utils/reveal-animation.js"></script>
 </body>
 </html>
