@@ -1,37 +1,78 @@
-// Quantity buttons
-document.addEventListener("DOMContentLoaded", () => {
-  const quantityButtons = document.querySelectorAll(".quantity-btn");
-  quantityButtons.forEach(button => {
-    button.addEventListener("click", function () {
-      const input = this.parentElement.querySelector("input[type='number']");
-      let currentValue = parseInt(input.value);
+document.addEventListener('DOMContentLoaded', function() {
+  const sizeSelect = document.getElementById('size-select');
+  const quantityInput = document.getElementById('quantity-input');
+  const plusBtn = document.querySelector('.quantity-btn.plus');
+  const minusBtn = document.querySelector('.quantity-btn.minus');
 
-      if (this.classList.contains("plus") && currentValue < 10) {
-        input.value = currentValue + 1;
-      } else if (this.classList.contains("minus") && currentValue > 1) {
-        input.value = currentValue - 1;
+  // Function to update max quantity based on selected size
+  function updateMaxQuantity() {
+      const selectedOption = sizeSelect.options[sizeSelect.selectedIndex];
+      const maxQty = parseInt(selectedOption.dataset.quantity);
+      quantityInput.max = maxQty;
+
+      // If current quantity is more than max, adjust it
+      if (parseInt(quantityInput.value) > maxQty) {
+          quantityInput.value = maxQty;
       }
-    });
+  }
+
+  // Update max quantity when size changes
+  sizeSelect.addEventListener('change', updateMaxQuantity);
+
+  // Handle plus button click
+  plusBtn.addEventListener('click', function() {
+      const currentValue = parseInt(quantityInput.value);
+      const maxValue = parseInt(quantityInput.max);
+      if (currentValue < maxValue) {
+          quantityInput.value = currentValue + 1;
+      }
   });
+
+  // Handle minus button click
+  minusBtn.addEventListener('click', function() {
+      const currentValue = parseInt(quantityInput.value);
+      if (currentValue > 1) {
+          quantityInput.value = currentValue - 1;
+      }
+  });
+
+  // Initialize max quantity for default selected size
+  updateMaxQuantity();
 });
 
-// // size chart modal js
-// var modal = document.getElementById("myModal");
-// var btn = document.getElementById("sizeChart");
-// var span = document.getElementsByClassName("close")[0];
+function addToCart(name, price) {
+  const selectedSize = document.querySelector('.size-select').value;
+  const selectedQuantity = parseInt(document.querySelector('.quantity-input').value);
+  const maxQuantity = parseInt(document.querySelector('.size-select').options[document.querySelector('.size-select').selectedIndex].dataset.quantity);
 
-// btn.onclick = function (event) {
-//   event.preventDefault();
-//   modal.style.display = "block";
-// };
+  // Check if selected quantity is valid
+  if (selectedQuantity > maxQuantity) {
+      alert(`Sorry, only ${maxQuantity} items available for size UK ${selectedSize}`);
+      return;
+  }
 
-// span.onclick = function () {
-//   modal.style.display = "none";
-// };
-
-// window.onclick = function (event) {
-//   if (event.target == modal) {
-//     modal.style.display = "none";
-//   }
-// };
-
+  fetch("../utils/cart/add-to-cart.php", {
+      method: "POST",
+      headers: {
+          "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+          name: name,
+          price: price,
+          quantity: selectedQuantity,
+          size: selectedSize
+      }),
+  })
+  .then(response => response.json())
+  .then(data => {
+      if (data.success) {
+          alert("Product added to cart!");
+      } else {
+          alert("Failed to add product to cart.");
+      }
+  })
+  .catch(error => {
+      console.error('Error:', error);
+      alert("An error occurred while adding to cart.");
+  });
+}

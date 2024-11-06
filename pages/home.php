@@ -1,4 +1,6 @@
 <?php
+include "../utils/auth/dbconnect.php";
+
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
@@ -96,3 +98,5 @@ if (session_status() === PHP_SESSION_NONE) {
 </body>
 
 </html>
+
+<?php $db->close(); ?>

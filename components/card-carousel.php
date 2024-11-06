@@ -1,8 +1,6 @@
 <div class="card-carousel-container">
   <div class="card-carousel">
     <?php
-    include "../utils/auth/dbconnect.php";
-
     // Fetch random 8 products
     $query = "SELECT name, price, image_url FROM products ORDER BY RAND() LIMIT 8";
     $result = $db->query($query);
@@ -13,8 +11,6 @@
       <?php endwhile; ?>
     <?php
     endif;
-
-    $db->close();
     ?>
   </div>
 </div>

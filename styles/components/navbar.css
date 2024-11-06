@@ -31,6 +31,28 @@
     font-size: 1.1em;
     color: var(--white);
     margin: 0em 1em;
+    position: relative;
+    text-decoration: none;
+    transition: transform 0.2s ease-in-out; /* Add transition for smooth movement */
+}
+
+.nav-link:hover {
+    transform: translateY(-2px); /* Move text up by 2px on hover */
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -4px;
+    left: 0;
+    background-color: var(--white);
+    transition: width 0.2s ease-in-out;
+}
+
+.nav-link:hover::after {
+    width: 100%;
 }
 
 /* Search Bar */
