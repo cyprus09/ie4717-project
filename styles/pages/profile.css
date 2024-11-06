@@ -1,0 +1,131 @@
+.main-content {
+    background-color: var(--white);
+    margin: 8em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.container-header {
+    font-family: var(--dela-gothic-one);
+    margin-top: 20px;
+}
+
+/* Profile Section */
+
+.profile-container {
+    background-color: var(--light-gray);
+    border-radius: var(--br-big);
+    width: 100%;
+    max-width: 1200px;
+    margin: 20px 150px;
+    padding: 1.6em 5em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    transition: 0.3s ease-out;
+    }
+
+.row-wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+.info-group {
+    width: 50%;
+    margin-bottom: 1rem;
+}
+
+.label {
+    font-weight: var(--fw-700);
+    color: var(--dark-blue);
+    font-size: var(--fs-4);
+}
+
+.value {
+    font-size: var(--fs-5);
+    color: var(--medium-blue);
+}
+
+.info-group input {
+    width: 95%;
+    padding: 0.25em 0.5em;
+    margin: 0.25rem 0;
+    border: 0.1em solid var(--dark-blue);
+    border-radius: var(--br-small);
+    background-color: var(--white);
+    font-size: var(--fs-5);
+    color: var(--medium-blue);
+}
+
+.display {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.hidden {
+    display: none;
+}
+
+/* Button */
+
+:active, :hover, :focus {
+    outline: 0!important;
+    outline-offset: 0;
+}
+::before,
+::after {
+    position: absolute;
+    content: "";
+}
+
+.button {
+    background-color: var(--light-gray);
+    color: var(--white);
+    width: 14em;
+    border-radius: var(--br-small);
+    position: relative;
+    display: inline-block;
+    margin-top: 1.6em;
+}
+
+.button span {         
+    position: relative;
+    display: inline-block;
+    font-size: 1.2em;
+    letter-spacing: 2px;
+    top: 0; left: 0;
+    width: 100%;
+    padding: 15px 20px;
+    transition: 0.3s;
+    text-align: center;
+    border-radius: var(--br-small);
+}
+
+.button::before {
+    background-color: var(--dark-blue);
+    border-radius: var(--br-small);
+    transition: 0.3s ease-out;
+}
+.button span {
+    color: var(--white);
+    border: 2px solid var(--dark-blue);
+    border-radius: var(--br-small);
+    transition: 0.2s 0.1s;
+}
+.button span:hover {
+    color: var(--dark-blue);
+    transition: 0.2s 0.1s;
+}
+
+.button.hover-filled-slide-right::before {
+    top:0; bottom: 0; right: 0;
+    height: 100%; width: 100%;
+}
+.button.hover-filled-slide-right:hover::before {
+    width: 0%;
+}
