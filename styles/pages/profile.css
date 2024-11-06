@@ -39,9 +39,9 @@
 }
 
 .label {
-    font-weight: var(--fw-700);
     color: var(--dark-blue);
-    font-size: var(--fs-4);
+    font-size: var(--fs-5);
+    font-family: var(--dela-gothic-one);
 }
 
 .value {
@@ -160,8 +160,8 @@
 
 .order-header h3 {
     color: var(--dark-blue);
-    font-weight: var(--fw-700);
     font-size: var(--fs-4);
+    font-family: var(--dela-gothic-one);
 }
 
 .order-items {
@@ -181,12 +181,12 @@
     align-items: center;
 }
 
-.product-image {
+/* .product-image {
     width: 100px;
     height: 100px;
     object-fit: cover;
     border-radius: var(--br-small);
-}
+} */
 
 .product-details {
     display: flex;
@@ -279,7 +279,7 @@
         grid-template-columns: 80px 1fr;
     }
 
-    .product-image {
+    .order-item-image {
         width: 100px;
         height: 80px;
         background-color: var(--light-blue);

@@ -209,10 +209,7 @@ function getOrderItems($orderId) {
                             while ($item = $orderItems->fetch_assoc()) {
                                 ?>
                                 <div class="order-item">
-                                    <!-- <img src="<?php echo htmlspecialchars($item['image_url']); ?>"
-                                        alt="<?php echo htmlspecialchars($item['product_name']); ?>"
-                                        class="product-image"> -->
-                                    <div class="product-image" style="background-image: url(<?php echo $item['image_url'];?>)"></div>
+                                    <div class="order-item-image" style="background-image: url('<?php echo $item['image_url']; ?>')"></div>
                                     <div class="product-details">
                                         <div class="product-name">
                                             <?php echo htmlspecialchars($item['product_name']); ?>
