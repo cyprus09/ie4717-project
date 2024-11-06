@@ -148,3 +148,61 @@ body {
 
 ::-webkit-scrollbar-thumb:hover { background-color: hsl(0, 0%, 70%); }
 
+/* Button */
+
+:active, :hover, :focus {
+  outline: 0!important;
+  outline-offset: 0;
+}
+::before,
+::after {
+  position: absolute;
+  content: "";
+}
+
+.button {
+  background-color: var(--light-gray);
+  color: var(--white);
+  width: 12vw;
+  border-radius: var(--br-small);
+  position: relative;
+  display: inline-block;
+  margin: 0em 0em 3em 0em;
+}
+
+.button span {         
+  position: relative;
+  display: inline-block;
+  font-size: 1.2em;
+  letter-spacing: 2px;
+  top: 0; left: 0;
+  width: 100%;
+  padding: 15px 20px;
+  transition: 0.3s;
+  text-align: center;
+  border-radius: var(--br-small);
+}
+
+.button::before {
+  background-color: var(--dark-blue);
+  border-radius: var(--br-small);
+  transition: 0.3s ease-out;
+}
+.button span {
+  color: var(--white);
+  border: 2px solid var(--dark-blue);
+  border-radius: var(--br-small);
+  transition: 0.2s 0.1s;
+}
+.button span:hover {
+  color: var(--dark-blue);
+  transition: 0.2s 0.1s;
+}
+
+.button.hover-filled-slide-right::before {
+  top:0; bottom: 0; right: 0;
+  height: 100%; width: 100%;
+}
+.button.hover-filled-slide-right:hover::before {
+  width: 0%;
+}

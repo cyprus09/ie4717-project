@@ -127,12 +127,14 @@ error_log("Current cart contents: " . json_encode($_SESSION['cart']));
             <p>GST (10%): $<span id="gst">0.00</span></p>
             <p class="total">Total: $<span id="total">0.00</span></p>
           </div>
-          <button type="submit" class="checkout-btn">Checkout</button>
+          <div class="button-wrapper">
+            <button type="submit" class="button hover-filled-slide-right checkout-btn"><span>Checkout</span></button>
+          </div>
         </form>
       <?php else: ?>
         <div class="empty-cart">
           <h2>Your cart is empty.</h2>
-          <a href="../pages/home.php" class="continue-shopping">Continue Shopping</a>
+          <a class="button hover-filled-slide-right continue-shopping" href="./catalog.php"><span>Continue Shopping</span></a>
         </div>
       <?php endif; ?>
     </div>

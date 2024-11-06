@@ -44,22 +44,12 @@ body {
   margin: 15px 0 10px;
 }
 
-.container button {
-  font-family: var(--dela-gothic-one);
-  background-color: var(--medium-blue);
-  color: var(--white);
-  font-size: var(--fs-6);
-  padding: 10px 45px;
-  border: 1px solid transparent;
-  border-radius: var(--br-medium);
-  font-weight: var(--fw-600);
-  letter-spacing: 0.5px;
-  text-transform: uppercase;
-  margin-top: 10px;
+.auth-button {
   cursor: pointer;
+  background-color: var(--white);
 }
 
-.container button.hidden {
+.auth-button.hidden {
   background-color: transparent;
   border-color: var(--white);
 }
@@ -98,15 +88,10 @@ body {
   color: var(--dark-blue);
 }
 
-.form-container button:hover {
-  background-color: var(--light-blue);
-  transition: var(--transition-1);
-  transform: var(--transform-1);
-}
-
 .form-container .subheading {
   font-family: var(--helvetica-neue);
   color: var(--dark-blue);
+  margin-bottom: 0.8em;
 }
 
 .sign-in {
@@ -217,11 +202,36 @@ body {
   color: var(--white);
 }
 
-.toggle-panel button:hover {
+.toggle-button {
+  background-color: var(--white);
+  color: var(--white);
+  border-radius: 0.7em;
+}
+
+.toggle-button.hover {
+  border: 2px solid var(--light-blue);
+  color: var(--light-blue);
+}
+
+.toggle-button::before {
   background-color: var(--light-blue);
-  transition: var(--transition-1);
-  transform: var(--transform-1);
-  border-color: var(--light-blue);
+  color: var(--white);
+}
+
+.toggle-button span{
+  border: 2px solid var(--light-blue);
+}
+
+.toggle-button span:hover {
+  color: var(--light-blue);
+}
+
+.signin-auth {
+  margin-top: 2.6em;
+}
+
+.signup-auth {
+  margin-top: 2em;
 }
 
 .toggle-panel {

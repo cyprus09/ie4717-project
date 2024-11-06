@@ -220,7 +220,7 @@ mysqli_close($db);
         <input type="email" name="email" placeholder="Email" required maxlength="50">
         <input type="password" name="password" placeholder="Password" required maxlength="500">
 
-        <button type="submit" name="register" id="register">Sign Up</button>
+        <button type="submit" name="register" id="register" class="button hover-filled-slide-right auth-button signup-auth"><span>Sign Up</span></button>
       </form>
     </div>
 
@@ -232,7 +232,7 @@ mysqli_close($db);
 
         <input type="email" name="email" placeholder="Email" required>
         <input type="password" name="password" placeholder="Password" required>
-        <button type="submit" name="login" id="login">Sign In</button>
+        <button type="submit" name="login" id="login" class="button hover-filled-slide-right auth-button signin-auth"><span>Sign In</span></button>
       </form>
     </div>
 
@@ -242,13 +242,13 @@ mysqli_close($db);
           <p><img src="../assets/logos/favicon-logo.png" height="80" width="80" /></p>
           <h1>Welcome Back !</h1>
           <p>Enter your personal details to use all of site features</p>
-          <button class="hidden" id="loginToggle">Sign In</button>
+          <button id="loginToggle" class="button hover-filled-slide-right toggle-button hidden"><span>Sign In</span></button>
         </div>
         <div class="toggle-panel toggle-right">
           <p><img src="../assets/logos/favicon-logo.png" height="80" width="80" /></p>
           <h1>Hello, Friend !</h1>
           <p>Register with your personal details to use all of site features</p>
-          <button class="hidden" id="registerToggle">Sign Up</button>
+          <button id="registerToggle" class="button hover-filled-slide-right toggle-button hidden"><span>Sign Up</span></button>
         </div>
       </div>
     </div>
