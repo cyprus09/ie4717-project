@@ -12,7 +12,6 @@ INSERT INTO
     image_url
   )
 VALUES
--- Air Max 90
   (
     1,
     'Air Max 90',
@@ -73,9 +72,6 @@ VALUES
     'Nike',
     'https://drive.google.com/thumbnail?id=1xuCUh_i_z-wuVhUZc_ogvRBfmCMX2yEW&sz=w1000'
   ),
-
--- Yeezy Boost 350
-
   (
     6,
     'Yeezy Boost 350',
@@ -124,9 +120,6 @@ VALUES
     'Adidas',
     'https://drive.google.com/thumbnail?id=1tLCrQydNqb1HRrgGsHU6dkVtr1E4HqXD&sz=w1000'
   ),
-
--- Carina Leather
-
   (
     10,
     'Carina Leather',
@@ -175,9 +168,6 @@ VALUES
     'Puma',
     'https://drive.google.com/thumbnail?id=1jLUbJbTmrc8gySMwhMFr8ZiqR3I-O-m9&sz=w1000'
   ),
-
--- Stan Smith
-
   (
     14,
     'Stan Smith',
@@ -214,9 +204,6 @@ VALUES
     'Adidas',
     'https://drive.google.com/thumbnail?id=1Y8Xo-T-ryMpsC6Y6_cWqYLSUlSXNtqK3&sz=w1000'
   ),
-
--- Chuck Taylor All Star
-
   (
     17,
     'Chuck Taylor All Star',
@@ -253,9 +240,6 @@ VALUES
     'Converse',
     'https://drive.google.com/thumbnail?id=1uhI5ZOb46y7OMUzD6vR2SQ1w3qCCXzjA&sz=w1000'
   ),
-
--- Deviate Nitro 3
-
   (
     20,
     'Deviate Nitro 3',
@@ -292,9 +276,6 @@ VALUES
     'Puma',
     'https://drive.google.com/thumbnail?id=1iczx520wMJ-SV83JdexRd9mzWm7eq342&sz=w1000'
   ),
-
--- UltraBoost 21
-
   (
     23,
     'UltraBoost 21',
@@ -331,9 +312,6 @@ VALUES
     'Adidas',
     'https://drive.google.com/thumbnail?id=1yAcTjg0-RcIRkEgvdptA_3_BpXhtTmy3&sz=w1000'
   ),
-
---ZoomX Vaporfly
-
   (
     26,
     'ZoomX Vaporfly',
@@ -370,9 +348,6 @@ VALUES
     'Nike',
     'https://drive.google.com/thumbnail?id=1urzMm9PlMazPNHegCRjUwuseQD0VmK3j&sz=w1000'
   ),
-
-  -- Jordan 1 OG
-
   (
     29,
     'Jordan 1',
@@ -409,9 +384,6 @@ VALUES
     'Nike',
     'https://drive.google.com/thumbnail?id=19UWt1gL5Mh9XLCVqRZ4rUFG9bY8LkCvG&sz=w1000'
   ),
-
-  -- Commes des Garcons Chuck
-
   (
     32,
     'CDG Chuck',
@@ -448,9 +420,6 @@ VALUES
     'Converse',
     'https://drive.google.com/thumbnail?id=191ZgVu3T8Idio-VzOzklPUk1jm9hRVfE&sz=w1000'
   ),
-
-  -- Granola Chuck
-
   (
     35,
     'Granola Chuck',
@@ -487,9 +456,6 @@ VALUES
     'Converse',
     'https://drive.google.com/thumbnail?id=1TX-zhOTMhddt7k2bHTasFNEMOvvfFdPg&sz=w1000'
   ),
-
-  -- Air Max 97
-
   (
     38,
     'Air Max 97',
@@ -526,9 +492,6 @@ VALUES
     'Nike',
     'https://drive.google.com/thumbnail?id=1kxUrVedEcEeAPNeL_4LsB2HQ_fA3sbj7&sz=w1000'
   ),
-
-  -- TRC Blaze HC
-
   (
     41,
     'TRC Blaze HC',
@@ -565,9 +528,6 @@ VALUES
     'Puma',
     'https://drive.google.com/thumbnail?id=1FKdTmBECMmZMPhn5m-nUQ8EZpr5R69ds&sz=w1000'
   ),
-
-  -- Jordan 4 OG
-
   (
     44,
     'Jordan 4',
@@ -604,9 +564,6 @@ VALUES
     'Nike',
     'https://drive.google.com/thumbnail?id=1NJfwodpmp6oCjeWqWnLhaHtJ3MC_zD8_&sz=w1000'
   ),
-
-  -- NMD Pharrell Williams
-
   (
     47,
     'NMD Pharrell Williams',
@@ -643,9 +600,6 @@ VALUES
     'Nike',
     'https://drive.google.com/thumbnail?id=1owTmiGAojisBgwldTIDBhzcpXsJWBN4i&sz=w1000'
   ),
-
-  -- Gazelle Indoor
-
   (
     50,
     'Gazelle Indoor',

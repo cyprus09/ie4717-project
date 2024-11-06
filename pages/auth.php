@@ -12,6 +12,7 @@ if (!isset($_SESSION['csrf_token'])) {
   $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
 }
 
+// registration handling
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['register'])) {
   // Verify CSRF token
   if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
@@ -94,7 +95,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['register'])) {
     // Initialize empty cart
     $_SESSION['cart'] = array();
 
-    echo "<script>alert('Registration successful!'); window.location.href='../../pages/home.php';</script>";
+    echo "<script>alert('Registration successful!'); window.location.href='./home.php';</script>";
     $stmt->close();
     exit;
   } else {
