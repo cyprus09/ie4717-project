@@ -11,8 +11,6 @@ function initCarousel() {
   document.addEventListener('mouseup', () => {
       carousel.classList.remove('is-dragging');
   });
-  
-  // Your existing carousel code here...
 }
 
 // Preserve hover states
@@ -215,8 +213,8 @@ document.addEventListener('DOMContentLoaded', () => {
     let cards = document.querySelectorAll('.product-card');
     let currentIndex = 0;
     let totalCards = cards.length / carousels.length;
-    let visibleCards = 4;  // Maximum of 4 cards visible at a time
-    let cardWidthWithMargin = 25;  // 23.7% width + 1.3% margin
+    let visibleCards = 4;
+    let cardWidthWithMargin = 25;  
   
     // Auto slide every 3 seconds
     setInterval(() => {
