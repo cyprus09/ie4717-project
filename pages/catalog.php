@@ -128,8 +128,8 @@ $products = $result->fetch_all(MYSQLI_ASSOC);
                 <!-- Gender Checkbox Group -->
                 <fieldset>
                     <legend>Gender</legend>
-                    <div class="checkbox-wrapper"><input type="checkbox" name="gender" value="Male" class="checkbox" id="male"><label for="male"><span></span>Male</label></div><br>
-                    <div class="checkbox-wrapper"><input type="checkbox" name="gender" value="Female" class="checkbox" id="female"><label for="female"><span></span>Female</label></div><br>
+                    <div class="checkbox-wrapper"><input type="checkbox" name="gender" value="Men" class="checkbox" id="men"><label for="men"><span></span>Men</label></div><br>
+                    <div class="checkbox-wrapper"><input type="checkbox" name="gender" value="Women" class="checkbox" id="women"><label for="women"><span></span>women</label></div><br>
                     <div class="checkbox-wrapper"><input type="checkbox" name="gender" value="Unisex" class="checkbox" id="unisex"><label for="unisex"><span></span>Unisex</label></div>
                 </fieldset>
 
