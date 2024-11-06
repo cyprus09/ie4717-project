@@ -64,6 +64,11 @@ function getUserOrders($userId) {
     $stmt->execute();
     
     return $stmt->get_result();
+
+    // Set security headers
+    header("X-XSS-Protection: 1; mode=block");
+    header("X-Frame-Options: SAMEORIGIN");
+    header("X-Content-Type-Options: nosniff");
 }
 
 // Function to get order items

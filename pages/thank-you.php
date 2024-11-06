@@ -10,6 +10,12 @@ if (!isset($_SESSION['last_order'])) {
 }
 
 $order = $_SESSION['last_order'];
+
+// Set security headers
+header("X-XSS-Protection: 1; mode=block");
+header("X-Frame-Options: SAMEORIGIN");
+header("X-Content-Type-Options: nosniff");
+
 ?>
 
 <!DOCTYPE html>

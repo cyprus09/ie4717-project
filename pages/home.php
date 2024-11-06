@@ -4,6 +4,11 @@ include "../utils/auth/dbconnect.php";
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
+
+// Set security headers
+header("X-XSS-Protection: 1; mode=block");
+header("X-Frame-Options: SAMEORIGIN");
+header("X-Content-Type-Options: nosniff");
 ?>
 
 <!DOCTYPE html>
