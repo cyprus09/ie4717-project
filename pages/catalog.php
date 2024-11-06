@@ -86,7 +86,7 @@ $products = $result->fetch_all(MYSQLI_ASSOC);
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>FootScape - Catalog</title>
+    <title>FootScape | Catalog</title>
     <!-- Favicon -->
     <link rel="shortcut icon" href="../assets/logos/favicon-logo.png" type="image/png" />
     <!-- Main CSS -->
