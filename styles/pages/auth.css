@@ -66,14 +66,23 @@ body {
 
 .container input {
   font-family: var(--helvetica-neue);
-  background-color: var(--light-gray);
-  border: none;
+  background-color: var(--white);
+  border: 2px solid var(--light-gray);
   margin: 8px 0;
   padding: 10px 15px;
   font-size: var(--fs-6);
   border-radius: var(--br-medium);
   width: 100%;
   outline: none;
+  transition: all 0.3s;
+}
+
+.container input:hover {
+  border: 2px solid var(--medium-blue);
+}
+
+.container input:active {
+  border: 2px solid var(--medium-blue);
 }
 
 .form-container {

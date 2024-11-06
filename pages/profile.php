@@ -189,7 +189,7 @@ function getOrderItems($orderId) {
                 <div class="order-batch empty-orders">
                     <div class="empty-orders-content">
                         <p class="empty-message">No order has been made</p>
-                        <a href="../index.php" class="button hover-filled-slide-right">
+                        <a href="./home.php" class="button hover-filled-slide-right continue-shopping-btn">
                             <span>Continue Shopping</span>
                         </a>
                     </div>

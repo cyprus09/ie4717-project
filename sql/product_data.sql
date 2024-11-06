@@ -22,7 +22,7 @@ VALUES
     7,
     20,
     'Nike',
-    'https://drive.google.com/thumbnail?id=1xuCUh_i_z-wuVhUZc_ogvRBfmCMX2yEW&sz=w1000'
+    'https://cdn.jsdelivr.net/gh/cyprus09/ie4717-project@components/assets/product/air-max-90.png'
   ),
   (
     2,
@@ -34,7 +34,7 @@ VALUES
     8,
     20,
     'Nike',
-    'https://drive.google.com/thumbnail?id=1xuCUh_i_z-wuVhUZc_ogvRBfmCMX2yEW&sz=w1000'
+    'https://cdn.jsdelivr.net/gh/cyprus09/ie4717-project@components/assets/product/air-max-90.png'
   ),
   (
     3,
@@ -46,7 +46,7 @@ VALUES
     9,
     20,
     'Nike',
-    'https://drive.google.com/thumbnail?id=1xuCUh_i_z-wuVhUZc_ogvRBfmCMX2yEW&sz=w1000'
+    'https://cdn.jsdelivr.net/gh/cyprus09/ie4717-project@components/assets/product/air-max-90.png'
   ),
   (
     4,
@@ -58,7 +58,7 @@ VALUES
     10,
     20,
     'Nike',
-    'https://drive.google.com/thumbnail?id=1xuCUh_i_z-wuVhUZc_ogvRBfmCMX2yEW&sz=w1000'
+    'https://cdn.jsdelivr.net/gh/cyprus09/ie4717-project@components/assets/product/air-max-90.png'
   ),
   (
     5,
@@ -70,7 +70,7 @@ VALUES
     11,
     20,
     'Nike',
-    'https://drive.google.com/thumbnail?id=1xuCUh_i_z-wuVhUZc_ogvRBfmCMX2yEW&sz=w1000'
+    'https://cdn.jsdelivr.net/gh/cyprus09/ie4717-project@components/assets/product/air-max-90.png'
   ),
   (
     6,
@@ -82,7 +82,7 @@ VALUES
     6,
     30,
     'Adidas',
-    'https://drive.google.com/thumbnail?id=1tLCrQydNqb1HRrgGsHU6dkVtr1E4HqXD&sz=w1000'
+    'https://cdn.jsdelivr.net/gh/cyprus09/ie4717-project@components/assets/product/yeezy-boost-350.png'
   ),
   (
     7,
@@ -94,7 +94,7 @@ VALUES
     7,
     30,
     'Adidas',
-    'https://drive.google.com/thumbnail?id=1tLCrQydNqb1HRrgGsHU6dkVtr1E4HqXD&sz=w1000'
+    'https://cdn.jsdelivr.net/gh/cyprus09/ie4717-project@components/assets/product/yeezy-boost-350.png'
   ),
   (
     8,
@@ -106,7 +106,7 @@ VALUES
     9,
     30,
     'Adidas',
-    'https://drive.google.com/thumbnail?id=1tLCrQydNqb1HRrgGsHU6dkVtr1E4HqXD&sz=w1000'
+    'https://cdn.jsdelivr.net/gh/cyprus09/ie4717-project@components/assets/product/yeezy-boost-350.png'
   ),
   (
     9,
@@ -118,7 +118,7 @@ VALUES
     10,
     30,
     'Adidas',
-    'https://drive.google.com/thumbnail?id=1tLCrQydNqb1HRrgGsHU6dkVtr1E4HqXD&sz=w1000'
+    'https://cdn.jsdelivr.net/gh/cyprus09/ie4717-project@components/assets/product/yeezy-boost-350.png'
   ),
   (
     10,
@@ -130,7 +130,7 @@ VALUES
     5,
     30,
     'Puma',
-    'https://drive.google.com/thumbnail?id=1jLUbJbTmrc8gySMwhMFr8ZiqR3I-O-m9&sz=w1000'
+    'https://cdn.jsdelivr.net/gh/cyprus09/ie4717-project@components/assets/product/carina-leather.png'
   ),
   (
     11,
@@ -142,7 +142,7 @@ VALUES
     6,
     30,
     'Puma',
-    'https://drive.google.com/thumbnail?id=1jLUbJbTmrc8gySMwhMFr8ZiqR3I-O-m9&sz=w1000'
+    'https://cdn.jsdelivr.net/gh/cyprus09/ie4717-project@components/assets/product/carina-leather.png'
   ),
   (
     12,
@@ -154,7 +154,7 @@ VALUES
     7,
     30,
     'Puma',
-    'https://drive.google.com/thumbnail?id=1jLUbJbTmrc8gySMwhMFr8ZiqR3I-O-m9&sz=w1000'
+    'https://cdn.jsdelivr.net/gh/cyprus09/ie4717-project@components/assets/product/carina-leather.png'
   ),
   (
     13,
@@ -166,7 +166,7 @@ VALUES
     8,
     30,
     'Puma',
-    'https://drive.google.com/thumbnail?id=1jLUbJbTmrc8gySMwhMFr8ZiqR3I-O-m9&sz=w1000'
+    'https://cdn.jsdelivr.net/gh/cyprus09/ie4717-project@components/assets/product/carina-leather.png'
   ),
   (
     14,
@@ -178,7 +178,7 @@ VALUES
     7,
     30,
     'Adidas',
-    'https://drive.google.com/thumbnail?id=1Y8Xo-T-ryMpsC6Y6_cWqYLSUlSXNtqK3&sz=w1000'
+    'https://cdn.jsdelivr.net/gh/cyprus09/ie4717-project@components/assets/product/stan-smith.png'
   ),
   (
     15,
@@ -190,7 +190,7 @@ VALUES
     8,
     30,
     'Adidas',
-    'https://drive.google.com/thumbnail?id=1Y8Xo-T-ryMpsC6Y6_cWqYLSUlSXNtqK3&sz=w1000'
+    'https://cdn.jsdelivr.net/gh/cyprus09/ie4717-project@components/assets/product/stan-smith.png'
   ),
   (
     16,
@@ -202,7 +202,7 @@ VALUES
     9,
     30,
     'Adidas',
-    'https://drive.google.com/thumbnail?id=1Y8Xo-T-ryMpsC6Y6_cWqYLSUlSXNtqK3&sz=w1000'
+    'https://cdn.jsdelivr.net/gh/cyprus09/ie4717-project@components/assets/product/stan-smith.png'
   ),
   (
     17,
@@ -214,7 +214,7 @@ VALUES
     6,
     120,
     'Converse',
-    'https://drive.google.com/thumbnail?id=1uhI5ZOb46y7OMUzD6vR2SQ1w3qCCXzjA&sz=w1000'
+    'https://cdn.jsdelivr.net/gh/cyprus09/ie4717-project@components/assets/product/chuck-taylor.png'
   ),
   (
     18,
@@ -226,7 +226,7 @@ VALUES
     7,
     120,
     'Converse',
-    'https://drive.google.com/thumbnail?id=1uhI5ZOb46y7OMUzD6vR2SQ1w3qCCXzjA&sz=w1000'
+    'https://cdn.jsdelivr.net/gh/cyprus09/ie4717-project@components/assets/product/chuck-taylor.png'
   ),
   (
     19,
@@ -238,7 +238,7 @@ VALUES
     10,
     120,
     'Converse',
-    'https://drive.google.com/thumbnail?id=1uhI5ZOb46y7OMUzD6vR2SQ1w3qCCXzjA&sz=w1000'
+    'https://cdn.jsdelivr.net/gh/cyprus09/ie4717-project@components/assets/product/chuck-taylor.png'
   ),
   (
     20,
@@ -250,7 +250,7 @@ VALUES
     9,
     40,
     'Puma',
-    'https://drive.google.com/thumbnail?id=1iczx520wMJ-SV83JdexRd9mzWm7eq342&sz=w1000'
+    'https://cdn.jsdelivr.net/gh/cyprus09/ie4717-project@components/assets/product/deviate-nitro-3.png'
   ),
   (
     21,
@@ -262,7 +262,7 @@ VALUES
     10,
     40,
     'Puma',
-    'https://drive.google.com/thumbnail?id=1iczx520wMJ-SV83JdexRd9mzWm7eq342&sz=w1000'
+    'https://cdn.jsdelivr.net/gh/cyprus09/ie4717-project@components/assets/product/deviate-nitro-3.png'
   ),
   (
     22,
@@ -274,7 +274,7 @@ VALUES
     11,
     40,
     'Puma',
-    'https://drive.google.com/thumbnail?id=1iczx520wMJ-SV83JdexRd9mzWm7eq342&sz=w1000'
+    'https://cdn.jsdelivr.net/gh/cyprus09/ie4717-project@components/assets/product/deviate-nitro-3.png'
   ),
   (
     23,
@@ -286,7 +286,7 @@ VALUES
     8,
     25,
     'Adidas',
-    'https://drive.google.com/thumbnail?id=1yAcTjg0-RcIRkEgvdptA_3_BpXhtTmy3&sz=w1000'
+    'https://cdn.jsdelivr.net/gh/cyprus09/ie4717-project@components/assets/product/ultraboost-21.png'
   ),
   (
     24,
@@ -298,7 +298,7 @@ VALUES
     9,
     25,
     'Adidas',
-    'https://drive.google.com/thumbnail?id=1yAcTjg0-RcIRkEgvdptA_3_BpXhtTmy3&sz=w1000'
+    'https://cdn.jsdelivr.net/gh/cyprus09/ie4717-project@components/assets/product/ultraboost-21.png'
   ),
   (
     25,
@@ -310,7 +310,7 @@ VALUES
     10,
     25,
     'Adidas',
-    'https://drive.google.com/thumbnail?id=1yAcTjg0-RcIRkEgvdptA_3_BpXhtTmy3&sz=w1000'
+    'https://cdn.jsdelivr.net/gh/cyprus09/ie4717-project@components/assets/product/ultraboost-21.png'
   ),
   (
     26,
@@ -322,7 +322,7 @@ VALUES
     6,
     15,
     'Nike',
-    'https://drive.google.com/thumbnail?id=1urzMm9PlMazPNHegCRjUwuseQD0VmK3j&sz=w1000'
+    'https://cdn.jsdelivr.net/gh/cyprus09/ie4717-project@components/assets/product/vaporx.png'
   ),
   (
     27,
@@ -334,7 +334,7 @@ VALUES
     7,
     15,
     'Nike',
-    'https://drive.google.com/thumbnail?id=1urzMm9PlMazPNHegCRjUwuseQD0VmK3j&sz=w1000'
+    'https://cdn.jsdelivr.net/gh/cyprus09/ie4717-project@components/assets/product/vaporx.png'
   ),
   (
     28,
@@ -346,7 +346,7 @@ VALUES
     8,
     15,
     'Nike',
-    'https://drive.google.com/thumbnail?id=1urzMm9PlMazPNHegCRjUwuseQD0VmK3j&sz=w1000'
+    'https://cdn.jsdelivr.net/gh/cyprus09/ie4717-project@components/assets/product/vaporx.png'
   ),
   (
     29,
@@ -358,7 +358,7 @@ VALUES
     8,
     25,
     'Nike',
-    'https://drive.google.com/thumbnail?id=19UWt1gL5Mh9XLCVqRZ4rUFG9bY8LkCvG&sz=w1000'
+    'https://cdn.jsdelivr.net/gh/cyprus09/ie4717-project@components/assets/product/jordan-1.png'
   ),
   (
     30,
@@ -370,7 +370,7 @@ VALUES
     9,
     25,
     'Nike',
-    'https://drive.google.com/thumbnail?id=19UWt1gL5Mh9XLCVqRZ4rUFG9bY8LkCvG&sz=w1000'
+    'https://cdn.jsdelivr.net/gh/cyprus09/ie4717-project@components/assets/product/jordan-1.png'
   ),
   (
     31,
@@ -382,7 +382,7 @@ VALUES
     10,
     25,
     'Nike',
-    'https://drive.google.com/thumbnail?id=19UWt1gL5Mh9XLCVqRZ4rUFG9bY8LkCvG&sz=w1000'
+    'https://cdn.jsdelivr.net/gh/cyprus09/ie4717-project@components/assets/product/jordan-1.png'
   ),
   (
     32,
@@ -394,7 +394,7 @@ VALUES
     6,
     120,
     'Converse',
-    'https://drive.google.com/thumbnail?id=191ZgVu3T8Idio-VzOzklPUk1jm9hRVfE&sz=w1000'
+    'https://cdn.jsdelivr.net/gh/cyprus09/ie4717-project@components/assets/product/comme-des-garcons-chuck.png'
   ),
   (
     33,
@@ -406,7 +406,7 @@ VALUES
     7,
     120,
     'Converse',
-    'https://drive.google.com/thumbnail?id=191ZgVu3T8Idio-VzOzklPUk1jm9hRVfE&sz=w1000'
+    'https://cdn.jsdelivr.net/gh/cyprus09/ie4717-project@components/assets/product/comme-des-garcons-chuck.png'
   ),
   (
     34,
@@ -418,7 +418,7 @@ VALUES
     10,
     120,
     'Converse',
-    'https://drive.google.com/thumbnail?id=191ZgVu3T8Idio-VzOzklPUk1jm9hRVfE&sz=w1000'
+    'https://cdn.jsdelivr.net/gh/cyprus09/ie4717-project@components/assets/product/comme-des-garcons-chuck.png'
   ),
   (
     35,
@@ -430,7 +430,7 @@ VALUES
     6,
     120,
     'Converse',
-    'https://drive.google.com/thumbnail?id=1TX-zhOTMhddt7k2bHTasFNEMOvvfFdPg&sz=w1000'
+    'https://cdn.jsdelivr.net/gh/cyprus09/ie4717-project@components/assets/product/granola-chuck.png'
   ),
   (
     36,
@@ -442,7 +442,7 @@ VALUES
     7,
     120,
     'Converse',
-    'https://drive.google.com/thumbnail?id=1TX-zhOTMhddt7k2bHTasFNEMOvvfFdPg&sz=w1000'
+    'https://cdn.jsdelivr.net/gh/cyprus09/ie4717-project@components/assets/product/granola-chuck.png'
   ),
   (
     37,
@@ -454,7 +454,7 @@ VALUES
     10,
     120,
     'Converse',
-    'https://drive.google.com/thumbnail?id=1TX-zhOTMhddt7k2bHTasFNEMOvvfFdPg&sz=w1000'
+    'https://cdn.jsdelivr.net/gh/cyprus09/ie4717-project@components/assets/product/granola-chuck.png'
   ),
   (
     38,
@@ -466,7 +466,7 @@ VALUES
     6,
     120,
     'Nike',
-    'https://drive.google.com/thumbnail?id=1kxUrVedEcEeAPNeL_4LsB2HQ_fA3sbj7&sz=w1000'
+    'https://cdn.jsdelivr.net/gh/cyprus09/ie4717-project@components/assets/product/air-max-97.png'
   ),
   (
     39,
@@ -478,7 +478,7 @@ VALUES
     7,
     120,
     'Nike',
-    'https://drive.google.com/thumbnail?id=1kxUrVedEcEeAPNeL_4LsB2HQ_fA3sbj7&sz=w1000'
+    'https://cdn.jsdelivr.net/gh/cyprus09/ie4717-project@components/assets/product/air-max-97.png'
   ),
   (
     40,
@@ -490,7 +490,7 @@ VALUES
     10,
     120,
     'Nike',
-    'https://drive.google.com/thumbnail?id=1kxUrVedEcEeAPNeL_4LsB2HQ_fA3sbj7&sz=w1000'
+    'https://cdn.jsdelivr.net/gh/cyprus09/ie4717-project@components/assets/product/air-max-97.png'
   ),
   (
     41,
@@ -502,7 +502,7 @@ VALUES
     6,
     120,
     'Puma',
-    'https://drive.google.com/thumbnail?id=1FKdTmBECMmZMPhn5m-nUQ8EZpr5R69ds&sz=w1000'
+    'https://cdn.jsdelivr.net/gh/cyprus09/ie4717-project@components/assets/product/trc-blaze-hc.png'
   ),
   (
     42,
@@ -514,7 +514,7 @@ VALUES
     7,
     120,
     'Puma',
-    'https://drive.google.com/thumbnail?id=1FKdTmBECMmZMPhn5m-nUQ8EZpr5R69ds&sz=w1000'
+    'https://cdn.jsdelivr.net/gh/cyprus09/ie4717-project@components/assets/product/trc-blaze-hc.png'
   ),
   (
     43,
@@ -526,7 +526,7 @@ VALUES
     10,
     120,
     'Puma',
-    'https://drive.google.com/thumbnail?id=1FKdTmBECMmZMPhn5m-nUQ8EZpr5R69ds&sz=w1000'
+    'https://cdn.jsdelivr.net/gh/cyprus09/ie4717-project@components/assets/product/trc-blaze-hc.png'
   ),
   (
     44,
@@ -538,7 +538,7 @@ VALUES
     8,
     25,
     'Nike',
-    'https://drive.google.com/thumbnail?id=1NJfwodpmp6oCjeWqWnLhaHtJ3MC_zD8_&sz=w1000'
+    'https://cdn.jsdelivr.net/gh/cyprus09/ie4717-project@components/assets/product/jordan-4.png'
   ),
   (
     45,
@@ -550,7 +550,7 @@ VALUES
     9,
     25,
     'Nike',
-    'https://drive.google.com/thumbnail?id=1NJfwodpmp6oCjeWqWnLhaHtJ3MC_zD8_&sz=w1000'
+    'https://cdn.jsdelivr.net/gh/cyprus09/ie4717-project@components/assets/product/jordan-4.png'
   ),
   (
     46,
@@ -562,7 +562,7 @@ VALUES
     10,
     25,
     'Nike',
-    'https://drive.google.com/thumbnail?id=1NJfwodpmp6oCjeWqWnLhaHtJ3MC_zD8_&sz=w1000'
+    'https://cdn.jsdelivr.net/gh/cyprus09/ie4717-project@components/assets/product/jordan-4.png'
   ),
   (
     47,
@@ -574,7 +574,7 @@ VALUES
     8,
     25,
     'Adidas',
-    'https://drive.google.com/thumbnail?id=1owTmiGAojisBgwldTIDBhzcpXsJWBN4i&sz=w1000'
+    'https://cdn.jsdelivr.net/gh/cyprus09/ie4717-project@components/assets/product/jordan-4.png'
   ),
   (
     48,
@@ -586,7 +586,7 @@ VALUES
     9,
     25,
     'Adidas',
-    'https://drive.google.com/thumbnail?id=1owTmiGAojisBgwldTIDBhzcpXsJWBN4i&sz=w1000'
+    'https://cdn.jsdelivr.net/gh/cyprus09/ie4717-project@components/assets/product/nmd-pharrell-williams.png'
   ),
   (
     49,
@@ -598,7 +598,7 @@ VALUES
     10,
     25,
     'Adidas',
-    'https://drive.google.com/thumbnail?id=1owTmiGAojisBgwldTIDBhzcpXsJWBN4i&sz=w1000'
+    'https://cdn.jsdelivr.net/gh/cyprus09/ie4717-project@components/assets/product/nmd-pharrell-williams.png'
   ),
   (
     50,
@@ -610,7 +610,7 @@ VALUES
     8,
     25,
     'Adidas',
-    'https://drive.google.com/thumbnail?id=1wW1poizDARAsbzbhaB1CoTyzSn0n25P2&sz=w1000'
+    'https://cdn.jsdelivr.net/gh/cyprus09/ie4717-project@components/assets/product/gazelle-indoor.png'
   ),
   (
     51,
@@ -622,7 +622,7 @@ VALUES
     9,
     25,
     'Adidas',
-    'https://drive.google.com/thumbnail?id=1wW1poizDARAsbzbhaB1CoTyzSn0n25P2&sz=w1000'
+    'https://cdn.jsdelivr.net/gh/cyprus09/ie4717-project@components/assets/product/gazelle-indoor.png'
   ),
   (
     52,
@@ -634,5 +634,5 @@ VALUES
     10,
     25,
     'Adidas',
-    'https://drive.google.com/thumbnail?id=1wW1poizDARAsbzbhaB1CoTyzSn0n25P2&sz=w1000'
+    'https://cdn.jsdelivr.net/gh/cyprus09/ie4717-project@components/assets/product/gazelle-indoor.png'
   );
