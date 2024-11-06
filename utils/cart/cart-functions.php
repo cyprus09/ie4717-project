@@ -44,7 +44,7 @@ function load_cart_from_db($user_id)
         'name' => $row['name'],
         'price' => $row['price'],
         'size' => $row['size'],
-        'quantity' => $row['quantity']
+        'quantity' => $row['quantity'],
         'image_url' => $row['image_url']
       );
     }

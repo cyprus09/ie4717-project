@@ -43,6 +43,50 @@ $userData = getUserData($_SESSION['user_id']);
 if (!$userData) {
     echo("Error: Unable to fetch user data");
 }
+
+// Function to get user's orders
+function getUserOrders($userId) {
+    global $db;
+    
+    $query = "SELECT o.id, o.total_amount, o.address, 
+                     o.postal_code, o.receiver_name, o.receiver_mobile
+              FROM orders o 
+              WHERE o.user_id = ?
+              ORDER BY o.id DESC"; // Ordering by order ID instead of date
+              
+    $stmt = $db->prepare($query);
+    
+    if (!$stmt) {
+        die("Error preparing statement: " . $db->error);
+    }
+    
+    $stmt->bind_param('i', $userId);
+    $stmt->execute();
+    
+    return $stmt->get_result();
+}
+
+// Function to get order items
+function getOrderItems($orderId) {
+    global $db;
+    
+    $query = "SELECT oi.*, p.name as product_name, p.image_url, p.size
+              FROM order_items oi
+              JOIN products p ON oi.product_id = p.product_id
+              WHERE oi.order_id = ?";
+              
+    $stmt = $db->prepare($query);
+    
+    if (!$stmt) {
+        die("Error preparing statement: " . $db->error);
+    }
+    
+    $stmt->bind_param('i', $orderId);
+    $stmt->execute();
+    
+    return $stmt->get_result();
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -67,6 +111,7 @@ if (!$userData) {
 
     <!-- Main Content -->
     <main class="main-content">
+        <!-- Profile Section -->
         <h1 class="container-header">Profile</h1>
         <div class="profile-container">
             <!-- View Mode -->
@@ -133,7 +178,79 @@ if (!$userData) {
                 <button class="button hover-filled-slide-right" onclick="submitChanges()"><span>Submit Changes</span></button>
             </div>
         </div>
+
+        <!-- My Orders Section -->
         <h1 class="container-header">My Orders</h1>
+        <div class="orders-container">
+            <?php
+            $orders = getUserOrders($_SESSION['user_id']);
+            if ($orders->num_rows === 0) {
+                ?>
+                <div class="order-batch empty-orders">
+                    <div class="empty-orders-content">
+                        <p class="empty-message">No order has been made</p>
+                        <a href="../index.php" class="button hover-filled-slide-right">
+                            <span>Continue Shopping</span>
+                        </a>
+                    </div>
+                </div>
+                <?php
+            } else {
+                while ($order = $orders->fetch_assoc()) {
+                    ?>
+                    <div class="order-batch">
+                        <div class="order-header">
+                            <h3>Order #<?php echo htmlspecialchars($order['id']); ?></h3>
+                        </div>
+
+                        <div class="order-items">
+                            <?php
+                            $orderItems = getOrderItems($order['id']);
+                            while ($item = $orderItems->fetch_assoc()) {
+                                ?>
+                                <div class="order-item">
+                                    <!-- <img src="<?php echo htmlspecialchars($item['image_url']); ?>"
+                                        alt="<?php echo htmlspecialchars($item['product_name']); ?>"
+                                        class="product-image"> -->
+                                    <div class="product-image" style="background-image: url(<?php echo $item['image_url'];?>)"></div>
+                                    <div class="product-details">
+                                        <div class="product-name">
+                                            <?php echo htmlspecialchars($item['product_name']); ?>
+                                        </div>
+                                        <div class="product-price">
+                                            $<?php echo number_format($item['price'], 2); ?>
+                                        </div>
+                                        <div class="product-size">
+                                            Size: <?php echo htmlspecialchars($item['size']); ?>
+                                        </div>
+                                    </div>
+
+                                    <div class="quantity">
+                                        Qty: <?php echo $item['quantity']; ?>
+                                    </div>
+                                </div>
+                                <?php
+                            }
+                            ?>
+                        </div>
+
+                        <div class="delivery-info">
+                            <p><strong>Delivery Details:</strong></p>
+                            <p>Receiver: <?php echo htmlspecialchars($order['receiver_name']); ?></p>
+                            <p>Mobile: <?php echo htmlspecialchars($order['receiver_mobile']); ?></p>
+                            <p>Address: <?php echo htmlspecialchars($order['address']); ?></p>
+                            <p>Postal Code: <?php echo htmlspecialchars($order['postal_code']); ?></p>
+                        </div>
+
+                        <div class="total-amount">
+                            Total Amount: $<?php echo number_format($order['total_amount'], 2); ?>
+                        </div>
+                    </div>
+                    <?php
+                }
+            }
+            ?>
+        </div>
     </main>
 
     <!-- Footer -->
