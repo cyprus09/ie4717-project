@@ -61,7 +61,6 @@ create table
     postal_code varchar(6) check (postal_code regexp '^[0-9]{6}$'),
     receiver_name varchar(50) not null default '',
     receiver_mobile varchar(8) check (receiver_mobile regexp '^[0-9]{8}$'),
-    created_at timestamp default current_timestamp,
     primary key (id),
     foreign key (user_id) references users (id)
   );
@@ -73,7 +72,7 @@ create table
     product_id int unsigned not null,
     quantity int unsigned not null check (quantity >= 0),
     price decimal(10, 2) not null check (price > 0),
-    size int unsigned not null auto_increment,
+    created_at timestamp default current_timestamp,
     primary key (id),
     foreign key (order_id) references orders (id),
     foreign key (product_id) references products (product_id)
