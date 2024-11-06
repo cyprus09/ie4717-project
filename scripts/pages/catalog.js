@@ -1,92 +1,113 @@
-// scripts/pages/profile.js
-function toggleEdit() {
-    const viewMode = document.getElementById('viewMode');
-    const editMode = document.getElementById('editMode');
+// Add event listeners after the DOM is loaded
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('filter-form');
     
-    // Remove any existing messages
-    const messageContainer = document.getElementById('messageContainer');
-    if (messageContainer) {
-        messageContainer.innerHTML = '';
+    // Listen for form submission
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        updateURLParams();
+    });
+});
+
+// Function to update the URL with form values upon submission
+function updateURLParams(event) {
+    event.preventDefault(); // Prevent the form from submitting traditionally
+    
+    const form = document.getElementById('filter-form');
+    const formData = new FormData(form);
+    const params = new URLSearchParams();
+    
+    // Get search value from navbar search input
+    const searchInput = document.querySelector('.search-input');
+    const searchValue = searchInput.value.trim();
+    
+    // Add search parameter if it's not empty
+    if (searchValue) {
+        params.set('search', searchValue);
     }
     
-    // Populate input fields with current values (trim to remove any whitespace)
-    document.getElementById('emailInput').value = document.getElementById('emailValue').textContent.trim();
-    document.getElementById('firstNameInput').value = document.getElementById('firstNameValue').textContent.trim();
-    document.getElementById('lastNameInput').value = document.getElementById('lastNameValue').textContent.trim();
-    document.getElementById('usernameInput').value = document.getElementById('usernameValue').textContent.trim();
-    document.getElementById('mobileInput').value = document.getElementById('mobileValue').textContent.trim();
+    // Create an object to store multiple values
+    const multiValueParams = {};
 
-    viewMode.classList.add('hidden');
-    editMode.classList.remove('hidden');
+    // Collect all form data
+    formData.forEach((value, key) => {
+        const multipleSet = new Set(['brand', 'category', 'gender']);
+        if (multipleSet.has(key)) {
+            // Initialize array if it doesn't exist
+            if (!multiValueParams[key]) {
+                multiValueParams[key] = [];
+            }
+            // Add value to array
+            multiValueParams[key].push(value);
+        } else {
+            // For single value params (like min-price and max-price)
+            params.set(key, value);
+        }
+    });
+
+    // Add collected multiple values to params with comma separation
+    for (const [key, values] of Object.entries(multiValueParams)) {
+        if (values.length > 0) {
+            params.set(key, values.join(','));
+        }
+    }
+
+    // Construct the new URL with parameters
+    const newURL = `${window.location.pathname}?${params.toString()}`;
+
+    // Navigate to the new URL
+    window.location.href = newURL;
 }
 
-async function submitChanges() {
-    const messageContainer = document.getElementById('messageContainer');
-    
-    // Get form values and trim whitespace
-    const userData = {
-        email: document.getElementById('emailInput').value.trim(),
-        firstName: document.getElementById('firstNameInput').value.trim(),
-        lastName: document.getElementById('lastNameInput').value.trim(),
-        username: document.getElementById('usernameInput').value.trim(),
-        mobile: document.getElementById('mobileInput').value.trim()
-    };
+// Add event listener for form submission
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('filter-form');
+    form.addEventListener('submit', updateURLParams);
+});
 
-    // Basic client-side validation
-    if (!userData.email || !userData.firstName || !userData.lastName || !userData.username || !userData.mobile) {
-        messageContainer.innerHTML = '<div class="error-message">All fields are required</div>';
-        return;
-    }
+// Add an event listener to the form to call the function on submission
+document.getElementById('filter-form').addEventListener('submit', updateURLParams);
 
-    // Email validation
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(userData.email)) {
-        messageContainer.innerHTML = '<div class="error-message">Please enter a valid email address</div>';
-        return;
-    }
 
-    // Mobile number validation
-    if (!/^[0-9]{8}$/.test(userData.mobile)) {
-        messageContainer.innerHTML = '<div class="error-message">Mobile number must be 8 digits</div>';
-        return;
-    }
 
-    try {
-        // Adjust the path to go up two levels from pages to reach utils
-        const response = await fetch('../../utils/profile/update_profile.php', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(userData)
-        });
+// function to parse URL params into object
+function parseURLParams() {
+    const params = new URLSearchParams(window.location.search);
+    const parsedParams = {};
 
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-
-        const result = await response.json();
-        
-        if (result.success) {
-            // Update the view with new values
-            document.getElementById('emailValue').textContent = userData.email;
-            document.getElementById('firstNameValue').textContent = userData.firstName;
-            document.getElementById('lastNameValue').textContent = userData.lastName;
-            document.getElementById('usernameValue').textContent = userData.username;
-            document.getElementById('mobileValue').textContent = userData.mobile;
-
-            // Switch back to view mode
-            document.getElementById('viewMode').classList.remove('hidden');
-            document.getElementById('editMode').classList.add('hidden');
-
-            // Show success message
-            messageContainer.innerHTML = `<div class="success-message">${result.message}</div>`;
+    // Iterate over each parameter in the URL
+    for (const [key, value] of params.entries()) {
+        if (key === 'min-price' || key === 'max-price') {
+            // Convert min-price and max-price to numbers
+            parsedParams[key] = Number(value);
         } else {
-            // Show error message
-            messageContainer.innerHTML = `<div class="error-message">${result.message}</div>`;
+            // Convert comma-separated values into an array for multi-select fields
+            parsedParams[key] = value.split(',').map(item => item.toLowerCase());
         }
-    } catch (error) {
-        console.error('Error:', error);
-        messageContainer.innerHTML = '<div class="error-message">An error occurred while updating the profile</div>';
+    }
+
+    return parsedParams;
+}
+
+// Populate Filter Form using user selection from URL params
+function populateFiltersFromURL() {
+    const params = parseURLParams();
+
+    // Populate checkboxes for multi-select fields (brand, category, gender)
+    ['brand', 'category', 'gender'].forEach(key => {
+        if (params[key]) {
+            params[key].forEach(value => {
+                const checkbox = document.querySelector(`input[name="${key}"][value="${value.charAt(0).toUpperCase() + value.slice(1)}"]`);
+                if (checkbox) checkbox.checked = true;
+            });
+        }
+    });
+
+    // Populate min and max price fields
+    if (params['min-price'] !== undefined) {
+        document.getElementById('min-price').value = params['min-price'];
+    }
+    if (params['max-price'] !== undefined) {
+        document.getElementById('max-price').value = params['max-price'];
     }
 }
