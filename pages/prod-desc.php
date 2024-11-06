@@ -88,7 +88,7 @@ $stmt->close();
 
         <div class="product-options">
           <div class="size-selector">
-            <label class="option-label">Size (UK)</label>
+            <label class="option-label">Size (US)</label>
             <div class="select-wrapper">
               <select class="size-select" id="size-select" <?php echo empty($available_sizes) ? 'disabled' : ''; ?>>
                   <?php
