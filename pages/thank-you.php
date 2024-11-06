@@ -87,7 +87,7 @@ $order = $_SESSION['last_order'];
 
     </div>
     <div class="next-steps">
-      <a href="./home.php" class="continue-shopping-btn">Continue Shopping</a>
+      <a class="button hover-filled-slide-right continue-shopping-btn" href="./home.php"><span>Continue Shopping</span></a>
     </div>
   </main>
 

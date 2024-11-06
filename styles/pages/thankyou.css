@@ -113,20 +113,23 @@ h2 {
 }
 
 .continue-shopping-btn {
-  font-family: var(--dela-gothic-one);
-  font-size: var(--fs-6);
-  display: inline-block;
-  margin-top: 10px;
-  margin-bottom: 30px;
-  transition: background-color var(--transition-1);
-  padding: 15px;
-  background-color: var(--medium-blue);
+  width: 18em;
+  border-radius: 0.7em;
+}
+
+.continue-shopping-btn::before {
+  background-color: var(--light-blue);
   color: var(--white);
-  text-decoration: none;
-  border-radius: var(--br-medium);
-  border: none;
+}
+
+.continue-shopping-btn span {
+  border: 2px solid var(--light-blue);
+}
+
+.continue-shopping-btn span:hover {
+  color: var(--light-blue);
 }
 
 .continue-shopping-btn:hover {
-  background-color: var(--light-blue);
+  color: var(--light-blue);
 }

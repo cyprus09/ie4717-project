@@ -11,8 +11,6 @@ function initCarousel() {
   document.addEventListener('mouseup', () => {
       carousel.classList.remove('is-dragging');
   });
-  
-  // Your existing carousel code here...
 }
 
 // Preserve hover states
@@ -208,3 +206,40 @@ document.querySelectorAll('.reveal').forEach(element => {
 
 // Initial check
 handleRevealAnimation();
+
+// Automate carousel scrolling
+document.addEventListener('DOMContentLoaded', () => {
+    let carousels = document.querySelectorAll('.card-carousel');
+    let cards = document.querySelectorAll('.product-card');
+    let currentIndex = 0;
+    let totalCards = cards.length / carousels.length;
+    let visibleCards = 4;
+    let cardWidthWithMargin = 25;  
+  
+    // Auto slide every 3 seconds
+    setInterval(() => {
+      swipeCards();
+    }, 3000);
+  
+    function swipeCards() {
+      // If there are 4 or more cards remaining to display on next period, swipe 4 cards
+      if (totalCards - currentIndex - visibleCards >= visibleCards) {
+        currentIndex += visibleCards;
+      // If reached the last 4 cards
+      } else if (totalCards - currentIndex - visibleCards === 0) {
+        currentIndex = 0;
+      } else {
+        // If fewer than 4 cards remain to display in next period, move to show the last 4 cards
+        currentIndex = totalCards - visibleCards;
+      }
+  
+      updateCarousel();
+    }
+  
+    function updateCarousel() {
+      carousels.forEach(carousel => {
+        // Move each carousel by changing the transform property
+        carousel.style.transform = `translateX(-${currentIndex * cardWidthWithMargin}%)`;
+      });
+    }
+  });

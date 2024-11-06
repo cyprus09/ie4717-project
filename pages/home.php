@@ -58,7 +58,7 @@ if (session_status() === PHP_SESSION_NONE) {
     <div class="highlight-section sale-highlight">
       <div class="header-wrapper">
         <h1 class="highlight-header">Flash Sale</h1>
-        <a class="view-more-button" href="./catalog.php">View More</a>
+        <a class="button hover-filled-slide-right view-more-button view-sale-button" href="./catalog.php"><span>View More</span></a>
       </div>
       <div class="bg-text bg-text-gray bg-text-top">Sale Sale Sale Sale Sale Sale Sale Sale Sale Sale</div>
       <div class="bg-text bg-text-gray bg-text-bottom">Sale Sale Sale Sale Sale Sale Sale Sale Sale Sale</div>
@@ -68,7 +68,7 @@ if (session_status() === PHP_SESSION_NONE) {
     <div class="highlight-section trending-highlight">
       <div class="header-wrapper">
         <h1 class="highlight-header">Trending</h1>
-        <a class="view-more-button" href="./catalog.php">View More</a>
+        <a class="button hover-filled-slide-right view-more-button view-trending-button" href="./catalog.php"><span>View More</span></a>
       </div>
       <div class="bg-text bg-text-white bg-text-top">Trending Trending Trending Trending Trending Trending</div>
       <div class="bg-text bg-text-white bg-text-bottom">Trending Trending Trending Trending Trending Trending</div>

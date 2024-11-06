@@ -59,7 +59,7 @@ $stmt->close();
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>FootScape - <?php echo htmlspecialchars($product['name']); ?></title>
+  <title>FootScape | <?php echo htmlspecialchars($product['name']); ?></title>
   <!-- Favicon -->
   <link rel="shortcut icon" href="../assets/logos/favicon-logo.png" type="image/png" />
   <!-- Page CSS -->
