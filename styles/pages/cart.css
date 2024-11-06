@@ -30,6 +30,7 @@ h1 {
 
 .cart-item h2 {
   font-family: var(--dela-gothic-one);
+  font-size: var(--fs-3);
 }
 
 .cart-item img {
@@ -41,9 +42,9 @@ h1 {
 }
 
 .item-details h2 {
-  font-family: var(--helvetica-neue);
+  font-family: var(--dela-gothic-one);
   margin: 0;
-  font-size: var(--fs-7);
+  font-size: var(--fs-4);
 }
 
 .price {

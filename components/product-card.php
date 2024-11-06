@@ -1,4 +1,4 @@
-<a class="product-card reveal" href="../pages/prod-desc.php?name=<?php echo urlencode($product['name']); ?>&price=<?php echo urlencode($product['price']); ?>">
+<a class="product-card reveal" href="../pages/prod-desc.php?name=<?php echo urlencode($product['name']); ?>">
     <div class="product-img" style="background-image: url(<?php echo $product['image_url'];?>)"></div>
     <div class="product-desc-section">
         <h3 class="product-name">
