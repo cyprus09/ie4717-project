@@ -3,6 +3,17 @@ if (session_status() === PHP_SESSION_NONE) {
   session_start();
 }
 
+// Check if user is logged in
+if (!isset($_SESSION['user_id'])) {
+  header('Content-Type: application/json');
+  echo json_encode([
+      'success' => false,
+      'message' => 'Please login first',
+      'redirect' => '../../pages/login.php'
+  ]);
+  exit;
+}
+
 require_once 'cart-functions.php';
 require_once '../auth/dbconnect.php';
 

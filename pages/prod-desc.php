@@ -127,12 +127,17 @@ header("X-Content-Type-Options: nosniff");
                 <button class="quantity-btn plus">+</button>
             </div>
         </div>
-        <button type="submit" 
-                class="button hover-filled-slide-right" 
-                onclick="addToCart('<?php echo htmlspecialchars($product['name']); ?>', <?php echo htmlspecialchars($product['price']); ?>)"
-                <?php echo empty($available_sizes) ? 'disabled' : ''; ?>>
-            <span><?php echo !empty($available_sizes) ? 'Add to Cart' : 'Out of Stock'; ?></span>
-        </button>
+        <?php if (isset($_SESSION['user_id']) && $_SESSION['user_id'] > 0): ?>
+            <button type="submit" 
+                    class="button hover-filled-slide-right" 
+                    onclick="addToCart('<?php echo htmlspecialchars($product['name']); ?>', <?php echo htmlspecialchars($product['price']); ?>)"
+                    <?php echo empty($available_sizes) ? 'disabled' : ''; ?>>
+                <span><?php echo !empty($available_sizes) ? 'Add to Cart' : 'Out of Stock'; ?></span>
+            </button>
+        <?php else: ?>
+            <a href="../pages/auth.php" class="button hover-filled-slide-right"><span>Cart</span></a>
+        <?php endif; ?>
+        
       </div>
     </div>
     <div class="similar-products-container">
@@ -144,35 +149,48 @@ header("X-Content-Type-Options: nosniff");
   <?php include "../components/footer.php" ?>
   <script>
     function addToCart(name, price) {
-      const selectedSize = document.querySelector('.size-select').value;
-      const selectedQuantity = parseInt(document.querySelector('.quantity-input').value);
-
-      fetch("../utils/cart/add-to-cart.php", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            name: name,
-            price: price,
-            quantity: selectedQuantity,
-            size: selectedSize
-          }),
-        })
+    // Check login status first
+    fetch("../utils/auth/check-login.php")
         .then(response => response.json())
         .then(data => {
-          if (data.success) {
-            alert("Product added to cart!");
-          } else {
-            alert("Failed to add product to cart.");
-          }
-        })
-        .catch(error => {
-          console.error('Error:', error);
-          alert("An error occurred while adding to cart.");
+            if (!data.isLoggedIn) {
+                // Save intended product details to session if needed
+                window.location.href = '../auth.php';
+                return;
+            }
+            console.log("has logged in")
+            
+            // If logged in, proceed with adding to cart
+            const selectedSize = document.querySelector('.size-select').value;
+            const selectedQuantity = parseInt(document.querySelector('.quantity-input').value);
+
+            fetch("../utils/cart/add-to-cart.php", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    name: name,
+                    price: price,
+                    quantity: selectedQuantity,
+                    size: selectedSize
+                }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert("Product added to cart!");
+                } else {
+                    alert(data.message || "Failed to add product to cart.");
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert("An error occurred while adding to cart.");
+            });
         });
     }
-  </script>
+</script>
   <script src="../scripts/pages/prod-desc.js"></script>
 </body>
 

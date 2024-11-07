@@ -16,7 +16,11 @@ $searchValue = isset($_GET['search']) ? htmlspecialchars($_GET['search']) : '';
     <div class="link-wrapper">
         <!-- Navigation Links -->
         <a href="../pages/catalog.php" class="nav-link">Explore</a>
-        <a href="../pages/shopping-cart.php" class="nav-link">Cart</a>
+        <?php if (isset($_SESSION['user_id']) && $_SESSION['user_id'] > 0): ?>
+            <a href="../pages/shopping-cart.php" class="nav-link">Cart</a>
+        <?php else: ?>
+            <a href="../pages/auth.php" class="nav-link">Cart</a>
+        <?php endif; ?>
         <?php if (isset($_SESSION['user_id']) && $_SESSION['user_id'] > 0): ?>
             <a href="../pages/profile.php" class="nav-link">Profile</a>
             <a href="../utils/auth/logout.php" class="nav-link">Logout</a>
