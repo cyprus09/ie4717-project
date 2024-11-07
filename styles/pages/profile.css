@@ -189,22 +189,23 @@
     display: flex;
     flex-direction: row;
     gap: 1.6em;
-    padding: 1em;
+    /* padding: 1em; */
     background-color: var(--white);
     border-radius: var(--br-small);
     align-items: center;
 }
 
 .order-item-image {
-    width: 8em;
-    height: 6em;
+    width: 10em;
+    height: 8em;
     gap: 0.5em;
     object-fit: cover;
     background-color: var(--light-blue);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    border-radius: var(--br-small);
+    border-top-left-radius: var(--br-small);
+    border-bottom-left-radius: var(--br-small);
 }
 
 .product-details {
